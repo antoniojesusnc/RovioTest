@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace RovioTest.Config
 {
@@ -9,6 +10,8 @@ namespace RovioTest.Config
         [field: SerializeField]
         public float Hp { get; private set; }
         [field: SerializeField]
+        public float Speed { get; private set; }
+        [field: SerializeField]
         public float SpeedMovement { get; private set; }
         [field: SerializeField]
         public float Attack { get; private set; }
@@ -16,7 +19,10 @@ namespace RovioTest.Config
         public float BonusAttack { get; private set; }
         [field: SerializeField]
         public float Service { get; private set; }
-        
+
+        [field: Header("Asset")]
+        [field: SerializeField]
+        public AssetReferenceGameObject Asset { get; private set; } 
         //[field: Header("Skills")]
     }
 }

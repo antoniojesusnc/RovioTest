@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.bshsf.joystick": "https://github.com/Bian-Sh/UniJoystick.git?path=Packages/Joystick",
     "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
     "com.gilzoide.safe-area-layout": "https://github.com/gilzoide/unity-safe-area-layout.git",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",

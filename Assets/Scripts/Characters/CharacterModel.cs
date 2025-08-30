@@ -1,17 +1,20 @@
 using RovioTest.Config;
 using UnityEngine;
 
-public class CharacterModel : MonoBehaviour
+namespace RovioTest.Models
 {
-    private CharacterConfig _config;
-    
-    [field: SerializeField]
-    public float CurrentHp { get; private set; }
-
-    [field: SerializeField] public float MaxHP => _config?.Hp ?? 0;
-    
-    public void SetConfig(CharacterConfig config)
+    public class CharacterModel : MonoBehaviour
     {
-        _config = config;
+        private CharacterConfig _config;
+
+        [field: SerializeField] public float CurrentHp { get; private set; }
+
+        public float MaxHP => _config?.Hp ?? 0;
+        public float Speed => _config?.Speed ?? 0;
+
+        public void SetConfig(CharacterConfig config)
+        {
+            _config = config;
+        }
     }
 }

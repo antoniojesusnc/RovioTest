@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.bshsf.joystick": {
+      "version": "https://github.com/Bian-Sh/UniJoystick.git?path=Packages/Joystick",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ce39299c9f67597dd923db3e77ce1e335421f56a"
+    },
     "com.domybest.mybox": {
       "version": "https://github.com/Deadcows/MyBox.git",
       "depth": 0,
