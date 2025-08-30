@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using Urd.Services;
 
-public class GamePlayService : MonoBehaviour
+namespace RovioTest
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class GamePlayService : BaseService
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override int LoadPriority => ServicesPriority.Lowest;
     }
 }

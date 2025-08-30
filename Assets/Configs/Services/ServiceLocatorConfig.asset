@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: ServiceLocatorConfig
   m_EditorClassIdentifier: 
   <ListOfServices>k__BackingField:
-  - rid: 9054691149740769280
+  - rid: 9054691149740769281
+  - rid: 9054691149740769282
+  - rid: 9054691149740769283
+  - rid: 9054691149740769284
   references:
     version: 2
     RefIds:
-    - rid: 9054691149740769280
+    - rid: 9054691149740769281
+      type: {class: CoroutineService, ns: Urd.Services, asm: roviotest.runtime}
+      data: 
+    - rid: 9054691149740769282
+      type: {class: ClockService, ns: Urd.Services, asm: roviotest.runtime}
+      data: 
+    - rid: 9054691149740769283
+      type: {class: EventBusService, ns: Urd.Services, asm: roviotest.runtime}
+      data: 
+    - rid: 9054691149740769284
       type: {class: GamePlayService, ns: RovioTest, asm: roviotest.runtime}
       data: 
