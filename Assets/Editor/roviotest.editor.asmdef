@@ -1,0 +1,16 @@
+{
+    "name": "roviotest.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c30410bc81c3b50458f32d775073f733"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
