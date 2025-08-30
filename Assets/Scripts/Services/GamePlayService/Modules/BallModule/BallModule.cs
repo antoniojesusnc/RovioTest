@@ -36,6 +36,8 @@ namespace RovioTest.Services
             _playerView = newEvent.Player;
             _enemyView = newEvent.Enemy;
             _ballView = newEvent.Ball;
+
+            _hitter = _playerView;
         }
 
         public void OnNewEvent(OnHitBallEvent newEvent)

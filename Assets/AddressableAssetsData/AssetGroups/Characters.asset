@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: f2fbf3eec6f855b4dbb3a52dd868ffa6
   m_SerializeEntries:
   - m_GUID: 8d3f8fc8caac93a4d9ddb3197d0c1bf4
-    m_Address: SpikerCharacter
+    m_Address: BasicCharacter
     m_ReadOnly: 0
     m_SerializedLabels:
     - Characters

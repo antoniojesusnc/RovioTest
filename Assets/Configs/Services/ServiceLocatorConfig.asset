@@ -37,9 +37,13 @@ MonoBehaviour:
         _gamePlayServiceModule:
         - rid: 9054691154211373057
         - rid: 9054691154211373058
+        - rid: 9054691154211373059
     - rid: 9054691154211373057
       type: {class: LevelManagerModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data: 
     - rid: 9054691154211373058
       type: {class: PlayerModule, ns: RovioTest.Services, asm: roviotest.runtime}
+      data: 
+    - rid: 9054691154211373059
+      type: {class: BallModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data: 

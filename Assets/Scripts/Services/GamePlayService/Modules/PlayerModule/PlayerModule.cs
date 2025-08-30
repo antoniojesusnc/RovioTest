@@ -1,9 +1,9 @@
 using System;
 using RovioTest.Events;
+using RovioTest.Models;
 using RovioTest.View;
 using UnityEngine;
 using Urd;
-using Urd.Services;
 
 namespace RovioTest.Services
 {
@@ -13,6 +13,8 @@ namespace RovioTest.Services
         private bool _detectInput = false;
         
         private CharacterView _playerView;
+        private CharacterModel _playerModel;
+        private BallView _ballView;
 
         public override void GameOver(bool isWon)
         {
@@ -52,17 +54,30 @@ namespace RovioTest.Services
         private void StopCharacter()
         {
             _playerView.Stop();
-            TryHit();
+            TryHitBall();
         }
 
-        private void TryHit()
+        private void TryHitBall()
         {
-            Debug.Log("TryHit");
+            var ballDistance = Vector3.Distance(_ballView.transform.position, _playerView.transform.position);
+            if (ballDistance > _playerModel.HitRadius)
+            {
+                return;
+            }
+
+            var hitType = _playerModel.GetHitType(ballDistance);
+            if (!_ballView.IsMoving)
+            {
+                hitType = BallHitTypes.First;
+            }
+            _eventBusService.Send(new OnHitBallEvent(_playerView.Model.Config.Attack, true, hitType));
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
             _playerView = newEvent.Player;
+            _playerModel = _playerView.Model;
+            _ballView = newEvent.Ball;
             
             _detectInput = true;
         }

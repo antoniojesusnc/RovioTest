@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using MyBox;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -12,17 +15,33 @@ namespace RovioTest.Config
         [field: SerializeField]
         public float Speed { get; private set; }
         [field: SerializeField]
-        public float SpeedMovement { get; private set; }
-        [field: SerializeField]
-        public float Attack { get; private set; }
+        public int Attack { get; private set; }
         [field: SerializeField]
         public float BonusAttack { get; private set; }
         [field: SerializeField]
         public float Service { get; private set; }
+        
+        [field: SerializeField]
+        public float HitRadius { get; private set; }
+        
+        [field: SerializeField]
+        public List<HitTypeByRadius> HitTypeByRadius { get; private set; }
 
+        [field: SerializeField]
+        public float CoolDownAfterMiss { get; private set; }
+        
         [field: Header("Asset")]
         [field: SerializeField]
-        public AssetReferenceGameObject Asset { get; private set; } 
+        public AssetReferenceGameObject Asset { get; private set; }
         //[field: Header("Skills")]
+    }
+
+    [Serializable]
+    public class HitTypeByRadius
+    {
+        [field: SerializeField, MinMaxRange(0, 1)]
+        public MinMaxFloat HitRange { get; private set; }
+        [field: SerializeField]
+        public BallHitTypes HitType { get; private set; }
     }
 }

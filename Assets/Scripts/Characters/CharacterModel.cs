@@ -9,9 +9,10 @@ namespace RovioTest.Models
         public CharacterConfig Config { get; private set; }
 
         [field: SerializeField] public float CurrentHp { get; private set; }
+        public float HitRadius => Config.HitRadius;
 
-        public float MaxHP => Config?.Hp ?? 0;
-        public float Speed => Config?.Speed ?? 0;
+        public float MaxHP => Config.Hp;
+        public float Speed => Config.Speed;
 
         public void Dispose()
         {
@@ -23,5 +24,12 @@ namespace RovioTest.Models
             Config = config;
         }
 
+        public BallHitTypes GetHitType(float ballDistance)
+        {
+            var ballDistanceNormalized = ballDistance / HitRadius;
+            return Config.HitTypeByRadius.Find(radiusData =>
+                radiusData.HitRange.Min < ballDistanceNormalized && radiusData.HitRange.Max > ballDistanceNormalized)?.HitType  
+                   ?? BallHitTypes.None;
+        }
     }
 }

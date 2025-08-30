@@ -1,5 +1,6 @@
 using RovioTest.Events;
 using RovioTest.Models;
+using TMPro;
 using UnityEngine;
 using Urd;
 using Urd.Services;
@@ -13,7 +14,7 @@ namespace RovioTest.View
         [SerializeField]
         private Rigidbody _rigidBody;
         [SerializeField]
-        private TextMesh _text;
+        private TextMeshPro _text;
 
         private CharacterView _objective;
 
@@ -48,7 +49,7 @@ namespace RovioTest.View
 
         private void SetScore()
         {
-            _text.text = Model.CurrentScore.ToString("#0");
+            _text.SetText(Model.CurrentScore.ToString("#0"));
         }
         
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)

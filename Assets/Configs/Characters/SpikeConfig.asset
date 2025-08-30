@@ -14,10 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 5
-  <SpeedMovement>k__BackingField: 50
   <Attack>k__BackingField: 47
   <BonusAttack>k__BackingField: 59
   <Service>k__BackingField: 56
+  <HitRadius>k__BackingField: 5
+  <HitTypeByRadius>k__BackingField:
+  - <HitRange>k__BackingField:
+      Min: 0.80103356
+      Max: 1
+    <HitType>k__BackingField: 20
+  - <HitRange>k__BackingField:
+      Min: 0.4961241
+      Max: 0.79758835
+    <HitType>k__BackingField: 30
+  - <HitRange>k__BackingField:
+      Min: 0.20327312
+      Max: 0.50473744
+    <HitType>k__BackingField: 40
+  - <HitRange>k__BackingField:
+      Min: 0
+      Max: 0.20241164
+    <HitType>k__BackingField: 50
+  <CoolDownAfterMiss>k__BackingField: 1
   <Asset>k__BackingField:
     m_AssetGUID: 8d3f8fc8caac93a4d9ddb3197d0c1bf4
     m_SubObjectName: 
