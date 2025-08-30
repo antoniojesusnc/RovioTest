@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpikeConfig
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
-  <Speed>k__BackingField: 0
+  <Speed>k__BackingField: 5
   <SpeedMovement>k__BackingField: 50
   <Attack>k__BackingField: 47
   <BonusAttack>k__BackingField: 59

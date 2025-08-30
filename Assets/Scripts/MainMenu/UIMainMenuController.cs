@@ -1,10 +1,10 @@
+using RovioTest.Services;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Urd.Services;
 
-namespace RovioTest
+namespace RovioTest.UI
 {
-    public class MainMenuController : MonoBehaviour
+    public class UIMainMenuController : MonoBehaviour
     {
         public void OpenGameScene()
         {

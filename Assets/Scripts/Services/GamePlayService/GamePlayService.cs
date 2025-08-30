@@ -1,20 +1,19 @@
 using System;
 using System.Collections.Generic;
-using RovioTest.Config;
 using RovioTest.Models;
 using UnityEngine;
 using Urd;
 using Urd.Services;
 
-namespace RovioTest
+namespace RovioTest.Services
 {
     [Serializable]
     public class GamePlayService : BaseService, IGamePlayService
     {
         public override int LoadPriority => ServicesPriority.Lowest;
         
-        [SerializeField]
-        private CharacterConfig _defaultCharacterConfig;
+        [field: SerializeField]
+        public GamePlayConfig Config { get; private set; }
         
         [SerializeReference, SubclassSelector]
         private List<IGamePlayModule> _gamePlayServiceModule;
@@ -26,12 +25,13 @@ namespace RovioTest
             base.Init();
             InitModules();
             LoadPlayerData();
+            BeginGame();
         }
 
         private void LoadPlayerData()
         {
             PlayerModel = new CharacterModel();
-            PlayerModel.SetConfig(_defaultCharacterConfig);
+            PlayerModel.SetConfig(Config.DefaultCharacterConfig);
         }
 
         private void InitModules()

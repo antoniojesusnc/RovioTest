@@ -16,7 +16,7 @@ MonoBehaviour:
   - rid: 9054691149740769281
   - rid: 9054691149740769282
   - rid: 9054691149740769283
-  - rid: 9054691149740769284
+  - rid: 9054691154211373056
   references:
     version: 2
     RefIds:
@@ -29,14 +29,17 @@ MonoBehaviour:
     - rid: 9054691149740769283
       type: {class: EventBusService, ns: Urd.Services, asm: roviotest.runtime}
       data: 
-    - rid: 9054691149740769284
-      type: {class: GamePlayService, ns: RovioTest, asm: roviotest.runtime}
+    - rid: 9054691154211373056
+      type: {class: GamePlayService, ns: RovioTest.Services, asm: roviotest.runtime}
       data:
-        _defaultCharacterConfig: {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0,
+        <Config>k__BackingField: {fileID: 11400000, guid: 860331ff89bcc1f418c0361c4f30d4c9,
           type: 2}
         _gamePlayServiceModule:
-        - rid: 9054691149740769285
-    - rid: 9054691149740769285
-      type: {class: LevelManagerModule, ns: RovioTest, asm: roviotest.runtime}
-      data:
-        _config: {fileID: 11400000, guid: 860331ff89bcc1f418c0361c4f30d4c9, type: 2}
+        - rid: 9054691154211373057
+        - rid: 9054691154211373058
+    - rid: 9054691154211373057
+      type: {class: LevelManagerModule, ns: RovioTest.Services, asm: roviotest.runtime}
+      data: 
+    - rid: 9054691154211373058
+      type: {class: PlayerModule, ns: RovioTest.Services, asm: roviotest.runtime}
+      data: 

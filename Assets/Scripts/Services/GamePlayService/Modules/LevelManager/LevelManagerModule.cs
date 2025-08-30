@@ -5,26 +5,24 @@ using RovioTest.Events;
 using RovioTest.Models;
 using RovioTest.View;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using Urd;
 using Urd.Services;
 
-namespace RovioTest
+namespace RovioTest.Services
 {
     [Serializable]
-    public class LevelManagerModule : GamePlayModule, IEventBusObservable<OnJoystickChangedEvent>
+    public class LevelManagerModule : GamePlayModule
     {
-        [SerializeField]
-        private LevelManagerConfig _config;
-        
         private CourtView _courtView;
-        private CharacterView _playerView;
+        public CharacterView PlayerView { get; private set; }
         private CharacterView _enemyView;
+        private IGamePlayService _gameplayService;
 
-        private void MoveCharacter(Vector2 newEventJoystickDelta)
+        public override void Init()
         {
-            _playerView.Move(newEventJoystickDelta);
+            base.Init();
+            _gameplayService = StaticServiceLocator.Get<IGamePlayService>();
         }
 
         public override void BeginBattle()
@@ -40,18 +38,28 @@ namespace RovioTest
         private void ResetValues()
         {
             _courtView = null;
-            _playerView = null;
+            PlayerView = null;
             _enemyView = null;
         }
 
         private void LoadAssetForBattle()
         {
-            var playerModel = StaticServiceLocator.Get<IGamePlayService>().PlayerModel;
+            var playerModel = _gameplayService.PlayerModel;
             LoadPlayer(playerModel);
-            var enemy = _config.Characters.GetRandom();
+            var enemy = ChooseEnemy();
             LoadEnemy(enemy);
-            var court = _config.Courts.GetRandom();
+            var court = ChooseCourt();
             LoadCourt(court);
+        }
+
+        private CourtConfig ChooseCourt()
+        {
+            return _gameplayService.Config.Courts.GetRandom();
+        }
+
+        private CharacterConfig ChooseEnemy()
+        {
+            return _gameplayService.Config.Characters.GetRandom();
         }
 
         private void LoadPlayer(CharacterModel playerModel)
@@ -61,8 +69,8 @@ namespace RovioTest
 
         private void OnLoadPlayer(CharacterModel playerModel, GameObject loadedAsset)
         {
-            _playerView = loadedAsset.GetComponent<CharacterView>();
-            _playerView.SetModel(playerModel);
+            PlayerView = loadedAsset.GetComponent<CharacterView>();
+            PlayerView.SetModel(playerModel);
 
             CheckForFinishLoadLevel();
         }
@@ -100,7 +108,7 @@ namespace RovioTest
         private void CheckForFinishLoadLevel()
         {
             if (_courtView == null
-                || _playerView == null
+                || PlayerView == null
                 || _enemyView == null)
             {
                 return;
@@ -111,12 +119,7 @@ namespace RovioTest
 
         private void FinishLoadLevel()
         {
-            _eventBusService.Send(new OnBeginBattleEvent(_courtView, _playerView, _enemyView));
-        }
-
-        public void OnNewEvent(OnJoystickChangedEvent newEvent)
-        {
-            MoveCharacter(newEvent.joystickDelta);
+            _eventBusService.Send(new OnBeginBattleEvent(_courtView, PlayerView, _enemyView));
         }
     }
 }

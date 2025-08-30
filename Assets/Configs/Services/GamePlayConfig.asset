@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ad01a6f4ab3f254f8fd232fd1a88f45, type: 3}
-  m_Name: LevelManagerConfig
+  m_Name: GamePlayConfig
   m_EditorClassIdentifier: 
+  <DefaultCharacterConfig>k__BackingField: {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0,
+    type: 2}
   <Courts>k__BackingField:
   - {fileID: 11400000, guid: 9964ab4ae6c2df44c97e76e6aeb1ad51, type: 2}
   <Characters>k__BackingField:

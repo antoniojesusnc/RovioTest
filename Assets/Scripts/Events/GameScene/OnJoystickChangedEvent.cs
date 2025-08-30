@@ -5,11 +5,13 @@ namespace RovioTest.Events
 {
     public class OnJoystickChangedEvent : IEventBusMessage
     {
-        public Vector2 joystickDelta { get; private set; }
+        public Vector2 JoystickDelta { get; private set; }
+        public bool IsPointerDown { get; private set; }
 
-        public OnJoystickChangedEvent(Vector2 joystickDelta)
+        public OnJoystickChangedEvent(bool isPointerDown, Vector2 joystickDelta)
         {
-            this.joystickDelta = joystickDelta;
+            IsPointerDown = isPointerDown;
+            JoystickDelta = joystickDelta;
         }
     }
 }
