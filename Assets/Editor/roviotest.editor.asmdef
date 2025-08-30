@@ -2,7 +2,9 @@
     "name": "roviotest.editor",
     "rootNamespace": "",
     "references": [
-        "GUID:c30410bc81c3b50458f32d775073f733"
+        "GUID:c30410bc81c3b50458f32d775073f733",
+        "GUID:0a0471484b079be408cb3a0d7fe94736",
+        "GUID:48c9f6afdac61634db0e0f241c7d4d51"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

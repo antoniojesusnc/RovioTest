@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
+    "com.gilzoide.safe-area-layout": "https://github.com/gilzoide/unity-safe-area-layout.git",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
+    "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
     "com.unity.addressables": "1.21.21",
     "com.unity.collab-proxy": "2.9.2",
     "com.unity.device-simulator.devices": "1.0.0",

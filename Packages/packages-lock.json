@@ -9,12 +9,26 @@
       },
       "hash": "efb08f2318b887f8155fe654463a7669733e6611"
     },
+    "com.gilzoide.safe-area-layout": {
+      "version": "https://github.com/gilzoide/unity-safe-area-layout.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f11287e334aa090369e2f1e5257dc82714b1a4d6"
+    },
     "com.mackysoft.serializereference-extensions": {
       "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "f938fc5d9a9ef46a1669289450d38e17cb39567c"
+    },
+    "com.marijnzwemmer.unity-toolbar-extender": {
+      "version": "https://github.com/marijnz/unity-toolbar-extender.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dbd76ed996483d219c39d240f785b1790aa039ed"
     },
     "com.unity.2d.animation": {
       "version": "9.1.0",
