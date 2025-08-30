@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38cb883f580e20841824224f1ec64aea, type: 3}
-  m_Name: Spike
+  m_Name: SpikeConfig
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
+  <Speed>k__BackingField: 0
   <SpeedMovement>k__BackingField: 50
   <Attack>k__BackingField: 47
   <BonusAttack>k__BackingField: 59
   <Service>k__BackingField: 56
+  <Asset>k__BackingField:
+    m_AssetGUID: 8d3f8fc8caac93a4d9ddb3197d0c1bf4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

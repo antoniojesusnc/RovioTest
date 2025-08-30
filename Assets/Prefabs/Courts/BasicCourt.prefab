@@ -115,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3666255258376886764}
+  - component: {fileID: 4491476620809072880}
   m_Layer: 0
   m_Name: BasicCourt
   m_TagString: Untagged
@@ -139,6 +140,18 @@ Transform:
   - {fileID: 2286137265096880109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4491476620809072880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790337525254089745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc343971f07f5f3428e9722fbabf7db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1106255864179978093
 GameObject:
   m_ObjectHideFlags: 0

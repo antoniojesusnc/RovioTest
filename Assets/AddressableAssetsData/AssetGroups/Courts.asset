@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Courts
+  m_EditorClassIdentifier: 
+  m_GroupName: Courts
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9279629322b18b84fb58150880474493
+  m_SerializeEntries:
+  - m_GUID: 16ec4f06574aea441b666ba16806de18
+    m_Address: BasicCourt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dcdf424ca6fa3a040a79e8742f92a3d1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d40e8d60a7cbc0247a65d568a71aae25, type: 2}
+    - {fileID: 11400000, guid: 4d6385863e5736b4e921a463ee78b26e, type: 2}

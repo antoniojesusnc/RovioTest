@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RovioTest.Models;
 using UnityEngine;
 using Urd;
 using Urd.Services;
@@ -14,6 +15,7 @@ namespace RovioTest
         [SerializeReference, SubclassSelector]
         private List<IGamePlayModule> _gamePlayServiceModule;
 
+        public CharacterModel PlayerModel { get; private set; }
         
         private void InitModules()
         {
@@ -37,6 +39,5 @@ namespace RovioTest
                 _gamePlayServiceModule[i]?.BeginGame();
             }
         }
-
     }
 }
