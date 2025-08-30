@@ -9,12 +9,14 @@ namespace RovioTest.Events
         public CourtView Court { get; private set; }
         public CharacterView Player { get; private set; }
         public CharacterView Enemy { get; private set; }
+        public BallView Ball { get; private set; }
 
-        public OnBeginBattleEvent(CourtView court, CharacterView player, CharacterView enemy)
+        public OnBeginBattleEvent(CourtView court, CharacterView player, CharacterView enemy, BallView ball)
         {
             Court = court;
             Player = player;
             Enemy = enemy;
+            Ball = ball;
         }
     }
 }

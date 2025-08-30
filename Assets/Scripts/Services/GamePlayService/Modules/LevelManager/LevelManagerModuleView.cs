@@ -28,6 +28,7 @@ namespace RovioTest.UI
             SetInitialPosition(newEvent.Court.transform, _courtParent);
             SetInitialPosition(newEvent.Player.transform, newEvent.Court.PlayerParent);
             SetInitialPosition(newEvent.Enemy.transform, newEvent.Court.EnemyParent);
+            SetInitialPosition(newEvent.Ball.transform, newEvent.Court.BallPlayer);
         }
 
         private void SetInitialPosition(Transform element, Transform parent)

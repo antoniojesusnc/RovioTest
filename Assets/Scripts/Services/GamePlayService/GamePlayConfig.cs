@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyBox;
@@ -8,6 +9,7 @@ using UnityEditor;
 #endif
 
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RovioTest
 {
@@ -17,17 +19,30 @@ namespace RovioTest
         [field: SerializeField]
         public CharacterConfig DefaultCharacterConfig { get; private set; }
         
+        [field: Header("Ball Speed Increase Per Hit")]
+        [field: SerializeField]
+        public float BallSpeedIncreasePerHit { get; private set; }
+        
+        [field: Header("Ball Score Modification By Hit Type")]
+        [field: SerializeField]
+        public List<ScoreModificationByHitType> ScoreModificationByHitType { get; private set; }
+        
         [field: Header("Game Data")]
         [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Court Configs")]
         public List<CourtConfig> Courts { get; private set; }
+        
         [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Character Configs")]
         public List<CharacterConfig> Characters { get; private set; }
+        
+        [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Balls Configs")]
+        public List<BallConfig> Balls { get; private set; }
         
 #if UNITY_EDITOR
         private void OnValidate()
         {
             UpdateCourts();
             UpdateCharacters();
+            UpdateBalls();
         }
 
         private void UpdateCharacters()
@@ -63,6 +78,32 @@ namespace RovioTest
                 .OfType<CourtConfig>()
                 .ToList();
         }
+        
+        private void UpdateBalls()
+        {
+            string path = AssetDatabase.GetAssetPath(this);
+            string parentFolder = path[..path.IndexOfItem('/')];
+
+            const string filter = " t:BallConfig";
+            string[] searchInFolders = { parentFolder };
+            string[] guids = AssetDatabase.FindAssets(filter, searchInFolders);
+
+            Balls = guids
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .OrderBy(assetPath => assetPath)
+                .Select(AssetDatabase.LoadAssetAtPath<Object>)
+                .OfType<BallConfig>()
+                .ToList();
+        }
 #endif
+    }
+
+    [Serializable]
+    public class ScoreModificationByHitType
+    {
+        [field: SerializeField]
+        public BallHitTypes HitType { get; private set; }
+        [field: SerializeField]
+        public float Modification { get; private set; }
     }
 }

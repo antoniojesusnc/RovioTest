@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Balls
+  m_EditorClassIdentifier: 
+  m_GroupName: Balls
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 61f8d4a8ad78c9548837cbfe678c7dd4
+  m_SerializeEntries:
+  - m_GUID: 6dc548ee63e3d934c8225386fdad4997
+    m_Address: BallView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Balls
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dcdf424ca6fa3a040a79e8742f92a3d1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 44d75d524c661754bbdfadddd26f684c, type: 2}
+    - {fileID: 11400000, guid: b2082e8d5211fd54185b7cbbfb3b75a5, type: 2}

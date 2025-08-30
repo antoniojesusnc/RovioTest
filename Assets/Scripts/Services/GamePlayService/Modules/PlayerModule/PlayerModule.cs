@@ -62,7 +62,7 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _playerView = StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>().PlayerView;
+            _playerView = newEvent.Player;
             
             _detectInput = true;
         }

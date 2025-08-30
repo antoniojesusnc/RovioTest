@@ -14,7 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DefaultCharacterConfig>k__BackingField: {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0,
     type: 2}
+  <ScoreModificationByHitType>k__BackingField:
+  - <HitType>k__BackingField: 1
+    <Modification>k__BackingField: 0.7
+  - <HitType>k__BackingField: 2
+    <Modification>k__BackingField: 1
+  - <HitType>k__BackingField: 3
+    <Modification>k__BackingField: 2
+  - <HitType>k__BackingField: 4
+    <Modification>k__BackingField: 0.4
   <Courts>k__BackingField:
   - {fileID: 11400000, guid: 9964ab4ae6c2df44c97e76e6aeb1ad51, type: 2}
   <Characters>k__BackingField:
   - {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0, type: 2}
+  <Balls>k__BackingField:
+  - {fileID: 11400000, guid: 2822956ffcc875c4ca2763c10dd16e70, type: 2}
