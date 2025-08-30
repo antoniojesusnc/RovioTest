@@ -6,6 +6,7 @@ namespace Urd
     {
         void Init();
         void BeginGame();
+        void BeginBattle();
         void GameOver(bool isWon);
     }
 }

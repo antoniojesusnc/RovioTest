@@ -1,5 +1,5 @@
 using RovioTest.Events;
-using RovioTest.Models;
+using RovioTest.View;
 using UnityEngine;
 using Urd;
 using Urd.Services;
@@ -9,16 +9,17 @@ namespace RovioTest
     public class LevelManagerModuleView : MonoBehaviourEventObservable, IEventBusObservable<OnBeginBattleEvent>
     {
         [Header("Spawn")]
-        [SerializeField] public Transform _playerParent;
-        [SerializeField] public Transform _EnemyParent;
         [SerializeField] public Transform _courtParent;
         
+        private CourtView _courtView;
         
         private LevelManagerModule _levelManager;
         private IEventBusService _eventService;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             _levelManager =  StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>();
             _eventService =  StaticServiceLocator.Get<IEventBusService>();
         }
@@ -35,24 +36,15 @@ namespace RovioTest
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            SpawnCourt(newEvent.Court);
-            SpawnPlayer(newEvent.Player);
-            SpawnEnemy(newEvent.Player);
+            SetInitialPosition(newEvent.Court.transform, _courtParent);
+            SetInitialPosition(newEvent.Player.transform, newEvent.Court.PlayerParent);
+            SetInitialPosition(newEvent.Enemy.transform, newEvent.Court.EnemyParent);
         }
 
-        private void SpawnEnemy(CharacterModel newEventPlayer)
+        private void SetInitialPosition(Transform element, Transform parent)
         {
-            throw new System.NotImplementedException();
-        }
-
-        private void SpawnPlayer(CharacterModel newEventPlayer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SpawnCourt(CourtModel newEventCourt)
-        {
-            throw new System.NotImplementedException();
+            element.SetParent(parent, false);
+            //element.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Urd.Services;
 
 namespace RovioTest
 {
@@ -7,7 +8,7 @@ namespace RovioTest
     {
         public void OpenGameScene()
         {
-            SceneManager.LoadScene(SceneUtils.GameSceneIndex);
+            StaticServiceLocator.Get<IGamePlayService>().BeginBattle();
         }
     }
 }

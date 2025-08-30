@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 16ec4f06574aea441b666ba16806de18
     m_Address: BasicCourt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Courts
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dcdf424ca6fa3a040a79e8742f92a3d1, type: 2}

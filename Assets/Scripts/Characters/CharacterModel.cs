@@ -1,20 +1,27 @@
+using System;
 using RovioTest.Config;
 using UnityEngine;
 
 namespace RovioTest.Models
 {
-    public class CharacterModel : MonoBehaviour
+    public class CharacterModel : IDisposable
     {
-        private CharacterConfig _config;
+        public CharacterConfig Config { get; private set; }
 
         [field: SerializeField] public float CurrentHp { get; private set; }
 
-        public float MaxHP => _config?.Hp ?? 0;
-        public float Speed => _config?.Speed ?? 0;
+        public float MaxHP => Config?.Hp ?? 0;
+        public float Speed => Config?.Speed ?? 0;
 
+        public void Dispose()
+        {
+            
+        }
+        
         public void SetConfig(CharacterConfig config)
         {
-            _config = config;
+            Config = config;
         }
+
     }
 }

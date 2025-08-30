@@ -24,7 +24,12 @@ namespace Urd
             _eventBusService = StaticServiceLocator.Get<IEventBusService>();
             _eventBusService.Subscribe(this);
         }
-        
+
+        public virtual void BeginBattle()
+        {
+            
+        }
+
         public virtual void GameOver(bool isWon)
         {
             

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RovioTest.Config;
 using RovioTest.Models;
 using UnityEngine;
 using Urd;
@@ -8,15 +9,31 @@ using Urd.Services;
 namespace RovioTest
 {
     [Serializable]
-    public class GamePlayService : BaseService
+    public class GamePlayService : BaseService, IGamePlayService
     {
         public override int LoadPriority => ServicesPriority.Lowest;
+        
+        [SerializeField]
+        private CharacterConfig _defaultCharacterConfig;
         
         [SerializeReference, SubclassSelector]
         private List<IGamePlayModule> _gamePlayServiceModule;
 
         public CharacterModel PlayerModel { get; private set; }
-        
+
+        public override void Init()
+        {
+            base.Init();
+            InitModules();
+            LoadPlayerData();
+        }
+
+        private void LoadPlayerData()
+        {
+            PlayerModel = new CharacterModel();
+            PlayerModel.SetConfig(_defaultCharacterConfig);
+        }
+
         private void InitModules()
         {
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
@@ -37,6 +54,19 @@ namespace RovioTest
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
                 _gamePlayServiceModule[i]?.BeginGame();
+            }
+        }
+
+        public T GetModule<T>() where T : class, IGamePlayModule
+        {
+            return _gamePlayServiceModule.Find(module => typeof(T).IsAssignableFrom(module.GetType())) as T;
+        }
+
+        public void BeginBattle()
+        {
+            for (int i = 0; i < _gamePlayServiceModule.Count; i++)
+            {
+                _gamePlayServiceModule[i]?.BeginBattle();
             }
         }
     }

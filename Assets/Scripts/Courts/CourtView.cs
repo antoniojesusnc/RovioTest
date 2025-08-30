@@ -5,12 +5,16 @@ namespace RovioTest.View
 {
     public class CourtView : MonoBehaviour
     {
-        private CourtModel _model;
-        private Rigidbody _rigidBody;
+        [field: SerializeField] 
+        public Transform PlayerParent { get; private set; }
+        [field: SerializeField] 
+        public Transform EnemyParent { get; private set; }
 
-        public void SetModel(CourtModel model)
+        private CourtModel _courtModel;
+        
+        public void SetModel(CourtModel courtModel)
         {
-            _model = model;
+            _courtModel = courtModel;
         }
     }
 }

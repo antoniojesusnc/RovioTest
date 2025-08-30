@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 8d3f8fc8caac93a4d9ddb3197d0c1bf4
     m_Address: SpikerCharacter
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Characters
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dcdf424ca6fa3a040a79e8742f92a3d1, type: 2}

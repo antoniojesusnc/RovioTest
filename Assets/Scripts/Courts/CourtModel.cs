@@ -1,15 +1,20 @@
+using System;
 using RovioTest.Config;
-using UnityEngine;
 
 namespace RovioTest.Models
 {
-    public class CourtModel : MonoBehaviour
+    public class CourtModel : IDisposable
     {
         private CourtConfig _config;
 
         public void SetConfig(CourtConfig config)
         {
             _config = config;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }
