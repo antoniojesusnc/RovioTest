@@ -14,6 +14,8 @@ namespace RovioTest.Models
         public float HitRadius => Config.HitRadius;
 
         public float MaxHP => Config.Hp;
+        
+        public float HPRate => CurrentHp / MaxHP;
         public float Speed => Config.Speed;
 
         public ICharacterMovementBehavior MovementBehavior { get; private set; }
