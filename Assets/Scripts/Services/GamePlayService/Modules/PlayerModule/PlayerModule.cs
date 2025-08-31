@@ -10,6 +10,7 @@ namespace RovioTest.Services
     [Serializable]
     public class PlayerModule : GamePlayModule, 
         IEventBusObservable<OnJoystickChangedEvent>, 
+        IEventBusObservable<OnClickInCharacterSkillEvent>,
         IEventBusObservable<OnBeginBattleEvent>,
         IEventBusObservable<OnBallChangeObjectiveEvent>
     {
@@ -20,6 +21,7 @@ namespace RovioTest.Services
         private BallView _ballView;
 
         private bool _ballGoingToOpponent;
+        private bool _useSkillInNextHit;
         
         public override void GameOver(bool isWon)
         {
@@ -82,6 +84,11 @@ namespace RovioTest.Services
                 hitType = BallHitTypes.First;
             }
 
+            if (_useSkillInNextHit)
+            {
+                hitType = BallHitTypes.Skill;
+            }
+            
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType));
         }
 
@@ -97,6 +104,15 @@ namespace RovioTest.Services
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
         {
             _ballGoingToOpponent = newEvent.SendToPlayer && newEvent.Objetive != _playerView;
+        }
+
+        public void OnNewEvent(OnClickInCharacterSkillEvent newEvent)
+        {
+            if (newEvent.Character != _playerView)
+            {
+                return;
+            }
+            _useSkillInNextHit = true;
         }
     }
 }

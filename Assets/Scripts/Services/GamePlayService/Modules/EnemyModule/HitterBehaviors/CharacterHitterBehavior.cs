@@ -6,7 +6,8 @@ using Urd.Services;
 namespace RovioTest.AI
 {
     public abstract class CharacterHitterBehavior : ICharacterHitterBehavior,
-        IEventBusObservable<OnBallChangeObjectiveEvent>
+        IEventBusObservable<OnBallChangeObjectiveEvent>,
+        IEventBusObservable<OnBallBeingHitEvent>
     {
         private CharacterView _characterView; 
         private BallView _ballView;
@@ -14,7 +15,8 @@ namespace RovioTest.AI
         private IEventBusService _eventBusService;
 
         public bool _ballGoingToOpponent;
-        
+        private bool _useSkillInNextHit;
+
         public virtual void Dispose()
         {
             // TODO release managed resources here
@@ -56,7 +58,10 @@ namespace RovioTest.AI
                 hitType = BallHitTypes.First;
             }
 
-            var score = _characterView.Model.Config.Attack;
+            if (_useSkillInNextHit)
+            {
+                hitType = BallHitTypes.Skill;
+            }
             
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_characterView, hitType));
         }
@@ -78,6 +83,26 @@ namespace RovioTest.AI
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
         {
             _ballGoingToOpponent = newEvent.SendToPlayer && newEvent.Objetive != _characterView;
+        }
+
+        public void OnNewEvent(OnBallBeingHitEvent newEvent)
+        {
+            bool isValidHit = newEvent.BallHitType == BallHitTypes.Early
+                              || newEvent.BallHitType == BallHitTypes.Good
+                              || newEvent.BallHitType == BallHitTypes.Perfect
+                              || newEvent.BallHitType == BallHitTypes.Late;
+            if (newEvent.HitCharacter == _characterView && isValidHit)
+            {
+                CheckForSkill();
+            }
+        }
+
+        private void CheckForSkill()
+        {
+            if (_characterView.Model.CanDoSkill)
+            {
+                _useSkillInNextHit = true;
+            }
         }
     }
 }

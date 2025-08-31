@@ -66,10 +66,30 @@ namespace RovioTest.Services
                 case BallHitTypes.Wall:
                     HitToWall(newEvent);
                     break;
+                case BallHitTypes.Skill:
+                    HitWithSkill(newEvent);
+                    break;
                 default:
                     CharacterHitBall(newEvent);
                     break;
             }
+        }
+
+        private void HitWithSkill(OnBallBeingHitEvent newEvent)
+        {
+            float score = newEvent.HitCharacter.Model.Attack;
+            score *= _config.ScoreModificationByHitType
+                .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
+            
+            newEvent.HitCharacter.Model.HitBall(score);
+            newEvent.HitCharacter.Model.ResetSkillPoints();
+            
+            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.AddScore(score.RoundToInt());
+            
+            _eventBusService.Send(new OnCharacterHitBallEvent(newEvent.HitCharacter));
+            
+            SetBallToOpponent(newEvent.HitCharacter);
         }
 
         private void HitFirst(OnBallBeingHitEvent newEvent)

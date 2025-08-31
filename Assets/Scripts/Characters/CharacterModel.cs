@@ -15,6 +15,7 @@ namespace RovioTest.Models
         public float MaxSkillPoints => Config.SkillPoints;
         public float SkillPointsRate => CurrentSkillPoints / MaxSkillPoints;
         public bool IsAlive => CurrentHp > 0;
+        public bool CanDoSkill => SkillPointsRate > 1;
         public float Speed => Config.Speed;
 
         public float CurrentSkillPoints { get; private set; }
@@ -48,6 +49,10 @@ namespace RovioTest.Models
         public void HitBall(float score)
         {
             CurrentSkillPoints += score;
+        }
+        public void ResetSkillPoints()
+        {
+            CurrentSkillPoints = 0;
         }
 
         public BallHitTypes GetHitType(float ballDistance)

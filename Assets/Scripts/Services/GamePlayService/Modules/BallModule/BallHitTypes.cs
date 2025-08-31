@@ -12,6 +12,7 @@ namespace RovioTest
         Hit = 60,
         
         Wall = 100,
+        Skill = 200,
         
         Size
     }
