@@ -86,7 +86,10 @@ namespace RovioTest.Services
 
         private void HitToWall(OnBallBeingHitEvent newEvent)
         {
-            
+            var normal = newEvent.ContactPoint.normal;
+            var direction = Vector3.Reflect(_ballView.transform.forward, normal);
+            var objective = _hitter == _playerView ? _enemyView : _playerView;
+            _eventBusService.Send(new OnBallChangeObjectiveEvent(objective, direction));
         }
 
         private void CharacterHitBall(OnBallBeingHitEvent newEvent)

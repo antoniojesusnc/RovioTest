@@ -42,7 +42,7 @@ namespace RovioTest.View
         private void BeginMovement(CharacterView objective, Vector3 direction)
         {
             _objective = objective;
-            transform.LookAt(transform.position + direction);
+            transform.LookAt(transform.position + direction.SetY(0));
             _rigidBody.rotation = transform.rotation;
             
             IsMoving = true;
@@ -57,7 +57,7 @@ namespace RovioTest.View
             var direction = (_objective.transform.position - _rigidBody.position).normalized;
             var step = Model.MaxTurnDegreesAngle * Mathf.Deg2Rad * Time.deltaTime;
             var newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0);
-            transform.LookAt(transform.position + newDirection);
+            transform.LookAt(transform.position + newDirection.SetY(0));
             _rigidBody.rotation = transform.rotation;
             
             var movement = transform.forward.normalized * Model.Speed* deltaTime;

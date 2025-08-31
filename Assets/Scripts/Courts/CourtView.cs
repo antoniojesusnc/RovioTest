@@ -1,5 +1,7 @@
+using RovioTest.Events;
 using RovioTest.Models;
 using UnityEngine;
+using Urd.Services;
 
 namespace RovioTest.View
 {
@@ -22,6 +24,12 @@ namespace RovioTest.View
         public void SetModel(CourtModel courtModel)
         {
             _courtModel = courtModel;
+        }
+
+        public void OnBallHit(Collision ballCollision)
+        {
+            StaticServiceLocator.Get<IEventBusService>()
+                .Send(OnBallBeingHitEvent.HitWithWall(ballCollision.GetContact(0)));
         }
     }
 }

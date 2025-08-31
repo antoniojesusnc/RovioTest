@@ -42,14 +42,14 @@ namespace RovioTest.View
             IsMoving = false;
         }
 
-        public void OnBallCollision()
+        public void OnBallCollision(Collision collision)
         {
             if (_isGameOver)
             {
                 return;
             }
-            
-            _eventBusService.Send(new OnBallBeingHitEvent(this, BallHitTypes.Hit));
+
+            _eventBusService.Send(OnBallBeingHitEvent.HitWithCharacter(this, collision.GetContact(0)));
         }
 
         public void OnNewEvent(OnGameOverEvent newEvent)
