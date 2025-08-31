@@ -1,12 +1,13 @@
 using System;
 using MyBox;
+using RovioTest.View;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace RovioTest.AI
 {
     [Serializable]
-    public class CharacterMovementBehaviorQuiet : CharacterMovementBehavior
+    public class CharacterMovementBehaviorRandomMovement : CharacterMovementBehavior
     {
         [SerializeField] private float _cooldownTime;
         [SerializeField] private float _movementTime;
@@ -14,22 +15,39 @@ namespace RovioTest.AI
         private Vector2 _direction;
         private float _timeStamp;
 
+        public override void Begin(CharacterView characterView)
+        {
+            base.Begin(characterView);
+            _timeStamp = 0;
+        }
+
+        public override void Restart()
+        {
+            base.Restart();
+            _timeStamp = 0;
+        }
+
         protected override bool TryGetMovemenet(out Vector2 movementNormalized)
         {
             if (_timeStamp > 0)
             {
-                _timeStamp-= Time.deltaTime;
-            } 
-                
-            if (!_isMoving && _timeStamp < 0 )
+                _timeStamp -= Time.deltaTime;
+            }
+
+            if (!IsCurrentActionFinished())
+            {
+                movementNormalized = _direction;
+                return movementNormalized != Vector2.zero;
+            }
+            
+            if (!_isMoving)
             {
                 if (NeedToBeginMovement())
                 {
-                     AssignMovement();
-                     _timeStamp = _movementTime;
+                     BeginMovement();
                 }
             }
-            else if (IsMovementFinished())
+            else
             {
                 FinishMovement();
                 BeginCooldown();
@@ -49,14 +67,16 @@ namespace RovioTest.AI
             _direction = Vector2.zero;
         }
 
-        private bool IsMovementFinished()
+        private bool IsCurrentActionFinished()
         {
             return _timeStamp <= 0;
         }
 
-        private void AssignMovement()
+        private void BeginMovement()
         {
-            _direction = (Random.insideUnitCircle - _characterView.transform.position.ToVector2XZ()).normalized;
+            var randomPositionAround = _characterView.transform.position.ToVector2XZ() + Random.insideUnitCircle; 
+            _direction = (randomPositionAround - _characterView.transform.position.ToVector2XZ()).normalized;
+            _timeStamp = _movementTime;
         }
 
         private bool NeedToBeginMovement()

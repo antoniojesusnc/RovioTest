@@ -7,9 +7,10 @@ namespace RovioTest.Config
 {
     public class EnemyModuleConfig : ScriptableObject
     {
-        [field: Header("Enemy Movement Types")]
         [field: SerializeField]
-        public List<EnemyMovementBehaviorByTypes> EnemyMovementTypes { get; private set; }
+        public List<EnemyMovementBehaviorByTypes> MovementsBehaviors { get; private set; }
+        [field: SerializeField]
+        public List<EnemyHitterBehaviorByTypes> HitterBehaviors { get; private set; }
         
     }
 
@@ -17,8 +18,17 @@ namespace RovioTest.Config
     public class EnemyMovementBehaviorByTypes
     {
         [field: SerializeField]
-        public EnemyMovementTypes BallSpeedIncreasePerHit { get; private set; }
+        public EnemyMovementTypes MovementType { get; private set; }
         [field: SerializeReference, SubclassSelector]
         public ICharacterMovementBehavior MovementBehavior { get; private set; }
+    }
+    
+    [Serializable]
+    public class EnemyHitterBehaviorByTypes
+    {
+        [field: SerializeField]
+        public EnemyHitterTypes HitterType { get; private set; }
+        [field: SerializeReference, SubclassSelector]
+        public ICharacterHitterBehavior HitterBehavior { get; private set; }
     }
 }

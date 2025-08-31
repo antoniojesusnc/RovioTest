@@ -17,7 +17,7 @@ MonoBehaviour:
   <Attack>k__BackingField: 47
   <BonusAttack>k__BackingField: 59
   <Service>k__BackingField: 56
-  <HitRadius>k__BackingField: 5
+  <HitRadius>k__BackingField: 2
   <HitTypeByRadius>k__BackingField:
   - <HitRange>k__BackingField:
       Min: 0.80103356

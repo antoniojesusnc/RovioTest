@@ -7,6 +7,8 @@ namespace RovioTest.View
     {
         [SerializeField]
         private Rigidbody _rigidBody;
+        [SerializeField]
+        private SpriteRenderer _hitArea;
         
         public CharacterModel Model { get; private set; }
         public bool IsMoving { get; private set; }
@@ -14,6 +16,13 @@ namespace RovioTest.View
         public void SetModel(CharacterModel model)
         {
             Model = model;
+
+            UpdateData();
+        }
+
+        private void UpdateData()
+        {
+            _hitArea.transform.localScale = Vector3.one * Model.HitRadius;
         }
 
         public void Move(Vector2 movementNormalized)

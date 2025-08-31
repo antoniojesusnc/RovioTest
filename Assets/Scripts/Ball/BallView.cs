@@ -34,6 +34,7 @@ namespace RovioTest.View
         private void BeginMovement(CharacterView objective)
         {
             _objective = objective;
+            IsMoving = true;
             StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
         }
         public void Move(float deltaTime)
@@ -45,6 +46,7 @@ namespace RovioTest.View
         private void Stop()
         {
             StaticServiceLocator.Get<IClockService>().UnSubscribeToUpdate(CustomUpdate);
+            IsMoving = false;
         }
 
         private void SetScore()

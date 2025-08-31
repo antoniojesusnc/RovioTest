@@ -68,7 +68,7 @@ namespace RovioTest.Services
         {
             _ballView.Model.BeginMovement();
             
-            _ballView.Model.SetScore(newEvent.PlayerScore);
+            _ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
             _ballView.Model.Hit();
 
             _hitter = _hitter == _playerView ? _enemyView : _playerView;
@@ -82,15 +82,16 @@ namespace RovioTest.Services
 
         private void CharacterHitBall(OnHitBallEvent newEvent)
         {
-            float score = newEvent.PlayerScore;
+            float score = newEvent.HitCharacter.Model.Attack;
             score *= _config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
             
             _ballView.Model.SetScore(score.RoundToInt());
             _ballView.Model.Hit();
 
-            _hitter = _hitter == _playerView ? _enemyView : _playerView;
-            _eventBusService.Send(new OnBallChangeObjectiveEvent(_hitter));
+            _hitter = newEvent.HitCharacter;
+            var objetive = _hitter == _playerView ? _enemyView : _playerView;
+            _eventBusService.Send(new OnBallChangeObjectiveEvent(objetive));
         }
 
         private void HitToCharacter(OnHitBallEvent newEvent)

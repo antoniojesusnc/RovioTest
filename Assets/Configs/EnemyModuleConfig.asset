@@ -12,16 +12,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0961658cc06ae6640aff65c7dd62c094, type: 3}
   m_Name: EnemyModuleConfig
   m_EditorClassIdentifier: 
-  <EnemyMovementTypes>k__BackingField:
-  - <BallSpeedIncreasePerHit>k__BackingField: 10
+  <MovementsBehaviors>k__BackingField:
+  - <MovementType>k__BackingField: 10
     <MovementBehavior>k__BackingField:
-      rid: 9054691170877177857
+      rid: 9054691170877177861
+  - <MovementType>k__BackingField: 20
+    <MovementBehavior>k__BackingField:
+      rid: 9054691170877177862
+  - <MovementType>k__BackingField: 30
+    <MovementBehavior>k__BackingField:
+      rid: 9054691170877177863
+  <HitterBehaviors>k__BackingField:
+  - <HitterType>k__BackingField: 10
+    <HitterBehavior>k__BackingField:
+      rid: 9054691170877177864
+  - <HitterType>k__BackingField: 20
+    <HitterBehavior>k__BackingField:
+      rid: 9054691170877177865
+  - <HitterType>k__BackingField: 30
+    <HitterBehavior>k__BackingField:
+      rid: 9054691170877177866
+  - <HitterType>k__BackingField: 40
+    <HitterBehavior>k__BackingField:
+      rid: 9054691170877177867
   references:
     version: 2
     RefIds:
-    - rid: 9054691170877177857
-      type: {class: CharacterMovementBehaviorQuiet, ns: RovioTest.AI, asm: roviotest.runtime}
+    - rid: 9054691170877177861
+      type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _cooldownTime: 1
+        _movementTime: 1
+        _rateToBeginMovement: 0.7
+    - rid: 9054691170877177862
+      type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
         _cooldownTime: 0.5
-        _movementTime: 1
-        _rateToBeginMovement: 0.5
+        _movementTime: 1.5
+        _rateToBeginMovement: 0.7
+    - rid: 9054691170877177863
+      type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _cooldownTime: 0.3
+        _movementTime: 1.5
+        _rateToBeginMovement: 1
+    - rid: 9054691170877177864
+      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _hitRate: 0.4
+        _coolDownToTryAgain: 0.2
+    - rid: 9054691170877177865
+      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _hitRate: 0.6
+        _coolDownToTryAgain: 0.2
+    - rid: 9054691170877177866
+      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _hitRate: 0.8
+        _coolDownToTryAgain: 0.1
+    - rid: 9054691170877177867
+      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _hitRate: 0.95
+        _coolDownToTryAgain: 0.1

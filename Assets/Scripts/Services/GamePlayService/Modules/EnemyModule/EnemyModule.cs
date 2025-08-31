@@ -1,4 +1,5 @@
 using System;
+using MyBox;
 using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.Models;
@@ -9,7 +10,7 @@ using Urd;
 namespace RovioTest.Services
 {
     [Serializable]
-    public class EnemyModule : GamePlayModule, IEventBusObservable<OnBeginBattleEvent>
+    public class EnemyModule : GamePlayModule, IEventBusObservable<OnBeginBattleEvent>, IEventBusObservable<OnHitBallEvent>
     {
         [SerializeField] 
         private EnemyModuleConfig _config;
@@ -30,10 +31,18 @@ namespace RovioTest.Services
 
         private void AssignMovement()
         {
-            var movementBehavior = _config.EnemyMovementTypes[0].MovementBehavior;
+            var movementBehavior = _config.MovementsBehaviors.GetRandom().MovementBehavior;
             _enemyModel.SetMovementBehavior(movementBehavior);
             
             _enemyModel.MovementBehavior.Begin(_enemyView);
+        }
+        
+        private void AssignHitter()
+        {
+            var hitterBehavior = _config.HitterBehaviors.GetRandom().HitterBehavior;
+            _enemyModel.SetHitterBehavior(hitterBehavior);
+            
+            _enemyModel.HitterBehavior.Begin(_enemyView, _ballView);
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
@@ -43,6 +52,17 @@ namespace RovioTest.Services
             _ballView = newEvent.Ball;
 
             AssignMovement();
+            AssignHitter();
+        }
+
+        public void OnNewEvent(OnHitBallEvent newEvent)
+        {
+            if (newEvent.HitCharacter != _enemyView)
+            {
+                return;
+            }
+            
+            _enemyModel.MovementBehavior.Restart();
         }
     }
 }

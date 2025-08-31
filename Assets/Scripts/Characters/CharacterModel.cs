@@ -10,12 +10,14 @@ namespace RovioTest.Models
         public CharacterConfig Config { get; private set; }
 
         [field: SerializeField] public float CurrentHp { get; private set; }
+        public int Attack => Config.Attack;
         public float HitRadius => Config.HitRadius;
 
         public float MaxHP => Config.Hp;
         public float Speed => Config.Speed;
 
         public ICharacterMovementBehavior MovementBehavior { get; private set; }
+        public ICharacterHitterBehavior HitterBehavior { get; private set; }
         
         public void Dispose()
         {
@@ -38,6 +40,11 @@ namespace RovioTest.Models
         public void SetMovementBehavior(ICharacterMovementBehavior movementBehavior)
         {
             MovementBehavior = movementBehavior;
+        }
+
+        public void SetHitterBehavior(ICharacterHitterBehavior hitterBehavior)
+        {
+            HitterBehavior = hitterBehavior;
         }
     }
 }
