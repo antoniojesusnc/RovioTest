@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyBox;
-using RovioTest.Config;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace RovioTest
+namespace RovioTest.Config
 {
     public class GamePlayConfig : ScriptableObject
     {

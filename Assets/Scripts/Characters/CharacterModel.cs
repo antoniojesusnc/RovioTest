@@ -1,4 +1,5 @@
 using System;
+using RovioTest.AI;
 using RovioTest.Config;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace RovioTest.Models
         public float MaxHP => Config.Hp;
         public float Speed => Config.Speed;
 
+        public ICharacterMovementBehavior MovementBehavior { get; private set; }
+        
         public void Dispose()
         {
             
@@ -30,6 +33,11 @@ namespace RovioTest.Models
             return Config.HitTypeByRadius.Find(radiusData =>
                 radiusData.HitRange.Min < ballDistanceNormalized && radiusData.HitRange.Max > ballDistanceNormalized)?.HitType  
                    ?? BallHitTypes.None;
+        }
+
+        public void SetMovementBehavior(ICharacterMovementBehavior movementBehavior)
+        {
+            MovementBehavior = movementBehavior;
         }
     }
 }

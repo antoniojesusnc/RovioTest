@@ -11,15 +11,14 @@ namespace RovioTest.View
         public CharacterModel Model { get; private set; }
         public bool IsMoving { get; private set; }
 
-
         public void SetModel(CharacterModel model)
         {
             Model = model;
         }
 
-        public void Move(Vector2 movementDelta)
+        public void Move(Vector2 movementNormalized)
         {
-            var movement = new Vector3(movementDelta.x, 0, movementDelta.y) * Model.Speed* Time.deltaTime;
+            var movement = new Vector3(movementNormalized.x, 0, movementNormalized.y) * Model.Speed* Time.deltaTime;
             _rigidBody.Move(transform.position + movement, Quaternion.identity);
             IsMoving = true;
         }

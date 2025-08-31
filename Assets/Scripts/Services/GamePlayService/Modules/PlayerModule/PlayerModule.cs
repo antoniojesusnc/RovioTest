@@ -29,9 +29,9 @@ namespace RovioTest.Services
             base.BeginBattle();
         }
 
-        private void MoveCharacter(Vector2 newEventJoystickDelta)
+        private void MoveCharacter(Vector2 newEventJoystickDeltaNormalized)
         {
-            _playerView?.Move(newEventJoystickDelta);
+            _playerView?.Move(newEventJoystickDeltaNormalized);
         }
         
         public void OnNewEvent(OnJoystickChangedEvent newEvent)
