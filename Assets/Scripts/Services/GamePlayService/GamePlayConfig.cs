@@ -19,14 +19,6 @@ namespace RovioTest
         [field: SerializeField]
         public CharacterConfig DefaultCharacterConfig { get; private set; }
         
-        [field: Header("Ball Speed Increase Per Hit")]
-        [field: SerializeField]
-        public float BallSpeedIncreasePerHit { get; private set; }
-        
-        [field: Header("Ball Score Modification By Hit Type")]
-        [field: SerializeField]
-        public List<ScoreModificationByHitType> ScoreModificationByHitType { get; private set; }
-        
         [field: Header("Game Data")]
         [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Court Configs")]
         public List<CourtConfig> Courts { get; private set; }
@@ -96,14 +88,5 @@ namespace RovioTest
                 .ToList();
         }
 #endif
-    }
-
-    [Serializable]
-    public class ScoreModificationByHitType
-    {
-        [field: SerializeField]
-        public BallHitTypes HitType { get; private set; }
-        [field: SerializeField]
-        public float Modification { get; private set; }
     }
 }

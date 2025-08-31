@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb7362b81c9558499f5555c13239b13, type: 3}
+  m_Name: BallModuleConfig
+  m_EditorClassIdentifier: 
+  <BallSpeedIncreasePerHit>k__BackingField: 1.1
+  <ScoreModificationByHitType>k__BackingField:
+  - <HitType>k__BackingField: 20
+    <Modification>k__BackingField: 0.7
+  - <HitType>k__BackingField: 30
+    <Modification>k__BackingField: 1
+  - <HitType>k__BackingField: 40
+    <Modification>k__BackingField: 2
+  - <HitType>k__BackingField: 50
+    <Modification>k__BackingField: 0.4

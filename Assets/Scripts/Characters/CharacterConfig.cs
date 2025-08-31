@@ -33,7 +33,6 @@ namespace RovioTest.Config
         [field: Header("Asset")]
         [field: SerializeField]
         public AssetReferenceGameObject Asset { get; private set; }
-        //[field: Header("Skills")]
     }
 
     [Serializable]

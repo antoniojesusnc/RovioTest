@@ -2,6 +2,7 @@ using System;
 using MyBox;
 using RovioTest.Events;
 using RovioTest.View;
+using UnityEngine;
 using Urd;
 using Urd.Services;
 
@@ -12,6 +13,9 @@ namespace RovioTest.Services
         IEventBusObservable<OnBeginBattleEvent>,
         IEventBusObservable<OnHitBallEvent>
     {
+        [SerializeField] 
+        private BallModuleConfig _config;
+        
         private CharacterView _hitter;
         
         private CharacterView _playerView;
@@ -78,7 +82,7 @@ namespace RovioTest.Services
         private void CharacterHitBall(OnHitBallEvent newEvent)
         {
             float score = newEvent.PlayerScore;
-            score *= _gameplayService.Config.ScoreModificationByHitType
+            score *= _config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
             
             _ballView.Model.SetScore(score.RoundToInt());
