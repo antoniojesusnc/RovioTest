@@ -82,7 +82,7 @@ namespace RovioTest.Services
                 hitType = BallHitTypes.First;
             }
 
-            _eventBusService.Send(new OnHitBallEvent(_playerView, hitType));
+            _eventBusService.Send(new OnBallBeingHitEvent(_playerView, hitType));
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)

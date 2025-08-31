@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
 namespace RovioTest.Config
 {
@@ -9,6 +10,9 @@ namespace RovioTest.Config
         [field: Header("Stats")]
         [field: SerializeField]
         public float Speed { get; private set; }
+
+        [field: SerializeField]
+        public float MaxTurnDegreesAngle { get; private set; }
 
         [field: Header("Asset")]
         [field: SerializeField]

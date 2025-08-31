@@ -1,7 +1,6 @@
 using System;
 using RovioTest.AI;
 using RovioTest.Config;
-using UnityEngine;
 
 namespace RovioTest.Models
 {
@@ -13,9 +12,12 @@ namespace RovioTest.Models
         public float HitRadius => Config.HitRadius;
         public float MaxHP => Config.Hp;
         public float HPRate => CurrentHp / MaxHP;
+        public float MaxSkillPoints => Config.SkillPoints;
+        public float SkillPointsRate => CurrentSkillPoints / MaxSkillPoints;
         public bool IsAlive => CurrentHp > 0;
         public float Speed => Config.Speed;
 
+        public float CurrentSkillPoints { get; private set; }
         public float CurrentHp { get; private set; }
         
         public bool IsPlayer { get; private set; }
@@ -39,7 +41,13 @@ namespace RovioTest.Models
         
         public void ResetStats()
         {
-            CurrentHp = Config.Hp;
+            CurrentHp = MaxHP;
+            CurrentSkillPoints = 0;
+        }
+
+        public void HitBall(float score)
+        {
+            CurrentSkillPoints += score;
         }
 
         public BallHitTypes GetHitType(float ballDistance)
@@ -60,7 +68,7 @@ namespace RovioTest.Models
             HitterBehavior = hitterBehavior;
         }
 
-        public void Hit(int damage)
+        public void BeingHit(int damage)
         {
             CurrentHp -= damage; 
         }

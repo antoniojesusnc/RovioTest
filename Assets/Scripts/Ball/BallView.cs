@@ -1,3 +1,4 @@
+using MyBox;
 using RovioTest.Events;
 using RovioTest.Models;
 using TMPro;
@@ -16,7 +17,7 @@ namespace RovioTest.View
         private Rigidbody _rigidBody;
         [SerializeField]
         private TextMeshPro _text;
-
+        
         private CharacterView _objective;
 
         public BallModel Model { get; private set; }
@@ -38,9 +39,12 @@ namespace RovioTest.View
             Move(deltaTime);
         }
 
-        private void BeginMovement(CharacterView objective)
+        private void BeginMovement(CharacterView objective, Vector3 direction)
         {
             _objective = objective;
+            transform.LookAt(transform.position + direction);
+            _rigidBody.rotation = transform.rotation;
+            
             IsMoving = true;
         }
         public void Move(float deltaTime)
@@ -50,8 +54,14 @@ namespace RovioTest.View
                 return;
             }
             
-            var movement = (_objective.transform.position - _rigidBody.position).normalized * Model.Speed* deltaTime;
-            _rigidBody.Move(transform.position + movement, Quaternion.identity);
+            var direction = (_objective.transform.position - _rigidBody.position).normalized;
+            var step = Model.MaxTurnDegreesAngle * Mathf.Deg2Rad * Time.deltaTime;
+            var newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0);
+            transform.LookAt(transform.position + newDirection);
+            _rigidBody.rotation = transform.rotation;
+            
+            var movement = transform.forward.normalized * Model.Speed* deltaTime;
+            _rigidBody.MovePosition(transform.position + movement);
         }
         
         private void Stop()
@@ -68,7 +78,7 @@ namespace RovioTest.View
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
         {
             SetScore();
-            BeginMovement(newEvent.Objetive);
+            BeginMovement(newEvent.Objetive, newEvent.Direction);
         }
 
         public void OnNewEvent(OnCharacterDownEvent newEvent)

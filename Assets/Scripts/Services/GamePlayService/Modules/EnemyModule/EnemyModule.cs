@@ -12,7 +12,7 @@ namespace RovioTest.Services
     [Serializable]
     public class EnemyModule : GamePlayModule, 
         IEventBusObservable<OnBeginBattleEvent>, 
-        IEventBusObservable<OnHitBallEvent>
+        IEventBusObservable<OnBallBeingHitEvent>
     {
         [SerializeField] 
         private EnemyModuleConfig _config;
@@ -60,7 +60,7 @@ namespace RovioTest.Services
             AssignHitter();
         }
 
-        public void OnNewEvent(OnHitBallEvent newEvent)
+        public void OnNewEvent(OnBallBeingHitEvent newEvent)
         {
             if (newEvent.HitCharacter != _enemyView)
             {

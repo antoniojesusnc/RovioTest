@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 15cd82f15e04f4f3f887bec521790fc8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 079e16bce45e14ab2b4512c4e4d08d4a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -195,10 +195,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2151890673890452532}
-  - component: {fileID: 7349640630302174742}
+  - component: {fileID: 3375079509002015663}
   - component: {fileID: 1794591211937303439}
   m_Layer: 6
-  m_Name: UICharacterHPBar
+  m_Name: UICharacterSkillBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 150.4}
   m_SizeDelta: {x: 265.61, y: 33.38}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7349640630302174742
+--- !u!114 &3375079509002015663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8498566795589700530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32fd443fc6221042a7e768ebf93ac9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 057646339a8e3b04da228102ddd583e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 1794591211937303439}

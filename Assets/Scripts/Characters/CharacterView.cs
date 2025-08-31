@@ -49,7 +49,7 @@ namespace RovioTest.View
                 return;
             }
             
-            _eventBusService.Send(new OnHitBallEvent(this, BallHitTypes.Hit));
+            _eventBusService.Send(new OnBallBeingHitEvent(this, BallHitTypes.Hit));
         }
 
         public void OnNewEvent(OnGameOverEvent newEvent)

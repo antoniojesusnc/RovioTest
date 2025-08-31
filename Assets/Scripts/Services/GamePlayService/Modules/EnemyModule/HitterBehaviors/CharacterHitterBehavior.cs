@@ -58,7 +58,7 @@ namespace RovioTest.AI
 
             var score = _characterView.Model.Config.Attack;
             
-            _eventBusService.Send(new OnHitBallEvent(_characterView, hitType));
+            _eventBusService.Send(new OnBallBeingHitEvent(_characterView, hitType));
         }
 
         protected abstract bool TryToHit();

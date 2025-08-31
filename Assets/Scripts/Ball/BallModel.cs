@@ -11,6 +11,7 @@ namespace RovioTest.Models
         public float Speed { get; private set; }
         public float Hits { get; private set; }
         public int CurrentScore { get; private set; }
+        public float MaxTurnDegreesAngle => Config.MaxTurnDegreesAngle;
 
         public void Dispose()
         {

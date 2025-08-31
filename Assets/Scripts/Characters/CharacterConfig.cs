@@ -13,6 +13,8 @@ namespace RovioTest.Config
         [field: SerializeField]
         public float Hp { get; private set; }
         [field: SerializeField]
+        public float SkillPoints { get; private set; }
+        [field: SerializeField]
         public float Speed { get; private set; }
         [field: SerializeField]
         public int Attack { get; private set; }
@@ -33,6 +35,7 @@ namespace RovioTest.Config
         [field: Header("Asset")]
         [field: SerializeField]
         public AssetReferenceGameObject Asset { get; private set; }
+
     }
 
     [Serializable]

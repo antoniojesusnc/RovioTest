@@ -12,7 +12,7 @@ namespace RovioTest.Services
     [Serializable]
     public class BallModule : GamePlayModule, 
         IEventBusObservable<OnBeginBattleEvent>,
-        IEventBusObservable<OnHitBallEvent>
+        IEventBusObservable<OnBallBeingHitEvent>
     {
         [SerializeField] 
         private BallModuleConfig _config;
@@ -53,7 +53,7 @@ namespace RovioTest.Services
             _hitter = _playerView;
         }
 
-        public void OnNewEvent(OnHitBallEvent newEvent)
+        public void OnNewEvent(OnBallBeingHitEvent newEvent)
         {
             switch (newEvent.BallHitType)
             {
@@ -72,36 +72,42 @@ namespace RovioTest.Services
             }
         }
 
-        private void HitFirst(OnHitBallEvent newEvent)
+        private void HitFirst(OnBallBeingHitEvent newEvent)
         {
             _ballView.Model.BeginMovement();
             
             _ballView.Model.AddScore(newEvent.HitCharacter.Model.Attack);
             _ballView.Model.Hit();
 
-            _hitter = _hitter == _playerView ? _enemyView : _playerView;
-            _eventBusService.Send(new OnBallChangeObjectiveEvent(_hitter));
+            var objective = _hitter == _playerView ? _enemyView : _playerView;
+            var direction = (_ballView.transform.position-_hitter.transform.position).normalized;
+            _eventBusService.Send(new OnBallChangeObjectiveEvent(objective, direction));
         }
 
-        private void HitToWall(OnHitBallEvent newEvent)
+        private void HitToWall(OnBallBeingHitEvent newEvent)
         {
             
         }
 
-        private void CharacterHitBall(OnHitBallEvent newEvent)
+        private void CharacterHitBall(OnBallBeingHitEvent newEvent)
         {
             float score = newEvent.HitCharacter.Model.Attack;
             score *= _config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
-
+            
+            
+            newEvent.HitCharacter.Model.HitBall(score);
+            
+            _eventBusService.Send(new OnCharacterHitBallEvent(newEvent.HitCharacter));
+            
             _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
             _ballView.Model.AddScore(score.RoundToInt());
             SetBallToOpponent(newEvent.HitCharacter);
         }
 
-        private void HitToCharacter(OnHitBallEvent newEvent)
+        private void HitToCharacter(OnBallBeingHitEvent newEvent)
         {
-            newEvent.HitCharacter.Model.Hit(_ballView.Model.CurrentScore);
+            newEvent.HitCharacter.Model.BeingHit(_ballView.Model.CurrentScore);
             _eventBusService.Send(new OnCharacterBeingHitEvent(newEvent.HitCharacter));
             
             _ballView.Model.ResetToInitialSpeed();
@@ -115,7 +121,8 @@ namespace RovioTest.Services
 
             _hitter = hitCharacter;
             var objetive = _hitter == _playerView ? _enemyView : _playerView;
-            _eventBusService.Send(new OnBallChangeObjectiveEvent(objetive));
+            var direction = (_ballView.transform.position-_hitter.transform.position).normalized;
+            _eventBusService.Send(new OnBallChangeObjectiveEvent(objetive, direction));
         }
     }
 }
