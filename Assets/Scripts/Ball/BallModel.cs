@@ -42,7 +42,6 @@ namespace RovioTest.Models
         public void Hit()
         {
             Hits++;
-            
         }
 
         public void ResetToInitialSpeed()

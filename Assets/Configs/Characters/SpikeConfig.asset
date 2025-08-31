@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: SpikeConfig
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
-  <SkillPoints>k__BackingField: 500
   <Speed>k__BackingField: 5
   <Attack>k__BackingField: 47
   <BonusAttack>k__BackingField: 59
   <Service>k__BackingField: 56
   <HitRadius>k__BackingField: 2
+  <Skill>k__BackingField:
+    rid: 9054691183890530304
+  <SkillPoints>k__BackingField: 10
   <HitTypeByRadius>k__BackingField:
   - <HitRange>k__BackingField:
       Min: 0.80103356
@@ -42,3 +44,11 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9054691183890530304
+      type: {class: FastBallCharacterSkill, ns: RovioTest.Skills, asm: roviotest.runtime}
+      data:
+        _ballSpeedIncreaseRate: 5
+        _ballSizeDeductionRate: 0.5

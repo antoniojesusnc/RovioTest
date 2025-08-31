@@ -1,6 +1,7 @@
 using System;
 using RovioTest.AI;
 using RovioTest.Config;
+using RovioTest.Skills;
 
 namespace RovioTest.Models
 {
@@ -25,7 +26,7 @@ namespace RovioTest.Models
         
         public ICharacterMovementBehavior MovementBehavior { get; private set; }
         public ICharacterHitterBehavior HitterBehavior { get; private set; }
-        
+        public ICharacterSkill CharacterSkill { get; private set; }
 
         public void Dispose()
         {

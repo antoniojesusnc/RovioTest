@@ -82,7 +82,6 @@ namespace RovioTest.Services
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
             
             newEvent.HitCharacter.Model.HitBall(score);
-            newEvent.HitCharacter.Model.ResetSkillPoints();
             
             _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
             _ballView.Model.AddScore(score.RoundToInt());

@@ -87,6 +87,7 @@ namespace RovioTest.Services
             if (_useSkillInNextHit)
             {
                 hitType = BallHitTypes.Skill;
+                _useSkillInNextHit = false;
             }
             
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType));
@@ -112,6 +113,7 @@ namespace RovioTest.Services
             {
                 return;
             }
+            _playerModel.ResetSkillPoints();
             _useSkillInNextHit = true;
         }
     }

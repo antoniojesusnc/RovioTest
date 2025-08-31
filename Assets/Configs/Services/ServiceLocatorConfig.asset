@@ -39,6 +39,7 @@ MonoBehaviour:
         - rid: 9054691154211373058
         - rid: 9054691154211373059
         - rid: 9054691170877177856
+        - rid: 9054691183890530305
     - rid: 9054691154211373057
       type: {class: LevelManagerModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data: 
@@ -53,3 +54,6 @@ MonoBehaviour:
       type: {class: EnemyModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data:
         _config: {fileID: 11400000, guid: da9a47678cab011478cb4a8f68aa3808, type: 2}
+    - rid: 9054691183890530305
+      type: {class: SkillsModule, ns: RovioTest.Services, asm: roviotest.runtime}
+      data: 
