@@ -25,15 +25,23 @@ namespace RovioTest.Services
         private BallView _ballView;
         private IGamePlayService _gameplayService;
 
+        bool _isGameOver = false;
         public override void BeginGame()
         {
             base.BeginGame();
             _gameplayService = StaticServiceLocator.Get<IGamePlayService>();
         }
 
+        public override void BeginBattle()
+        {
+            base.BeginBattle();
+            _isGameOver = false;
+        }
+
         public override void GameOver(bool isWon)
         {
             base.GameOver(isWon);
+            _isGameOver = true;
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
@@ -68,7 +76,7 @@ namespace RovioTest.Services
         {
             _ballView.Model.BeginMovement();
             
-            _ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
+            _ballView.Model.AddScore(newEvent.HitCharacter.Model.Attack);
             _ballView.Model.Hit();
 
             _hitter = _hitter == _playerView ? _enemyView : _playerView;
@@ -85,18 +93,29 @@ namespace RovioTest.Services
             float score = newEvent.HitCharacter.Model.Attack;
             score *= _config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
-            
-            _ballView.Model.SetScore(score.RoundToInt());
-            _ballView.Model.Hit();
 
-            _hitter = newEvent.HitCharacter;
-            var objetive = _hitter == _playerView ? _enemyView : _playerView;
-            _eventBusService.Send(new OnBallChangeObjectiveEvent(objetive));
+            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.AddScore(score.RoundToInt());
+            SetBallToOpponent(newEvent.HitCharacter);
         }
 
         private void HitToCharacter(OnHitBallEvent newEvent)
         {
+            newEvent.HitCharacter.Model.Hit(_ballView.Model.CurrentScore);
+            _eventBusService.Send(new OnCharacterBeingHitEvent(newEvent.HitCharacter));
             
+            _ballView.Model.ResetToInitialSpeed();
+            _ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
+            SetBallToOpponent(newEvent.HitCharacter);
+        }
+        
+        private void SetBallToOpponent(CharacterView hitCharacter)
+        {
+            _ballView.Model.Hit();
+
+            _hitter = hitCharacter;
+            var objetive = _hitter == _playerView ? _enemyView : _playerView;
+            _eventBusService.Send(new OnBallChangeObjectiveEvent(objetive));
         }
     }
 }

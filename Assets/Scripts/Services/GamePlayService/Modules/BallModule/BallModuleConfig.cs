@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RovioTest.Config
 {
@@ -8,7 +9,7 @@ namespace RovioTest.Config
     {
         [field: Header("Ball Speed Increase Per Hit")]
         [field: SerializeField]
-        public float BallSpeedIncreasePerHit { get; private set; }
+        public float BallSpeedIncreaseRatePerHit { get; private set; }
 
         [field: Header("Ball Score Modification By Hit Type")]
         [field: SerializeField]

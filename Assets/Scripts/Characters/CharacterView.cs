@@ -1,15 +1,20 @@
+using RovioTest.Events;
 using RovioTest.Models;
 using UnityEngine;
+using Urd;
 
 namespace RovioTest.View
 {
-    public class CharacterView : MonoBehaviour
+    public class CharacterView : MonoBehaviourEventObservable, 
+        IEventBusObservable<OnGameOverEvent>
     {
         [SerializeField]
         private Rigidbody _rigidBody;
         [SerializeField]
         private SpriteRenderer _hitArea;
-        
+
+        private bool _isGameOver;
+
         public CharacterModel Model { get; private set; }
         public bool IsMoving { get; private set; }
 
@@ -35,6 +40,21 @@ namespace RovioTest.View
         public void Stop()
         {
             IsMoving = false;
+        }
+
+        public void OnBallCollision()
+        {
+            if (_isGameOver)
+            {
+                return;
+            }
+            
+            _eventBusService.Send(new OnHitBallEvent(this, BallHitTypes.Hit));
+        }
+
+        public void OnNewEvent(OnGameOverEvent newEvent)
+        {
+            _isGameOver = true;
         }
     }
 }

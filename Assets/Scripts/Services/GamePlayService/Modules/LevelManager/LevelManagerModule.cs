@@ -12,7 +12,8 @@ using Urd.Services;
 namespace RovioTest.Services
 {
     [Serializable]
-    public class LevelManagerModule : GamePlayModule
+    public class LevelManagerModule : GamePlayModule,
+        IEventBusObservable<OnCharacterBeingHitEvent>
     {
         private CourtView _courtView;
         public CharacterView PlayerView { get; private set; }
@@ -148,6 +149,17 @@ namespace RovioTest.Services
         private void FinishLoadLevel()
         {
             _eventBusService.Send(new OnBeginBattleEvent(_courtView, PlayerView, _enemyView, _ballView));
+        }
+
+        public void OnNewEvent(OnCharacterBeingHitEvent newEvent)
+        {
+            if (newEvent.Character.Model.IsAlive)
+            {
+                return;
+            }
+
+            bool isWin = newEvent.Character == _enemyView;
+            _gameplayService.GameOver(isWin);
         }
     }
 }

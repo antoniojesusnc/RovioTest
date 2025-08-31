@@ -9,26 +9,37 @@ namespace RovioTest.Models
     {
         public CharacterConfig Config { get; private set; }
 
-        [field: SerializeField] public float CurrentHp { get; private set; }
         public int Attack => Config.Attack;
         public float HitRadius => Config.HitRadius;
-
         public float MaxHP => Config.Hp;
-        
         public float HPRate => CurrentHp / MaxHP;
+        public bool IsAlive => CurrentHp > 0;
         public float Speed => Config.Speed;
 
+        public float CurrentHp { get; private set; }
+        
+        public bool IsPlayer { get; private set; }
+        
         public ICharacterMovementBehavior MovementBehavior { get; private set; }
         public ICharacterHitterBehavior HitterBehavior { get; private set; }
         
+
         public void Dispose()
         {
             
         }
         
-        public void SetConfig(CharacterConfig config)
+        public void SetConfig(CharacterConfig config, bool isPlayer = false)
         {
+            IsPlayer = isPlayer;
             Config = config;
+         
+            ResetStats();
+        }
+        
+        public void ResetStats()
+        {
+            CurrentHp = Config.Hp;
         }
 
         public BallHitTypes GetHitType(float ballDistance)
@@ -47,6 +58,11 @@ namespace RovioTest.Models
         public void SetHitterBehavior(ICharacterHitterBehavior hitterBehavior)
         {
             HitterBehavior = hitterBehavior;
+        }
+
+        public void Hit(int damage)
+        {
+            CurrentHp -= damage; 
         }
     }
 }

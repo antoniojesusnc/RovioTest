@@ -59,20 +59,24 @@ MonoBehaviour:
     - rid: 9054691170877177864
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
+        _ballGoingToOpponent: 1
         _hitRate: 0.4
-        _coolDownToTryAgain: 0.2
+        _coolDownToTryAgain: 0.5
     - rid: 9054691170877177865
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
+        _ballGoingToOpponent: 1
         _hitRate: 0.6
         _coolDownToTryAgain: 0.2
     - rid: 9054691170877177866
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
+        _ballGoingToOpponent: 1
         _hitRate: 0.8
         _coolDownToTryAgain: 0.1
     - rid: 9054691170877177867
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
+        _ballGoingToOpponent: 1
         _hitRate: 0.95
         _coolDownToTryAgain: 0.1

@@ -10,7 +10,9 @@ using Urd;
 namespace RovioTest.Services
 {
     [Serializable]
-    public class EnemyModule : GamePlayModule, IEventBusObservable<OnBeginBattleEvent>, IEventBusObservable<OnHitBallEvent>
+    public class EnemyModule : GamePlayModule, 
+        IEventBusObservable<OnBeginBattleEvent>, 
+        IEventBusObservable<OnHitBallEvent>
     {
         [SerializeField] 
         private EnemyModuleConfig _config;
@@ -22,6 +24,9 @@ namespace RovioTest.Services
         public override void GameOver(bool isWon)
         {
             base.GameOver(isWon);
+            
+            _enemyModel.MovementBehavior.Finish();
+            _enemyModel.HitterBehavior.Finish();
         }
 
         public override void BeginBattle()

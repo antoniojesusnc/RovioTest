@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb7362b81c9558499f5555c13239b13, type: 3}
   m_Name: BallModuleConfig
   m_EditorClassIdentifier: 
-  <BallSpeedIncreasePerHit>k__BackingField: 1.1
+  <BallSpeedIncreaseRatePerHit>k__BackingField: 1.05
   <ScoreModificationByHitType>k__BackingField:
   - <HitType>k__BackingField: 20
     <Modification>k__BackingField: 0.7

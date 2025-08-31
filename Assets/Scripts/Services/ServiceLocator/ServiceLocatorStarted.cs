@@ -1,3 +1,4 @@
+using RovioTest.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,7 +44,7 @@ namespace Urd.Services
 
         private void LoadFirstScene()
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            StaticServiceLocator.Get<IGamePlayService>().BeginGame();
         }
 
         private void LoadServiceLocatorConfigInDefaultPath()

@@ -9,7 +9,8 @@ namespace RovioTest.View
 {
     public class BallView : MonoBehaviourEventObservable, 
         IEventBusObservable<OnBallChangeObjectiveEvent>,
-        IEventBusObservable<OnCharacterDownEvent>
+        IEventBusObservable<OnCharacterDownEvent>,
+        IEventBusObservable<OnGameOverEvent>
     {
         [SerializeField]
         private Rigidbody _rigidBody;
@@ -20,6 +21,12 @@ namespace RovioTest.View
 
         public BallModel Model { get; private set; }
         public bool IsMoving { get; private set; }
+
+        protected override void Start()
+        {
+            base.Start();
+            StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
+        }
 
         public void SetModel(BallModel model)
         {
@@ -35,10 +42,14 @@ namespace RovioTest.View
         {
             _objective = objective;
             IsMoving = true;
-            StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
         }
         public void Move(float deltaTime)
         {
+            if (!IsMoving)
+            {
+                return;
+            }
+            
             var movement = (_objective.transform.position - _rigidBody.position).normalized * Model.Speed* deltaTime;
             _rigidBody.Move(transform.position + movement, Quaternion.identity);
         }
@@ -61,6 +72,11 @@ namespace RovioTest.View
         }
 
         public void OnNewEvent(OnCharacterDownEvent newEvent)
+        {
+            Stop();
+        }
+
+        public void OnNewEvent(OnGameOverEvent newEvent)
         {
             Stop();
         }

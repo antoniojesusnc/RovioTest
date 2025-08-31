@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 5
-  <Attack>k__BackingField: 47
+  <Attack>k__BackingField: 50000
   <BonusAttack>k__BackingField: 59
   <Service>k__BackingField: 56
   <HitRadius>k__BackingField: 2

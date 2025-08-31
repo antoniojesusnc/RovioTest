@@ -8,7 +8,10 @@ using Urd;
 namespace RovioTest.Services
 {
     [Serializable]
-    public class PlayerModule : GamePlayModule, IEventBusObservable<OnJoystickChangedEvent>, IEventBusObservable<OnBeginBattleEvent>
+    public class PlayerModule : GamePlayModule, 
+        IEventBusObservable<OnJoystickChangedEvent>, 
+        IEventBusObservable<OnBeginBattleEvent>,
+        IEventBusObservable<OnBallChangeObjectiveEvent>
     {
         private bool _detectInput = false;
         
@@ -16,6 +19,8 @@ namespace RovioTest.Services
         private CharacterModel _playerModel;
         private BallView _ballView;
 
+        private bool _ballGoingToOpponent;
+        
         public override void GameOver(bool isWon)
         {
             _detectInput = false;
@@ -26,6 +31,7 @@ namespace RovioTest.Services
         public override void BeginBattle()
         {
             _detectInput = false;
+            _ballGoingToOpponent = false;
             base.BeginBattle();
         }
 
@@ -59,6 +65,11 @@ namespace RovioTest.Services
 
         private void TryHitBall()
         {
+            if (_ballGoingToOpponent)
+            {
+                return;
+            }
+                
             var ballDistance = Vector3.Distance(_ballView.transform.position, _playerView.transform.position);
             if (ballDistance > _playerModel.HitRadius)
             {
@@ -81,6 +92,11 @@ namespace RovioTest.Services
             _ballView = newEvent.Ball;
             
             _detectInput = true;
+        }
+        
+        public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
+        {
+            _ballGoingToOpponent = newEvent.SendToPlayer && newEvent.Objetive != _playerView;
         }
     }
 }

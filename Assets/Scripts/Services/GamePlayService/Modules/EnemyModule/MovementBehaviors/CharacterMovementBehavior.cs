@@ -64,10 +64,12 @@ namespace RovioTest.AI
         public virtual void Stop()
         {
             _isStopped = true;
+            _isMoving = false;
         }
 
         public virtual void Finish()
         {
+            Stop();
             _clockService.UnSubscribeToUpdate(CustomUpdate);
         }
     }

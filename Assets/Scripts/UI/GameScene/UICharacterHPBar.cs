@@ -7,14 +7,15 @@ using Urd;
 namespace RovioTest.UI
 {
     public class UICharacterHPBar : MonoBehaviourEventObservable,
-        IEventBusObservable<OnHitBallEvent>
+        IEventBusObservable<OnCharacterBeingHitEvent>
     {
         [SerializeField] private Slider _slider;
         
         private CharacterView _characterView;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             _characterView = GetComponentInParent<CharacterView>();
         }
         
@@ -23,10 +24,9 @@ namespace RovioTest.UI
             _slider.value = _characterView.Model.HPRate;
         }
 
-        public void OnNewEvent(OnHitBallEvent newEvent)
+        public void OnNewEvent(OnCharacterBeingHitEvent newEvent)
         {
-            if (newEvent.BallHitType != BallHitTypes.Hit 
-                || newEvent.HitCharacter != _characterView)
+            if (newEvent.Character != _characterView)
             {
                 return;
             }

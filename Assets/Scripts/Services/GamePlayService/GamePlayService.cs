@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using RovioTest.Config;
+using RovioTest.Events;
 using RovioTest.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Urd;
 using Urd.Services;
 
@@ -19,20 +21,24 @@ namespace RovioTest.Services
         [SerializeReference, SubclassSelector]
         private List<IGamePlayModule> _gamePlayServiceModule;
 
+        private IEventBusService _eventBusService;
+
         public CharacterModel PlayerModel { get; private set; }
 
         public override void Init()
         {
             base.Init();
+            _eventBusService = StaticServiceLocator.Get<IEventBusService>();
+            
+            
             InitModules();
             LoadPlayerData();
-            BeginGame();
         }
 
         private void LoadPlayerData()
         {
             PlayerModel = new CharacterModel();
-            PlayerModel.SetConfig(Config.DefaultCharacterConfig);
+            PlayerModel.SetConfig(Config.DefaultCharacterConfig, true);
         }
 
         private void InitModules()
@@ -50,8 +56,10 @@ namespace RovioTest.Services
             }
             base.Dispose();
         }
-        private void BeginGame()
+        public void BeginGame()
         {
+            SceneManager.LoadScene(SceneUtils.MainMenuSceneIndex);
+            
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
                 _gamePlayServiceModule[i]?.BeginGame();
@@ -65,10 +73,20 @@ namespace RovioTest.Services
 
         public void BeginBattle()
         {
+            PlayerModel.ResetStats();
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
                 _gamePlayServiceModule[i]?.BeginBattle();
             }
+        }
+
+        public void GameOver(bool isWon)
+        {
+            for (int i = 0; i < _gamePlayServiceModule.Count; i++)
+            {
+                _gamePlayServiceModule[i]?.GameOver(isWon);
+            }
+            _eventBusService.Send(new OnGameOverEvent(isWon));
         }
     }
 }

@@ -10,6 +10,8 @@ namespace RovioTest.Services
         CharacterModel PlayerModel { get; }
         GamePlayConfig Config { get; }
         T GetModule<T>() where T : class, IGamePlayModule;
+        void BeginGame();
         void BeginBattle();
+        void GameOver(bool isWon);
     }
 }

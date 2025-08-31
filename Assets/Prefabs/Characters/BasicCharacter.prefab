@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2815952977355091780}
   - component: {fileID: 7874597778643091045}
   - component: {fileID: 6069186334686322460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4205847676605057559}
   - component: {fileID: 3075768031122197280}
   - component: {fileID: 2413644732328131026}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,8 @@ GameObject:
   - component: {fileID: 7494821964684184917}
   - component: {fileID: 7271080663823489573}
   - component: {fileID: 499854869748878688}
-  m_Layer: 0
+  - component: {fileID: 647342095150178436}
+  m_Layer: 6
   m_Name: BasicCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +288,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &647342095150178436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794362767693227525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805e5a823e48e5a4386cb4f5a7f8221a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7494821964684184917}
+        m_TargetAssemblyTypeName: RovioTest.View.CharacterView, roviotest.runtime
+        m_MethodName: OnBallCollision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+  onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4426559306219142762
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1134784769496405371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4756347610529613548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7160194228070270395}
   - component: {fileID: 5771868230049378600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HitRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,6 +588,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4967730235642549963, guid: f33dcee292c841640a20f2d3396c4bb2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428998305904844515, guid: f33dcee292c841640a20f2d3396c4bb2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5561479686975164683, guid: f33dcee292c841640a20f2d3396c4bb2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -552,10 +608,20 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5794958466470014917, guid: f33dcee292c841640a20f2d3396c4bb2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8498566795589700530, guid: f33dcee292c841640a20f2d3396c4bb2,
         type: 3}
       propertyPath: m_Name
       value: UICharacterHPBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498566795589700530, guid: f33dcee292c841640a20f2d3396c4bb2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

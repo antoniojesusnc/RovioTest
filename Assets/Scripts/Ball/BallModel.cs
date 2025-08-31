@@ -26,21 +26,31 @@ namespace RovioTest.Models
         {
             CurrentScore = score;
         }
+        
+        public void AddScore(int score)
+        {
+            CurrentScore += score;
+        }
 
         public void BeginMovement()
         {
-            Speed = InitialSpeed;
+            ResetToInitialSpeed();
             Hits = 0;
         }
-        
+
         public void Hit()
         {
             Hits++;
+            
         }
 
-        public void SetSpeed(float newSpeed)
+        public void ResetToInitialSpeed()
         {
-            Speed = newSpeed;
+            Speed = InitialSpeed;
+        }
+        public void IncreaseSpeedRate(float increaseRate)
+        {
+            Speed *= increaseRate;
         }
     }
 }
