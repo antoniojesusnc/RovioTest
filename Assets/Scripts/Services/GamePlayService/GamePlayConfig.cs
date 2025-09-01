@@ -19,6 +19,8 @@ namespace RovioTest.Config
         
         [field: Header("Snimations & Effects")]
         [field: SerializeField]
+        public float WaitTimeAfterEnemyServe { get; private set; }
+        [field: SerializeField]
         public float WaitTimeAfterSmash { get; private set; }
         
         [field: Header("Game Data")]

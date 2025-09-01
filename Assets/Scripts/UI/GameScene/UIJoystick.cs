@@ -10,6 +10,7 @@ namespace RovioTest.UI
     public class UIJoystick : MonoBehaviourEventObservable,
         IEventBusObservable<OnBeginServeEvent>,
         IEventBusObservable<OnFinishServeEvent>,
+        IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnGameOverEvent>
     {
         [SerializeField]
@@ -23,7 +24,11 @@ namespace RovioTest.UI
         protected override void Start()
         {
             base.Start();
-            Hide();
+        }
+        
+        private void Show()
+        {
+            gameObject.SetActive(true);
         }
 
         private void Hide()
@@ -31,15 +36,13 @@ namespace RovioTest.UI
             gameObject.SetActive(false);
         }
 
-        private void BeginBattle()
+        private void OnEnable()
         {
-            gameObject.SetActive(true);
-            
             _joystick.OnValueChanged.AddListener(OnJoystickChanged);
             _joystick.OnPointerUp.AddListener(OnPointerUp);
             _joystick.OnPointerDown.AddListener(OnPointerDown);
         }
-        
+
         private void GameOver()
         {
             gameObject.SetActive(false);
@@ -89,9 +92,14 @@ namespace RovioTest.UI
             GameOver();
         }
 
+        public void OnNewEvent(OnCharacterSmashedEvent newEvent)
+        {
+            Hide();
+        }
+
         public void OnNewEvent(OnFinishServeEvent newEvent)
         {
-            BeginBattle();
+            Show();
         }
     }
 }

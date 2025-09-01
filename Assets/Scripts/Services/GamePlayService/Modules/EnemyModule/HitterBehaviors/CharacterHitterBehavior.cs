@@ -81,7 +81,7 @@ namespace RovioTest.AI
 
         private void HitBall()
         {
-            if (_ballView.IsMoving)
+            if (!_ballView.IsMoving)
             {
                 HitFirstBall();
                 return;
@@ -104,7 +104,7 @@ namespace RovioTest.AI
         private void HitFirstBall()
         {
             var hitType = GetServeHitType();
-            _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_characterView, hitType));
+            _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_characterView, hitType, true));
         }
 
         protected abstract bool TryToHit();

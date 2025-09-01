@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using MyBox;
 using RovioTest.AI;
 using RovioTest.Config;
@@ -7,6 +8,7 @@ using RovioTest.Models;
 using RovioTest.View;
 using UnityEngine;
 using Urd;
+using Urd.Services;
 
 namespace RovioTest.Services
 {
@@ -89,8 +91,17 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
-            _enemyModel.HitterBehavior.Restart();
             _enemyModel.MovementBehavior.Stop();
+
+            if (newEvent.Server == _enemyView)
+            {
+                float waitTimeToServe = StaticServiceLocator.Get<IGamePlayService>().Config.WaitTimeAfterEnemyServe;
+                DOVirtual.DelayedCall(waitTimeToServe, _enemyModel.HitterBehavior.Restart);
+            }
+            else
+            {
+                _enemyModel.HitterBehavior.Restart();
+            }
         }
     }
 }

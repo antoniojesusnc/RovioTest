@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DefaultCharacterConfig>k__BackingField: {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0,
     type: 2}
+  <WaitTimeAfterEnemyServe>k__BackingField: 0.5
   <WaitTimeAfterSmash>k__BackingField: 1
   <Courts>k__BackingField:
   - {fileID: 11400000, guid: 9964ab4ae6c2df44c97e76e6aeb1ad51, type: 2}
