@@ -1,4 +1,5 @@
 using RovioTest.Events;
+using RovioTest.Services;
 using UnityEngine;
 using Urd;
 using Urd.Services;
@@ -23,7 +24,9 @@ namespace RovioTest.View
         protected override void Start()
         {
             base.Start();
-            _characterView = GetComponentInParent<CharacterView>(); 
+            _characterView = GetComponentInParent<CharacterView>();
+            var levelModel = StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>().LevelModel;
+            _opponent = levelModel.EnemyView == _characterView? levelModel.PlayerView : levelModel.EnemyView;
             StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
         }
 

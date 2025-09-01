@@ -17,6 +17,12 @@ namespace RovioTest.UI
         
         private CharacterView _playerView;
 
+        protected override void Start()
+        {
+            base.Start();
+            Hide();
+        }
+
         private void BeginServe()
         {
             _animation.tween.Restart();

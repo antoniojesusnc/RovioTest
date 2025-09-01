@@ -19,7 +19,7 @@ namespace RovioTest.AI
             _clockService = StaticServiceLocator.Get<IClockService>();
             _clockService.SubscribeToUpdate(CustomUpdate);
             
-            _isStopped = false;
+            _isStopped = true;
             _isMoving = false;
         }
 

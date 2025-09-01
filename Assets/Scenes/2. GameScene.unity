@@ -1718,6 +1718,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UILookingForBattlePopup
       objectReference: {fileID: 0}
+    - target: {fileID: 1795027974266932526, guid: f61df01851b4580478f0d3c9ae36118a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2925531884703249104, guid: f61df01851b4580478f0d3c9ae36118a,
         type: 3}
       propertyPath: m_Pivot.x
