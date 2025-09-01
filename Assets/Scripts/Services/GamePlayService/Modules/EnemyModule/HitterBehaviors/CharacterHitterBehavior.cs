@@ -1,3 +1,4 @@
+using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.View;
 using UnityEngine;
@@ -11,8 +12,10 @@ namespace RovioTest.AI
         IEventBusObservable<OnBeginServeEvent>
         
     {
-        private CharacterView _characterView; 
-        private BallView _ballView;
+        protected CharacterView _characterView; 
+        protected BallView _ballView;
+        protected CharacterHitterConfig _hitterBehaviorConfig;
+        
         private IClockService _clockService;
         private IEventBusService _eventBusService;
 
@@ -25,12 +28,14 @@ namespace RovioTest.AI
             // TODO release managed resources here
         }
 
-        public virtual void Begin(CharacterView characterView, BallView ballView)
+        public virtual void Begin(CharacterView characterView, CharacterHitterConfig hitterBehaviorConfig,
+            BallView ballView)
         {
             _clockService = StaticServiceLocator.Get<IClockService>();
             _eventBusService = StaticServiceLocator.Get<IEventBusService>();
             _eventBusService.Subscribe(this);
-            
+
+            _hitterBehaviorConfig = hitterBehaviorConfig;
             _characterView = characterView;
             _ballView = ballView;
             _clockService.SubscribeToUpdate(CustomUpdate);
@@ -76,12 +81,13 @@ namespace RovioTest.AI
 
         private void HitBall()
         {
-            var ballDistance = Vector3.Distance(_ballView.transform.position, _characterView.transform.position);
-            var hitType = _characterView.Model.GetHitType(ballDistance);
-            if (!_ballView.IsMoving)
+            if (_ballView.IsMoving)
             {
-                hitType = BallHitTypes.First;
+                HitFirstBall();
+                return;
             }
+
+            var hitType = GetHitType();
             
             if (_useSkillInNextHit)
             {
@@ -89,6 +95,15 @@ namespace RovioTest.AI
                 _useSkillInNextHit = false;
             }
             
+            _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_characterView, hitType));
+        }
+
+        protected abstract BallHitTypes GetHitType();
+        protected abstract BallHitTypes GetServeHitType();
+
+        private void HitFirstBall()
+        {
+            var hitType = GetServeHitType();
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_characterView, hitType));
         }
 

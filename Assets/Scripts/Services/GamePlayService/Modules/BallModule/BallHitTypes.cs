@@ -4,7 +4,6 @@ namespace RovioTest
     {
         None = 0,
         
-        First = 10,
         Early = 20,
         Good = 30,
         Perfect = 40,

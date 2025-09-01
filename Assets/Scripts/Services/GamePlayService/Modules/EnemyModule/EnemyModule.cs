@@ -48,15 +48,15 @@ namespace RovioTest.Services
         
         private void AssignHitter()
         {
-            var hitterBehavior = _config.HitterBehaviors.Find(config => config.HitterType == EnemyHitterTypes.DEBUG)?.HitterBehavior;
-            if (hitterBehavior == null)
+            var hitterBehaviorConfig = _config.HitterBehaviors.Find(config => config.Difficulty == 0);
+            if (hitterBehaviorConfig == null)
             {
                 Debug.Log("DEBUG Missing All Behavior");
-                hitterBehavior = _config.HitterBehaviors.GetRandom().HitterBehavior;
+                hitterBehaviorConfig = _config.HitterBehaviors.GetRandom();
             }
-            _enemyModel.SetHitterBehavior(hitterBehavior);
+            _enemyModel.SetHitterBehavior(hitterBehaviorConfig.HitterBehavior);
             
-            _enemyModel.HitterBehavior.Begin(_enemyView, _ballView);
+            _enemyModel.HitterBehavior.Begin(_enemyView, hitterBehaviorConfig, _ballView);
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)

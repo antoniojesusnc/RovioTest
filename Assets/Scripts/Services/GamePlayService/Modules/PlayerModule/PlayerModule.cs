@@ -1,4 +1,5 @@
 using System;
+using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.Models;
 using RovioTest.View;
@@ -15,9 +16,10 @@ namespace RovioTest.Services
         IEventBusObservable<OnBeginBattleEvent>,
         IEventBusObservable<OnBallChangeObjectiveEvent>,
         IEventBusObservable<OnBeginServeEvent>,
-        IEventBusObservable<OnFinishServeEvent>
+        IEventBusObservable<OnFinishServeEvent>,
+        IEventBusObservable<OnServeInputEvent>
     {
-        private bool _detectInput = false;
+        private bool _detectJoystickInput = false;
         
         private CharacterView _playerView;
         private CharacterModel _playerModel;
@@ -29,14 +31,14 @@ namespace RovioTest.Services
 
         public override void GameOver(bool isWon)
         {
-            _detectInput = false;
+            _detectJoystickInput = false;
             
             base.GameOver(isWon);
         }
 
         public override void BeginBattle()
         {
-            _detectInput = false;
+            _detectJoystickInput = false;
             _ballGoingToOpponent = false;
             _useSkillInNextHit = false;
             base.BeginBattle();
@@ -67,10 +69,6 @@ namespace RovioTest.Services
             }
 
             var hitType = _playerModel.GetHitType(ballDistance);
-            if (!_ballView.IsMoving)
-            {
-                hitType = BallHitTypes.First;
-            }
 
             if (_useSkillInNextHit)
             {
@@ -80,7 +78,12 @@ namespace RovioTest.Services
             
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType));
         }
-        
+
+        private void HitServe(BallHitTypes hitType)
+        {
+            _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType, true));
+        }
+
         private void ActivateSkill()
         {
             _playerModel.ResetSkillPoints();
@@ -98,7 +101,7 @@ namespace RovioTest.Services
         
         public void OnNewEvent(OnJoystickChangedEvent newEvent)
         {
-            if (!_detectInput)
+            if (!_detectJoystickInput)
             {
                 return;
             }
@@ -131,18 +134,24 @@ namespace RovioTest.Services
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
             _canMove = false;
-            _detectInput = true;
+            _detectJoystickInput = false;
             _ballGoingToOpponent = false;
         }
 
         public void OnNewEvent(OnFinishServeEvent newEvent)
         {
             _canMove = true;
+            _detectJoystickInput = true;
         }
 
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
         {
-            _detectInput = false;
+            _detectJoystickInput = false;
+        }
+
+        public void OnNewEvent(OnServeInputEvent newEvent)
+        {
+            HitServe(newEvent.HitType);
         }
     }
 }

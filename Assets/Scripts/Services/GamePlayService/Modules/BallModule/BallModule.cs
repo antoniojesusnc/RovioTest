@@ -55,11 +55,20 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBallBeingHitEvent newEvent)
         {
+            if (newEvent.IsServe)
+            {
+                HitServe(newEvent);
+            }
+            else
+            {
+                HandleHit(newEvent);
+            }
+        }
+
+        private void HandleHit(OnBallBeingHitEvent newEvent)
+        {
             switch (newEvent.BallHitType)
             {
-                case BallHitTypes.First:
-                    HitFirst(newEvent);
-                    break;
                 case BallHitTypes.Hit:
                     HitToCharacter(newEvent);
                     break;
@@ -91,12 +100,20 @@ namespace RovioTest.Services
             SetBallToOpponent(newEvent.HitCharacter);
         }
 
-        private void HitFirst(OnBallBeingHitEvent newEvent)
+        private void HitServe(OnBallBeingHitEvent newEvent)
         {
+            _hitter = newEvent.HitCharacter;
+            
             _ballView.Model.BeginMovement();
             
-            _ballView.Model.AddScore(newEvent.HitCharacter.Model.Attack);
+            float score = newEvent.HitCharacter.Model.Attack;
+            score *= _config.ScoreModificationByHitType
+                .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
+            newEvent.HitCharacter.Model.HitBall(score);
+            
             _ballView.Model.Hit();
+            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.AddScore(score.RoundToInt());
 
             var objective = _hitter == _playerView ? _enemyView : _playerView;
             var direction = (_ballView.transform.position-_hitter.transform.position).normalized;
@@ -117,7 +134,6 @@ namespace RovioTest.Services
             float score = newEvent.HitCharacter.Model.Attack;
             score *= _config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
-            
             
             newEvent.HitCharacter.Model.HitBall(score);
             

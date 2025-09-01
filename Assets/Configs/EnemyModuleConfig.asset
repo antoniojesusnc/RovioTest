@@ -23,29 +23,14 @@ MonoBehaviour:
     <MovementBehavior>k__BackingField:
       rid: 9054691170877177863
   <HitterBehaviors>k__BackingField:
-  - <HitterType>k__BackingField: 10
-    <HitterBehavior>k__BackingField:
-      rid: 9054691170877177864
-  - <HitterType>k__BackingField: 20
-    <HitterBehavior>k__BackingField:
-      rid: 9054691170877177865
-  - <HitterType>k__BackingField: 30
-    <HitterBehavior>k__BackingField:
-      rid: 9054691170877177866
-  - <HitterType>k__BackingField: 40
-    <HitterBehavior>k__BackingField:
-      rid: 9054691170877177867
-  - <HitterType>k__BackingField: 50
-    <HitterBehavior>k__BackingField:
-      rid: 6316267722904174592
+  - {fileID: 11400000, guid: 062f7c53bc2925042a29dd65c681237c, type: 2}
+  - {fileID: 11400000, guid: b386a94fe48ab7f408990ca3c6477b72, type: 2}
+  - {fileID: 11400000, guid: 2b79453d581b492479b7de1315768ec9, type: 2}
+  - {fileID: 11400000, guid: e223d65bb023daf42b08c778a5183b2d, type: 2}
+  - {fileID: 11400000, guid: f39399f463fbc744ea39b772a44ead39, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 6316267722904174592
-      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
-      data:
-        _hitRate: 1
-        _coolDownToTryAgain: 0.1
     - rid: 9054691170877177861
       type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
@@ -64,23 +49,3 @@ MonoBehaviour:
         _cooldownTime: 0.3
         _movementTime: 1.5
         _rateToBeginMovement: 1
-    - rid: 9054691170877177864
-      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
-      data:
-        _hitRate: 0.7
-        _coolDownToTryAgain: 0.5
-    - rid: 9054691170877177865
-      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
-      data:
-        _hitRate: 0.8
-        _coolDownToTryAgain: 0.2
-    - rid: 9054691170877177866
-      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
-      data:
-        _hitRate: 0.9
-        _coolDownToTryAgain: 0.1
-    - rid: 9054691170877177867
-      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
-      data:
-        _hitRate: 0.95
-        _coolDownToTryAgain: 0.1
