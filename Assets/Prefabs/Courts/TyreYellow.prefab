@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7873798929264316183}
   - component: {fileID: 5377769788807740381}
   m_Layer: 0
-  m_Name: prop_tyre_1x1_B
+  m_Name: TyreYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -150,7 +150,7 @@ namespace RovioTest.Services
         {
             _eventBusService.Send(new OnBeginBattleEvent(LevelModel));
             
-            BeginServeEvent(LevelModel.PlayerView);
+            DOVirtual.DelayedCall(_gameplayService.Config.InitialAnimationDuration, () => BeginServeEvent(LevelModel.PlayerView));
         }
         
         private void BeginServeEvent(CharacterView serverCharacter)
