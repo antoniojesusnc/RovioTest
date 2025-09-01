@@ -7,21 +7,21 @@ namespace RovioTest.Config
 {
     public class BallModuleConfig : ScriptableObject
     {
-        [field: Header("Ball Speed Increase Per Hit")]
-        [field: SerializeField]
-        public float BallSpeedIncreaseRatePerHit { get; private set; }
-
         [field: Header("Ball Score Modification By Hit Type")]
         [field: SerializeField]
-        public List<ScoreModificationByHitType> ScoreModificationByHitType { get; private set; }
+        public List<ModificationByHitType> ScoreModificationByHitType { get; private set; }
     }
 
     [Serializable]
-    public class ScoreModificationByHitType
+    public class ModificationByHitType
     {
         [field: SerializeField]
         public BallHitTypes HitType { get; private set; }
+        [field: FormerlySerializedAs("<Modification>k__BackingField")]
         [field: SerializeField]
-        public float Modification { get; private set; }
+        public float ScoreModificationRate { get; private set; }
+        [field: FormerlySerializedAs("<Speed>k__BackingField")]
+        [field: SerializeField]
+        public float SpeedRateIncrease { get; private set; }
     }
 }

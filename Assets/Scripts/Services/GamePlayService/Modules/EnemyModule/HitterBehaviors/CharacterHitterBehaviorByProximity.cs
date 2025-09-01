@@ -35,7 +35,7 @@ namespace RovioTest.AI
             return _hitterBehaviorConfig.HitServeRates.GetWeightedRandom(GetServeRate).HitType;
         }
 
-        private double GetServeRate(HitTypeByRadius rate)
+        private double GetServeRate(CharacterHitterServeRate rate)
         {
             return rate.HitRange.Max - rate.HitRange.Min;
         }

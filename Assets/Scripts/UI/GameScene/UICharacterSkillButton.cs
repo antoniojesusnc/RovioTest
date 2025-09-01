@@ -10,6 +10,8 @@ namespace RovioTest.UI
     public class UICharacterSkillButton : MonoBehaviourEventObservable,
         IEventBusObservable<OnCharacterHitBallEvent>,
         IEventBusObservable<OnBeginBattleEvent>,
+        IEventBusObservable<OnBeginServeEvent>,
+        IEventBusObservable<OnFinishServeEvent>,
         IEventBusObservable<OnCharacterSkillActivatedEvent>
     {
         [SerializeField] private Image _grayImage;
@@ -22,6 +24,17 @@ namespace RovioTest.UI
         protected override void Start()
         {
             base.Start();
+            Hide();
+        }
+
+        private void Show()
+        {
+            gameObject.SetActive(true);
+        }
+        
+        private void Hide()
+        {
+            gameObject.SetActive(false);
         }
 
         private void UpdateData()
@@ -68,5 +81,16 @@ namespace RovioTest.UI
                 UpdateData();
             }
         }
+
+        public void OnNewEvent(OnBeginServeEvent newEvent)
+        {
+            Hide();
+        }
+        
+        public void OnNewEvent(OnFinishServeEvent newEvent)
+        {
+            Show();
+        }
+
     }
 }

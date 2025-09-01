@@ -16,9 +16,13 @@ MonoBehaviour:
   <ScoreModificationByHitType>k__BackingField:
   - <HitType>k__BackingField: 20
     <Modification>k__BackingField: 0.7
+    <Speed>k__BackingField: 1.05
   - <HitType>k__BackingField: 30
     <Modification>k__BackingField: 1
+    <Speed>k__BackingField: 1.1
   - <HitType>k__BackingField: 40
     <Modification>k__BackingField: 2
+    <Speed>k__BackingField: 1.2
   - <HitType>k__BackingField: 50
     <Modification>k__BackingField: 0.4
+    <Speed>k__BackingField: 1.05

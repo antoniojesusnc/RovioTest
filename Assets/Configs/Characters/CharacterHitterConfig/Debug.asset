@@ -15,22 +15,22 @@ MonoBehaviour:
   <Difficulty>k__BackingField: 0
   <HitterBehavior>k__BackingField:
     rid: 6316267722904174596
-  <HitTypeByRadius>k__BackingField:
+  <HitServeRates>k__BackingField:
   - <HitRange>k__BackingField:
-      Min: 0.80023503
+      Min: 0.69839394
       Max: 1
     <HitType>k__BackingField: 20
   - <HitRange>k__BackingField:
-      Min: 0.297689
-      Max: 0.79514337
+      Min: 0.395613
+      Max: 0.69330215
     <HitType>k__BackingField: 30
   - <HitRange>k__BackingField:
-      Min: 0.199765
-      Max: 0.29768896
+      Min: 0.297689
+      Max: 0.39952993
     <HitType>k__BackingField: 40
   - <HitRange>k__BackingField:
       Min: 0
-      Max: 0.19584803
+      Max: 0.30160597
     <HitType>k__BackingField: 50
   references:
     version: 2

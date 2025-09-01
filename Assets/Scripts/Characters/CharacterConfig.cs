@@ -18,10 +18,6 @@ namespace RovioTest.Config
         public float Speed { get; private set; }
         [field: SerializeField]
         public int Attack { get; private set; }
-        [field: SerializeField]
-        public float BonusAttack { get; private set; }
-        [field: SerializeField]
-        public float Service { get; private set; }
         
         [field: SerializeField]
         public float HitRadius { get; private set; }
@@ -42,7 +38,9 @@ namespace RovioTest.Config
         [field: SerializeField]
         public AssetReferenceGameObject Asset { get; private set; }
         
-
+        [field: Header("Serve Chance")]
+        [field: SerializeField]
+        public List<CharacterHitterServeRate> HitServeRates { get; private set; }
     }
 
     [Serializable]

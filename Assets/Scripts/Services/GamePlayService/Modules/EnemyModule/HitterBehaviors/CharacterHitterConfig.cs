@@ -16,7 +16,7 @@ namespace RovioTest.Config
         
         [field: Header("Serve Chance")]
         [field: SerializeField]
-        public List<HitTypeByRadius> HitServeRates { get; private set; }
+        public List<CharacterHitterServeRate> HitServeRates { get; private set; }
     }
     
     [Serializable]

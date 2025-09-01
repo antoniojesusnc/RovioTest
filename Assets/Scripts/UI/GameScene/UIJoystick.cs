@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using RovioTest.Events;
 using UnityEngine;
 using Urd;
@@ -8,8 +7,9 @@ using zFrame.UI;
 namespace RovioTest.UI
 {
     [Serializable]
-    public class UIJoystick : MonoBehaviourEventObservable, 
-        IEventBusObservable<OnBeginBattleEvent>,
+    public class UIJoystick : MonoBehaviourEventObservable,
+        IEventBusObservable<OnBeginServeEvent>,
+        IEventBusObservable<OnFinishServeEvent>,
         IEventBusObservable<OnGameOverEvent>
     {
         [SerializeField]
@@ -19,10 +19,21 @@ namespace RovioTest.UI
         private Joystick _joystick;
 
         bool _isPointerDown = false;
-        
+
+        protected override void Start()
+        {
+            base.Start();
+            Hide();
+        }
+
+        private void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
         private void BeginBattle()
         {
-            _canvasGroup.alpha = 1;
+            gameObject.SetActive(true);
             
             _joystick.OnValueChanged.AddListener(OnJoystickChanged);
             _joystick.OnPointerUp.AddListener(OnPointerUp);
@@ -68,14 +79,19 @@ namespace RovioTest.UI
             MoveCharacter(joystickDelta);
         }
         
-        public void OnNewEvent(OnBeginBattleEvent newEvent)
+        public void OnNewEvent(OnBeginServeEvent newEvent)
         {
-            BeginBattle();
+            Hide();
         }
         
         public void OnNewEvent(OnGameOverEvent newEvent)
         {
             GameOver();
+        }
+
+        public void OnNewEvent(OnFinishServeEvent newEvent)
+        {
+            BeginBattle();
         }
     }
 }

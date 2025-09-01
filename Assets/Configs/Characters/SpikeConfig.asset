@@ -15,8 +15,6 @@ MonoBehaviour:
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 5
   <Attack>k__BackingField: 47
-  <BonusAttack>k__BackingField: 59
-  <Service>k__BackingField: 56
   <HitRadius>k__BackingField: 2
   <Skill>k__BackingField:
     rid: 9054691183890530304
@@ -44,6 +42,23 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  <HitServeRates>k__BackingField:
+  - <HitRange>k__BackingField:
+      Min: 0
+      Max: 0.24984886
+    <HitType>k__BackingField: 20
+  - <HitRange>k__BackingField:
+      Min: 0.24984886
+      Max: 0.5037275
+    <HitType>k__BackingField: 50
+  - <HitRange>k__BackingField:
+      Min: 0.4956679
+      Max: 0.74954665
+    <HitType>k__BackingField: 30
+  - <HitRange>k__BackingField:
+      Min: 0.7461213
+      Max: 1
+    <HitType>k__BackingField: 40
   references:
     version: 2
     RefIds:

@@ -25,7 +25,6 @@ namespace RovioTest.Services
         private BallView _ballView;
         private IGamePlayService _gameplayService;
 
-        bool _isGameOver = false;
         public override void BeginGame()
         {
             base.BeginGame();
@@ -35,13 +34,11 @@ namespace RovioTest.Services
         public override void BeginBattle()
         {
             base.BeginBattle();
-            _isGameOver = false;
         }
 
         public override void GameOver(bool isWon)
         {
             base.GameOver(isWon);
-            _isGameOver = true;
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
@@ -87,12 +84,14 @@ namespace RovioTest.Services
         private void HitWithSkill(OnBallBeingHitEvent newEvent)
         {
             float score = newEvent.HitCharacter.Model.Attack;
-            score *= _config.ScoreModificationByHitType
-                .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
+
+            var hitConfig = _config.ScoreModificationByHitType
+                .Find(hitType => hitType.HitType == newEvent.BallHitType);
+            score *= hitConfig?.ScoreModificationRate ?? 0;
             
             newEvent.HitCharacter.Model.HitBall(score);
             
-            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.IncreaseSpeedRate(hitConfig?.SpeedRateIncrease ?? 1);
             _ballView.Model.AddScore(score.RoundToInt());
             
             _eventBusService.Send(new OnCharacterHitBallEvent(newEvent.HitCharacter));
@@ -107,12 +106,13 @@ namespace RovioTest.Services
             _ballView.Model.BeginMovement();
             
             float score = newEvent.HitCharacter.Model.Attack;
-            score *= _config.ScoreModificationByHitType
-                .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
+            var hitConfig = _config.ScoreModificationByHitType
+                .Find(hitType => hitType.HitType == newEvent.BallHitType);
+            score *= hitConfig?.ScoreModificationRate ?? 0;
             newEvent.HitCharacter.Model.HitBall(score);
             
             _ballView.Model.Hit();
-            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.IncreaseSpeedRate(hitConfig?.SpeedRateIncrease ?? 1);
             _ballView.Model.AddScore(score.RoundToInt());
 
             var objective = _hitter == _playerView ? _enemyView : _playerView;
@@ -132,14 +132,15 @@ namespace RovioTest.Services
         private void CharacterHitBall(OnBallBeingHitEvent newEvent)
         {
             float score = newEvent.HitCharacter.Model.Attack;
-            score *= _config.ScoreModificationByHitType
-                .Find(hitType => hitType.HitType == newEvent.BallHitType)?.Modification ?? 0;
+            var hitConfig = _config.ScoreModificationByHitType
+                .Find(hitType => hitType.HitType == newEvent.BallHitType);
+            score *= hitConfig?.ScoreModificationRate ?? 0;
             
             newEvent.HitCharacter.Model.HitBall(score);
             
             _eventBusService.Send(new OnCharacterHitBallEvent(newEvent.HitCharacter));
             
-            _ballView.Model.IncreaseSpeedRate(_config.BallSpeedIncreaseRatePerHit);
+            _ballView.Model.IncreaseSpeedRate(hitConfig?.SpeedRateIncrease ?? 1);
             _ballView.Model.AddScore(score.RoundToInt());
             SetBallToOpponent(newEvent.HitCharacter);
         }
