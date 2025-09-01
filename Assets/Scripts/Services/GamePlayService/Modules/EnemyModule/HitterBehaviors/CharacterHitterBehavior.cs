@@ -32,6 +32,7 @@ namespace RovioTest.AI
             _ballView = ballView;
             _clockService.SubscribeToUpdate(CustomUpdate);
             _ballGoingToOpponent = false;
+            _useSkillInNextHit = false;
         }
 
         private void CustomUpdate(float deltaTime)
@@ -80,6 +81,21 @@ namespace RovioTest.AI
             _clockService?.UnSubscribeToUpdate(CustomUpdate);
             _clockService = null;
         }
+        
+        private void CheckForSkill()
+        {
+            if (_characterView.Model.CanDoSkill)
+            {
+                ActivateSkill();
+            }
+        }
+        
+        private void ActivateSkill()
+        {
+            _eventBusService.Send(new OnCharacterSkillActivatedEvent(_characterView));
+            _characterView.Model.ResetSkillPoints();
+            _useSkillInNextHit = true;
+        }
 
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
         {
@@ -98,13 +114,6 @@ namespace RovioTest.AI
             }
         }
 
-        private void CheckForSkill()
-        {
-            if (_characterView.Model.CanDoSkill)
-            {
-                _characterView.Model.ResetSkillPoints();
-                _useSkillInNextHit = true;
-            }
-        }
+       
     }
 }

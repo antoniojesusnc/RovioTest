@@ -34,6 +34,7 @@ namespace RovioTest.Services
         {
             _detectInput = false;
             _ballGoingToOpponent = false;
+            _useSkillInNextHit = false;
             base.BeginBattle();
         }
 
@@ -92,6 +93,14 @@ namespace RovioTest.Services
             
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType));
         }
+        
+        private void ActivateSkill()
+        {
+            _playerModel.ResetSkillPoints();
+            _useSkillInNextHit = true;
+            
+            _eventBusService.Send(new OnCharacterSkillActivatedEvent(_playerView));
+        }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
@@ -113,8 +122,8 @@ namespace RovioTest.Services
             {
                 return;
             }
-            _playerModel.ResetSkillPoints();
-            _useSkillInNextHit = true;
+
+            ActivateSkill();
         }
     }
 }

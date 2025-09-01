@@ -9,21 +9,30 @@ namespace RovioTest.Skills
     public class FastBallCharacterSkill : CharacterSkill,
         IEventBusObservable<OnBallBeingHitEvent>
     {
-        [SerializeField] private float _ballSpeedIncreaseRate;
-        [SerializeField] private float _ballSizeDeductionRate;
+        [field: SerializeField] 
+        public float BallSpeedIncreaseRate { get; private set; }
+        [field: SerializeField] 
+        public float BallSizeDeductionRate { get; private set; }
+        
+        public FastBallCharacterSkill(ICharacterSkill skill) : base(skill)
+        {
+            var skillData = skill as FastBallCharacterSkill;
+            BallSpeedIncreaseRate = skillData.BallSpeedIncreaseRate;
+            BallSizeDeductionRate = skillData.BallSizeDeductionRate;
+        }
 
         public override void Begin(CharacterView owner)
         {
             base.Begin(owner);
-
-            _skillsModule.Ball.transform.localScale *= _ballSizeDeductionRate;
-            _skillsModule.Ball.Model.IncreaseSpeedRate(_ballSpeedIncreaseRate);
+            
+            _skillsModule.Ball.transform.localScale *= BallSizeDeductionRate;
+            _skillsModule.Ball.Model.IncreaseSpeedRate(BallSpeedIncreaseRate);
         }
 
         public override void Finish()
         {
-            _skillsModule.Ball.transform.localScale /= _ballSizeDeductionRate;
-            _skillsModule.Ball.Model.IncreaseSpeedRate(1 / _ballSpeedIncreaseRate);
+            _skillsModule.Ball.transform.localScale /= BallSizeDeductionRate;
+            _skillsModule.Ball.Model.IncreaseSpeedRate(1 / BallSpeedIncreaseRate);
             
             base.Finish();
         }
@@ -37,7 +46,7 @@ namespace RovioTest.Skills
                                || newEvent.BallHitType == BallHitTypes.Hit
                                || newEvent.BallHitType == BallHitTypes.Skill;
 
-            if (hitToFinish)
+            if (hitToFinish && newEvent.HitCharacter != _owner)
             {
                 _skillsModule.FinishSkill(_owner);
             }

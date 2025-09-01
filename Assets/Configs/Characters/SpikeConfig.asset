@@ -50,5 +50,5 @@ MonoBehaviour:
     - rid: 9054691183890530304
       type: {class: FastBallCharacterSkill, ns: RovioTest.Skills, asm: roviotest.runtime}
       data:
-        _ballSpeedIncreaseRate: 5
-        _ballSizeDeductionRate: 0.5
+        <BallSpeedIncreaseRate>k__BackingField: 2
+        <BallSizeDeductionRate>k__BackingField: 0.5

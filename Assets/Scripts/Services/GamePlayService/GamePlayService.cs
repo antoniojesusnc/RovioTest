@@ -73,7 +73,6 @@ namespace RovioTest.Services
 
         public void BeginBattle()
         {
-            PlayerModel.ResetStats();
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
                 _gamePlayServiceModule[i]?.BeginBattle();

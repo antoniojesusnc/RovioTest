@@ -39,12 +39,20 @@ namespace RovioTest.Models
             Config = config;
          
             ResetStats();
+
+            if (isPlayer)
+            {
+                CurrentSkillPoints = Config.SkillPoints;
+            }
         }
         
         public void ResetStats()
         {
             CurrentHp = MaxHP;
             CurrentSkillPoints = 0;
+
+            CharacterSkill = Activator.CreateInstance(Config.Skill.GetType(), Config.Skill) as ICharacterSkill;
+
         }
 
         public void HitBall(float score)

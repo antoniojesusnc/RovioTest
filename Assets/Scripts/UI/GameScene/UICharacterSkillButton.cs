@@ -9,7 +9,8 @@ namespace RovioTest.UI
 {
     public class UICharacterSkillButton : MonoBehaviourEventObservable,
         IEventBusObservable<OnCharacterHitBallEvent>,
-        IEventBusObservable<OnBeginBattleEvent>
+        IEventBusObservable<OnBeginBattleEvent>,
+        IEventBusObservable<OnCharacterSkillActivatedEvent>
     {
         [SerializeField] private Image _grayImage;
         [SerializeField] private Button _button;
@@ -58,6 +59,14 @@ namespace RovioTest.UI
         {
             _characterView = newEvent.Player;
             UpdateData();
+        }
+
+        public void OnNewEvent(OnCharacterSkillActivatedEvent newEvent)
+        {
+            if (_characterView == newEvent.Character)
+            {
+                UpdateData();
+            }
         }
     }
 }

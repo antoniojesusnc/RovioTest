@@ -12,14 +12,20 @@ namespace RovioTest.Skills
         protected SkillsModule _skillsModule;
         protected CharacterView _owner;
 
+        public CharacterSkill(ICharacterSkill skill)
+        {
+            
+        }
+        
         public virtual void Init(SkillsModule skillsModule)
         {
             _skillsModule = skillsModule;
-            StaticServiceLocator.Get<IEventBusService>().Subscribe(this);
         }
 
         public virtual void Begin(CharacterView owner)
         {
+            StaticServiceLocator.Get<IEventBusService>().Subscribe(this);
+            
             IsActive = true;
             _owner = owner;
         }

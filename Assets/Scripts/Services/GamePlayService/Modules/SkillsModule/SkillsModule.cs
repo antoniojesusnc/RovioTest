@@ -65,7 +65,7 @@ namespace RovioTest.Services
             Player = newEvent.Player;
             Enemy = newEvent.Enemy;
             Ball = newEvent.Ball;
-
+            
             Player.Model.CharacterSkill.Init(this);
             Enemy.Model.CharacterSkill.Init(this);
         }

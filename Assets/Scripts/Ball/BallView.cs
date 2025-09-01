@@ -49,6 +49,7 @@ namespace RovioTest.View
         }
         public void Move(float deltaTime)
         {
+            
             if (!IsMoving)
             {
                 return;
@@ -59,6 +60,8 @@ namespace RovioTest.View
             var newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0);
             transform.LookAt(transform.position + newDirection.SetY(0));
             _rigidBody.rotation = transform.rotation;
+            
+            Debug.Log($"Ball Move forward:{transform.forward}");
             
             var movement = transform.forward.normalized * Model.Speed* deltaTime;
             _rigidBody.MovePosition(transform.position + movement);
