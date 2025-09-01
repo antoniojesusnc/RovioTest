@@ -40,10 +40,6 @@ namespace RovioTest.View
                 RotateAvatar();
             }
             
-            Debug.Log($"_lastPosition: {_lastPosition}" +
-                      $"\ntransform.posi: {transform.position}" +
-                      $"\n{(_lastPosition - transform.position).sqrMagnitude> Mathf.Epsilon}");
-            
             _animator.SetBool(CharacterAnimationsUtils.Triggers.IsRunning, _characterView.IsMoving);
             _lastPosition = transform.position;
         }
