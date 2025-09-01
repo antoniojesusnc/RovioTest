@@ -17,6 +17,10 @@ namespace RovioTest.Config
         [field: SerializeField]
         public CharacterConfig DefaultCharacterConfig { get; private set; }
         
+        [field: Header("Snimations & Effects")]
+        [field: SerializeField]
+        public float WaitTimeAfterSmash { get; private set; }
+        
         [field: Header("Game Data")]
         [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Court Configs")]
         public List<CourtConfig> Courts { get; private set; }
@@ -26,6 +30,8 @@ namespace RovioTest.Config
         
         [field: SerializeField, ReadOnly, Tooltip("AutoFilled with All Balls Configs")]
         public List<BallConfig> Balls { get; private set; }
+        
+        
         
 #if UNITY_EDITOR
         private void OnValidate()

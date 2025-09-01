@@ -11,8 +11,11 @@ namespace RovioTest.Services
     public class PlayerModule : GamePlayModule, 
         IEventBusObservable<OnJoystickChangedEvent>, 
         IEventBusObservable<OnClickInCharacterSkillEvent>,
+        IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnBeginBattleEvent>,
-        IEventBusObservable<OnBallChangeObjectiveEvent>
+        IEventBusObservable<OnBallChangeObjectiveEvent>,
+        IEventBusObservable<OnBeginServeEvent>,
+        IEventBusObservable<OnFinishServeEvent>
     {
         private bool _detectInput = false;
         
@@ -22,7 +25,8 @@ namespace RovioTest.Services
 
         private bool _ballGoingToOpponent;
         private bool _useSkillInNextHit;
-        
+        private bool _canMove;
+
         public override void GameOver(bool isWon)
         {
             _detectInput = false;
@@ -41,23 +45,6 @@ namespace RovioTest.Services
         private void MoveCharacter(Vector2 newEventJoystickDeltaNormalized)
         {
             _playerView?.Move(newEventJoystickDeltaNormalized);
-        }
-        
-        public void OnNewEvent(OnJoystickChangedEvent newEvent)
-        {
-            if (!_detectInput)
-            {
-                return;
-            }
-
-            if (_playerView.IsMoving && !newEvent.IsPointerDown)
-            {
-                StopCharacter();
-            }
-            else
-            {
-                MoveCharacter(newEvent.JoystickDelta);
-            }
         }
 
         private void StopCharacter()
@@ -104,11 +91,26 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _playerView = newEvent.Player;
+            _playerView = newEvent.LevelModel.PlayerView;
             _playerModel = _playerView.Model;
-            _ballView = newEvent.Ball;
-            
-            _detectInput = true;
+            _ballView = newEvent.LevelModel.BallView;
+        }
+        
+        public void OnNewEvent(OnJoystickChangedEvent newEvent)
+        {
+            if (!_detectInput)
+            {
+                return;
+            }
+
+            if (!newEvent.IsPointerDown)
+            {
+                StopCharacter();
+            }
+            else if(_canMove)
+            {
+                MoveCharacter(newEvent.JoystickDelta);
+            }
         }
         
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
@@ -124,6 +126,23 @@ namespace RovioTest.Services
             }
 
             ActivateSkill();
+        }
+
+        public void OnNewEvent(OnBeginServeEvent newEvent)
+        {
+            _canMove = false;
+            _detectInput = true;
+            _ballGoingToOpponent = false;
+        }
+
+        public void OnNewEvent(OnFinishServeEvent newEvent)
+        {
+            _canMove = true;
+        }
+
+        public void OnNewEvent(OnCharacterSmashedEvent newEvent)
+        {
+            _detectInput = false;
         }
     }
 }

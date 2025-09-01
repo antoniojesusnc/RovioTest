@@ -35,9 +35,17 @@ MonoBehaviour:
   - <HitterType>k__BackingField: 40
     <HitterBehavior>k__BackingField:
       rid: 9054691170877177867
+  - <HitterType>k__BackingField: 50
+    <HitterBehavior>k__BackingField:
+      rid: 6316267722904174592
   references:
     version: 2
     RefIds:
+    - rid: 6316267722904174592
+      type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
+      data:
+        _hitRate: 1
+        _coolDownToTryAgain: 0.1
     - rid: 9054691170877177861
       type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
@@ -59,24 +67,20 @@ MonoBehaviour:
     - rid: 9054691170877177864
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
-        _ballGoingToOpponent: 1
-        _hitRate: 0.4
+        _hitRate: 0.7
         _coolDownToTryAgain: 0.5
     - rid: 9054691170877177865
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
-        _ballGoingToOpponent: 1
-        _hitRate: 0.6
+        _hitRate: 0.8
         _coolDownToTryAgain: 0.2
     - rid: 9054691170877177866
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
-        _ballGoingToOpponent: 1
-        _hitRate: 0.8
+        _hitRate: 0.9
         _coolDownToTryAgain: 0.1
     - rid: 9054691170877177867
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
-        _ballGoingToOpponent: 1
         _hitRate: 0.95
         _coolDownToTryAgain: 0.1

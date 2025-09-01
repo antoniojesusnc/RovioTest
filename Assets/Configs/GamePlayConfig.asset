@@ -14,16 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DefaultCharacterConfig>k__BackingField: {fileID: 11400000, guid: 2a8710fd01b988d4cbb857eef0a25da0,
     type: 2}
-  <BallSpeedIncreasePerHit>k__BackingField: 1.1
-  <ScoreModificationByHitType>k__BackingField:
-  - <HitType>k__BackingField: 20
-    <Modification>k__BackingField: 0.7
-  - <HitType>k__BackingField: 30
-    <Modification>k__BackingField: 1
-  - <HitType>k__BackingField: 40
-    <Modification>k__BackingField: 2
-  - <HitType>k__BackingField: 50
-    <Modification>k__BackingField: 0.4
+  <WaitTimeAfterSmash>k__BackingField: 1
   <Courts>k__BackingField:
   - {fileID: 11400000, guid: 9964ab4ae6c2df44c97e76e6aeb1ad51, type: 2}
   <Characters>k__BackingField:

@@ -57,7 +57,7 @@ namespace RovioTest.UI
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _characterView = newEvent.Player;
+            _characterView = newEvent.LevelModel.PlayerView;
             UpdateData();
         }
 

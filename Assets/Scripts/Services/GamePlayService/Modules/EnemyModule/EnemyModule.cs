@@ -1,5 +1,6 @@
 using System;
 using MyBox;
+using RovioTest.AI;
 using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.Models;
@@ -12,7 +13,10 @@ namespace RovioTest.Services
     [Serializable]
     public class EnemyModule : GamePlayModule, 
         IEventBusObservable<OnBeginBattleEvent>, 
-        IEventBusObservable<OnBallBeingHitEvent>
+        IEventBusObservable<OnBallBeingHitEvent>,
+        IEventBusObservable<OnCharacterSmashedEvent>,
+        IEventBusObservable<OnBeginServeEvent>,
+        IEventBusObservable<OnFinishServeEvent>
     {
         [SerializeField] 
         private EnemyModuleConfig _config;
@@ -44,7 +48,12 @@ namespace RovioTest.Services
         
         private void AssignHitter()
         {
-            var hitterBehavior = _config.HitterBehaviors.GetRandom().HitterBehavior;
+            var hitterBehavior = _config.HitterBehaviors.Find(config => config.HitterType == EnemyHitterTypes.DEBUG)?.HitterBehavior;
+            if (hitterBehavior == null)
+            {
+                Debug.Log("DEBUG Missing All Behavior");
+                hitterBehavior = _config.HitterBehaviors.GetRandom().HitterBehavior;
+            }
             _enemyModel.SetHitterBehavior(hitterBehavior);
             
             _enemyModel.HitterBehavior.Begin(_enemyView, _ballView);
@@ -52,12 +61,12 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _enemyView = newEvent.Enemy;
+            _enemyView = newEvent.LevelModel.EnemyView;
             _enemyModel = _enemyView.Model;
-            _ballView = newEvent.Ball;
-
-            AssignMovement();
+            _ballView = newEvent.LevelModel.BallView;
+            
             AssignHitter();
+            AssignMovement();
         }
 
         public void OnNewEvent(OnBallBeingHitEvent newEvent)
@@ -66,8 +75,22 @@ namespace RovioTest.Services
             {
                 return;
             }
-            
-            _enemyModel.MovementBehavior.Restart();
+        }
+
+        public void OnNewEvent(OnFinishServeEvent newEvent)
+        {
+            _enemyModel.Restart();
+        }
+
+        public void OnNewEvent(OnCharacterSmashedEvent newEvent)
+        {
+            _enemyModel.Stop();
+        }
+
+        public void OnNewEvent(OnBeginServeEvent newEvent)
+        {
+            _enemyModel.HitterBehavior.Restart();
+            _enemyModel.MovementBehavior.Stop();
         }
     }
 }

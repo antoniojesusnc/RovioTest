@@ -20,7 +20,7 @@ MonoBehaviour:
   <HitRadius>k__BackingField: 2
   <Skill>k__BackingField:
     rid: 9054691183890530304
-  <SkillPoints>k__BackingField: 10
+  <SkillPoints>k__BackingField: 500
   <HitTypeByRadius>k__BackingField:
   - <HitRange>k__BackingField:
       Min: 0.80103356
@@ -50,5 +50,5 @@ MonoBehaviour:
     - rid: 9054691183890530304
       type: {class: FastBallCharacterSkill, ns: RovioTest.Skills, asm: roviotest.runtime}
       data:
-        <BallSpeedIncreaseRate>k__BackingField: 2
-        <BallSizeDeductionRate>k__BackingField: 0.5
+        <BallSpeedIncreaseRate>k__BackingField: 3
+        <BallSizeDeductionRate>k__BackingField: 0.25

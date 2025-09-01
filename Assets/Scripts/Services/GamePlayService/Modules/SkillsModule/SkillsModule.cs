@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MyBox;
 using RovioTest.Events;
+using RovioTest.Models;
 using RovioTest.Skills;
 using RovioTest.View;
 using Urd;
@@ -13,13 +14,9 @@ namespace RovioTest.Services
         IEventBusObservable<OnBallBeingHitEvent>,
         IEventBusObservable<OnBeginBattleEvent>
     {
-        public CourtView Court { get; private set; }
-        public CharacterView Player { get; private set; }
-        public CharacterView Enemy { get; private set; }
-        public BallView Ball { get; private set; }
-        
         private List<ICharacterSkill> _activeSkills = new ();
-        
+        public LevelModel LevelModel { get; private set; }
+
         public override void GameOver(bool isWon)
         {
             base.GameOver(isWon);
@@ -61,13 +58,10 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            Court = newEvent.Court;
-            Player = newEvent.Player;
-            Enemy = newEvent.Enemy;
-            Ball = newEvent.Ball;
+            LevelModel = newEvent.LevelModel;
             
-            Player.Model.CharacterSkill.Init(this);
-            Enemy.Model.CharacterSkill.Init(this);
+            LevelModel.PlayerView.Model.CharacterSkill.Init(this);
+            LevelModel.EnemyView.Model.CharacterSkill.Init(this);
         }
     }
 }

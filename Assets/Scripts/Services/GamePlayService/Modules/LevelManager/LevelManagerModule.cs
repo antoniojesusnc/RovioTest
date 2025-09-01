@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using MyBox;
 using RovioTest.Config;
 using RovioTest.Events;
@@ -13,12 +14,10 @@ namespace RovioTest.Services
 {
     [Serializable]
     public class LevelManagerModule : GamePlayModule,
-        IEventBusObservable<OnCharacterBeingHitEvent>
+        IEventBusObservable<OnCharacterBeingHitEvent>,
+        IEventBusObservable<OnCharacterSmashedEvent>
     {
-        private CourtView _courtView;
-        public CharacterView PlayerView { get; private set; }
-        private CharacterView _enemyView;
-        private BallView _ballView;
+        public LevelModel LevelModel { get; private set; }
         
         private IGamePlayService _gameplayService;
 
@@ -26,23 +25,21 @@ namespace RovioTest.Services
         {
             base.Init();
             _gameplayService = StaticServiceLocator.Get<IGamePlayService>();
+
+            LevelModel = new LevelModel();
         }
 
         public override void BeginBattle()
         {
             base.BeginBattle();
 
-            ResetValues();
-            
             SceneManager.LoadScene(SceneUtils.GameSceneIndex);
             LoadAssetForBattle();
         }
 
         private void ResetValues()
         {
-            _courtView = null;
-            PlayerView = null;
-            _enemyView = null;
+            LevelModel = new LevelModel();
         }
 
         private void LoadAssetForBattle()
@@ -82,8 +79,9 @@ namespace RovioTest.Services
 
         private void OnLoadPlayer(CharacterModel playerModel, GameObject loadedAsset)
         {
-            PlayerView = loadedAsset.GetComponent<CharacterView>();
-            PlayerView.SetModel(playerModel);
+            var playerView = loadedAsset.GetComponent<CharacterView>();
+            playerView.SetModel(playerModel);
+            LevelModel.SetPlayerView(playerView);
 
             CheckForFinishLoadLevel();
         }
@@ -97,9 +95,10 @@ namespace RovioTest.Services
         {
             CharacterModel enemyModel = new CharacterModel();
             enemyModel.SetConfig(enemyConfig);
-            _enemyView = loadedAsset.GetComponent<CharacterView>();
-            _enemyView.SetModel(enemyModel);
-
+            var enemyView = loadedAsset.GetComponent<CharacterView>();
+            enemyView.SetModel(enemyModel);
+            LevelModel.SetEnemyView(enemyView);
+            
             CheckForFinishLoadLevel();
         }
 
@@ -112,9 +111,11 @@ namespace RovioTest.Services
         {
             var courtModel = new CourtModel();
             courtModel.SetConfig(courtConfig);
-            _courtView = loadedAsset.GetComponent<CourtView>();
-            _courtView.SetModel(courtModel);
+            var courtView = loadedAsset.GetComponent<CourtView>();
+            courtView.SetModel(courtModel);
 
+            LevelModel.SetCourtView(courtView);
+            
             CheckForFinishLoadLevel();
         }
         
@@ -127,18 +128,17 @@ namespace RovioTest.Services
         {
             var ballModel = new BallModel();
             ballModel.SetConfig(ballConfig);
-            _ballView = loadedAsset.GetComponent<BallView>();
-            _ballView.SetModel(ballModel);
+            var ballView = loadedAsset.GetComponent<BallView>();
+            ballView.SetModel(ballModel);
 
+            LevelModel.SetBallView(ballView);
+            
             CheckForFinishLoadLevel();
         }
 
         private void CheckForFinishLoadLevel()
         {
-            if (_courtView == null
-                || PlayerView == null
-                || _enemyView == null
-                || _ballView == null)
+            if (!LevelModel.IsLoaded)
             {
                 return;
             }
@@ -148,7 +148,14 @@ namespace RovioTest.Services
 
         private void FinishLoadLevel()
         {
-            _eventBusService.Send(new OnBeginBattleEvent(_courtView, PlayerView, _enemyView, _ballView));
+            _eventBusService.Send(new OnBeginBattleEvent(LevelModel));
+            
+            BeginServeEvent(LevelModel.PlayerView);
+        }
+        
+        private void BeginServeEvent(CharacterView serverCharacter)
+        {
+            _eventBusService.Send(new OnBeginServeEvent(serverCharacter));
         }
 
         public void OnNewEvent(OnCharacterBeingHitEvent newEvent)
@@ -158,8 +165,14 @@ namespace RovioTest.Services
                 return;
             }
 
-            bool isWin = newEvent.Character == _enemyView;
+            bool isWin = newEvent.Character == LevelModel.EnemyView;
             _gameplayService.GameOver(isWin);
+        }
+
+        public void OnNewEvent(OnCharacterSmashedEvent newEvent)
+        {
+            var server = newEvent.CharacterDown == LevelModel.PlayerView ? LevelModel.EnemyView : LevelModel.PlayerView;
+            DOVirtual.DelayedCall(_gameplayService.Config.WaitTimeAfterSmash, () => BeginServeEvent(server));
         }
     }
 }

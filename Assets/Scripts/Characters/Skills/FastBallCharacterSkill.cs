@@ -25,14 +25,14 @@ namespace RovioTest.Skills
         {
             base.Begin(owner);
             
-            _skillsModule.Ball.transform.localScale *= BallSizeDeductionRate;
-            _skillsModule.Ball.Model.IncreaseSpeedRate(BallSpeedIncreaseRate);
+            _skillsModule.LevelModel.BallView.ChangeScale(BallSizeDeductionRate);
+            _skillsModule.LevelModel.BallView.Model.IncreaseSpeedRate(BallSpeedIncreaseRate);
         }
 
         public override void Finish()
         {
-            _skillsModule.Ball.transform.localScale /= BallSizeDeductionRate;
-            _skillsModule.Ball.Model.IncreaseSpeedRate(1 / BallSpeedIncreaseRate);
+            _skillsModule.LevelModel.BallView.ChangeScale(1/BallSizeDeductionRate);
+            _skillsModule.LevelModel.BallView.Model.IncreaseSpeedRate(1 / BallSpeedIncreaseRate);
             
             base.Finish();
         }

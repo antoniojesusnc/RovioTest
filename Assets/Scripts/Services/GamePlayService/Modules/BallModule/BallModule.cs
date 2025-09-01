@@ -46,9 +46,9 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _playerView = newEvent.Player;
-            _enemyView = newEvent.Enemy;
-            _ballView = newEvent.Ball;
+            _playerView = newEvent.LevelModel.PlayerView;
+            _enemyView = newEvent.LevelModel.EnemyView;
+            _ballView = newEvent.LevelModel.BallView;
 
             _hitter = _playerView;
         }
@@ -100,6 +100,7 @@ namespace RovioTest.Services
 
             var objective = _hitter == _playerView ? _enemyView : _playerView;
             var direction = (_ballView.transform.position-_hitter.transform.position).normalized;
+            _eventBusService.Send(new OnFinishServeEvent());
             _eventBusService.Send(new OnBallChangeObjectiveEvent(objective, direction));
         }
 
@@ -131,10 +132,11 @@ namespace RovioTest.Services
         {
             newEvent.HitCharacter.Model.BeingHit(_ballView.Model.CurrentScore);
             _eventBusService.Send(new OnCharacterBeingHitEvent(newEvent.HitCharacter));
+            _eventBusService.Send(new OnCharacterSmashedEvent(newEvent.HitCharacter)); 
             
-            _ballView.Model.ResetToInitialSpeed();
-            _ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
-            SetBallToOpponent(newEvent.HitCharacter);
+            //_ballView.Model.ResetToInitialSpeed();
+            //_ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
+            //SetBallToOpponent(newEvent.HitCharacter);
         }
         
         private void SetBallToOpponent(CharacterView hitCharacter)

@@ -5,7 +5,8 @@ using Urd;
 
 namespace RovioTest.UI
 {
-    public class UILookingForBattlePopup : MonoBehaviourEventObservable, IEventBusObservable<OnBeginBattleEvent>
+    public class UILookingForBattlePopup : MonoBehaviourEventObservable, 
+        IEventBusObservable<OnBeginBattleEvent>
     {
         [SerializeField]
         private float _timeBeforeHide;

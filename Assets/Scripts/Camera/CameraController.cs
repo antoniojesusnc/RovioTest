@@ -12,7 +12,7 @@ namespace RovioTest
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-            _camera.Follow = newEvent.Player.transform;
+            _camera.Follow = newEvent.LevelModel.PlayerView.transform;
         }
     }
 }

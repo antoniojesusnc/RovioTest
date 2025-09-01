@@ -3,11 +3,11 @@ using Urd.Services.EventBus;
 
 namespace RovioTest.Events
 {
-    public class OnCharacterDownEvent : IEventBusMessage
+    public class OnCharacterSmashedEvent : IEventBusMessage
     {
         public CharacterView CharacterDown { get; private set; }
 
-        public OnCharacterDownEvent(CharacterView characterDown)
+        public OnCharacterSmashedEvent(CharacterView characterDown)
         {
             CharacterDown = characterDown;
         }

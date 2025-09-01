@@ -7,15 +7,18 @@ namespace RovioTest.AI
 {
     public abstract class CharacterHitterBehavior : ICharacterHitterBehavior,
         IEventBusObservable<OnBallChangeObjectiveEvent>,
-        IEventBusObservable<OnBallBeingHitEvent>
+        IEventBusObservable<OnBallBeingHitEvent>,
+        IEventBusObservable<OnBeginServeEvent>
+        
     {
         private CharacterView _characterView; 
         private BallView _ballView;
         private IClockService _clockService;
         private IEventBusService _eventBusService;
 
-        public bool _ballGoingToOpponent;
+        private bool _ballGoingToOpponent;
         private bool _useSkillInNextHit;
+        private bool _canHit;
 
         public virtual void Dispose()
         {
@@ -33,10 +36,31 @@ namespace RovioTest.AI
             _clockService.SubscribeToUpdate(CustomUpdate);
             _ballGoingToOpponent = false;
             _useSkillInNextHit = false;
+            _canHit = true;
+        }
+
+        public void Stop()
+        {
+            _canHit = false;
+        }
+
+        public void Restart()
+        {
+            _canHit = true;
+        }
+
+        public void Continue()
+        {
+            _canHit = true;
         }
 
         private void CustomUpdate(float deltaTime)
         {
+            if (!_canHit)
+            {
+                return;
+            }
+            
             if (!IsBallCloseEnough() || _ballGoingToOpponent ) 
             {
                 return;
@@ -58,7 +82,7 @@ namespace RovioTest.AI
             {
                 hitType = BallHitTypes.First;
             }
-
+            
             if (_useSkillInNextHit)
             {
                 hitType = BallHitTypes.Skill;
@@ -77,6 +101,7 @@ namespace RovioTest.AI
 
         public void Finish()
         {
+            _canHit = false;
             _eventBusService.Unsubscribe(this);
             _clockService?.UnSubscribeToUpdate(CustomUpdate);
             _clockService = null;
@@ -114,6 +139,10 @@ namespace RovioTest.AI
             }
         }
 
-       
+
+        public void OnNewEvent(OnBeginServeEvent newEvent)
+        {
+            _ballGoingToOpponent = false;
+        }
     }
 }

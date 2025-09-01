@@ -39,11 +39,6 @@ namespace RovioTest.Models
             Config = config;
          
             ResetStats();
-
-            if (isPlayer)
-            {
-                CurrentSkillPoints = Config.SkillPoints;
-            }
         }
         
         public void ResetStats()
@@ -85,6 +80,18 @@ namespace RovioTest.Models
         public void BeingHit(int damage)
         {
             CurrentHp -= damage; 
+        }
+
+        public void Stop()
+        {
+            MovementBehavior.Stop();
+            HitterBehavior.Stop();
+        }
+
+        public void Restart()
+        {
+            MovementBehavior.Restart();
+            HitterBehavior.Restart();
         }
     }
 }
