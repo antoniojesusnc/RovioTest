@@ -24,6 +24,8 @@ namespace RovioTest.View
         private Rigidbody _rigidBody;
         [SerializeField]
         private MeshRenderer _meshRenderer;
+        [SerializeField]
+        private TrailRenderer _trailRenderer;
         [Header("HitEffects")]
         [SerializeField]
         private DOTweenAnimation _onHitAnimation;
@@ -119,6 +121,7 @@ namespace RovioTest.View
         {
             _onHitAnimation.tween.Restart();
             _hitBallColorEffect.DoEffect(_meshRenderer);
+            _trailRenderer.Clear();
         }
         
         public void ChangeScale(float scaleFactor)
@@ -132,11 +135,11 @@ namespace RovioTest.View
             BeginMovement(newEvent.Objetive, newEvent.Direction);
         }
 
-        private void ChangeColor(CharacterView hitter)
+        private void ChangeColor(Color color)
         {
-            _meshRenderer.material.color = hitter.Model.IsPlayer 
-                ? _ballConfig.BallColorWhenPlayerHit
-                : _ballConfig.BallColorWhenEnemyHit;
+            _meshRenderer.material.color = color;
+            _trailRenderer.startColor = color;
+            _trailRenderer.endColor = color;
         }
 
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
@@ -156,12 +159,15 @@ namespace RovioTest.View
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
-            _meshRenderer.material.color = _ballConfig.StandardColor;
+            ChangeColor(_ballConfig.StandardColor);
         }
 
         public void OnNewEvent(OnCharacterHitBallEvent newEvent)
         {
-            ChangeColor(newEvent.Character);
+            var color = newEvent.Character.Model.IsPlayer 
+                ? _ballConfig.BallColorWhenPlayerHit
+                : _ballConfig.BallColorWhenEnemyHit;
+            ChangeColor(color);
             DoEffectOfPlayerHitingBall();
         }
     }

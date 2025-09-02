@@ -146,6 +146,7 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
         {
+            _playerView.Stop();
             _detectJoystickInput = false;
         }
 

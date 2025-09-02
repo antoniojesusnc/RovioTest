@@ -118,6 +118,7 @@ namespace RovioTest.Services
             var objective = _hitter == _playerView ? _enemyView : _playerView;
             var direction = (_ballView.transform.position-_hitter.transform.position).normalized;
             _eventBusService.Send(new OnFinishServeEvent());
+            _eventBusService.Send(new OnCharacterHitBallEvent(newEvent.HitCharacter));
             _eventBusService.Send(new OnBallChangeObjectiveEvent(objective, direction));
         }
 
