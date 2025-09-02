@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicBallConfig
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 15
-  <MaxTurnDegreesAngle>k__BackingField: 45
+  <MaxTurnDegreesAngle>k__BackingField: 55
   <Asset>k__BackingField:
     m_AssetGUID: 6dc548ee63e3d934c8225386fdad4997
     m_SubObjectName: 

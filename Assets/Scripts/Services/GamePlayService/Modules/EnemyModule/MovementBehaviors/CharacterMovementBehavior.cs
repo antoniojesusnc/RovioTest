@@ -1,4 +1,3 @@
-using RovioTest.Services;
 using RovioTest.View;
 using UnityEngine;
 using Urd.Services;
@@ -64,6 +63,7 @@ namespace RovioTest.AI
         
         public virtual void Stop()
         {
+            _characterView.Stop();
             _isStopped = true;
             _isMoving = false;
         }

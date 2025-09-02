@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb7362b81c9558499f5555c13239b13, type: 3}
   m_Name: BallModuleConfig
   m_EditorClassIdentifier: 
-  <BallSpeedIncreaseRatePerHit>k__BackingField: 1.05
+  <StandardColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <BallColorWhenPlayerHit>k__BackingField: {r: 1, g: 0.93272066, b: 0.4481132, a: 1}
+  <BallColorWhenEnemyHit>k__BackingField: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
   <ScoreModificationByHitType>k__BackingField:
   - <HitType>k__BackingField: 20
-    <Modification>k__BackingField: 0.7
-    <Speed>k__BackingField: 1.05
+    <ScoreModificationRate>k__BackingField: 0.7
+    <SpeedRateIncrease>k__BackingField: 1.05
   - <HitType>k__BackingField: 30
-    <Modification>k__BackingField: 1
-    <Speed>k__BackingField: 1.1
+    <ScoreModificationRate>k__BackingField: 1
+    <SpeedRateIncrease>k__BackingField: 1.1
   - <HitType>k__BackingField: 40
-    <Modification>k__BackingField: 2
-    <Speed>k__BackingField: 1.2
+    <ScoreModificationRate>k__BackingField: 2
+    <SpeedRateIncrease>k__BackingField: 1.2
   - <HitType>k__BackingField: 50
-    <Modification>k__BackingField: 0.4
-    <Speed>k__BackingField: 1.05
+    <ScoreModificationRate>k__BackingField: 0.4
+    <SpeedRateIncrease>k__BackingField: 1.05

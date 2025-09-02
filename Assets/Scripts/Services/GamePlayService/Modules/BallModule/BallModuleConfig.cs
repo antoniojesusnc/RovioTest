@@ -7,6 +7,14 @@ namespace RovioTest.Config
 {
     public class BallModuleConfig : ScriptableObject
     {
+        [field: Header("Ball Colors")]
+        [field: SerializeField]
+        public Color StandardColor { get; private set; }
+        [field: SerializeField]
+        public Color BallColorWhenPlayerHit { get; private set; }
+        [field: SerializeField]
+        public Color BallColorWhenEnemyHit { get; private set; }
+
         [field: Header("Ball Score Modification By Hit Type")]
         [field: SerializeField]
         public List<ModificationByHitType> ScoreModificationByHitType { get; private set; }

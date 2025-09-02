@@ -14,8 +14,8 @@ namespace RovioTest.Services
         IEventBusObservable<OnBeginBattleEvent>,
         IEventBusObservable<OnBallBeingHitEvent>
     {
-        [SerializeField] 
-        private BallModuleConfig _config;
+        [field: SerializeField] 
+        public BallModuleConfig Config { get; private set; }
         
         private CharacterView _hitter;
         
@@ -85,7 +85,7 @@ namespace RovioTest.Services
         {
             float score = newEvent.HitCharacter.Model.Attack;
 
-            var hitConfig = _config.ScoreModificationByHitType
+            var hitConfig = Config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType);
             score *= hitConfig?.ScoreModificationRate ?? 0;
             
@@ -106,7 +106,7 @@ namespace RovioTest.Services
             _ballView.Model.BeginMovement();
             
             float score = newEvent.HitCharacter.Model.Attack;
-            var hitConfig = _config.ScoreModificationByHitType
+            var hitConfig = Config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType);
             score *= hitConfig?.ScoreModificationRate ?? 0;
             newEvent.HitCharacter.Model.HitBall(score);
@@ -132,7 +132,7 @@ namespace RovioTest.Services
         private void CharacterHitBall(OnBallBeingHitEvent newEvent)
         {
             float score = newEvent.HitCharacter.Model.Attack;
-            var hitConfig = _config.ScoreModificationByHitType
+            var hitConfig = Config.ScoreModificationByHitType
                 .Find(hitType => hitType.HitType == newEvent.BallHitType);
             score *= hitConfig?.ScoreModificationRate ?? 0;
             

@@ -49,7 +49,8 @@ MonoBehaviour:
     - rid: 9054691154211373059
       type: {class: BallModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data:
-        _config: {fileID: 11400000, guid: 83aae3f64adb0d94f87c2844b41ca0de, type: 2}
+        <Config>k__BackingField: {fileID: 11400000, guid: 83aae3f64adb0d94f87c2844b41ca0de,
+          type: 2}
     - rid: 9054691170877177856
       type: {class: EnemyModule, ns: RovioTest.Services, asm: roviotest.runtime}
       data:
