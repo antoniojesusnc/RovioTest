@@ -76,8 +76,11 @@ namespace RovioTest.UI
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
-            Show();
-            BeginServe();
+            if (newEvent.Server == _playerView)
+            {
+                Show();
+                BeginServe();
+            }
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)

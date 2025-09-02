@@ -42,12 +42,15 @@ namespace RovioTest.View
         private BallModuleConfig _ballConfig;
         private CharacterModel _characterModel;
 
+        private float _defaultStellaTime;
+
         public BallModel Model { get; private set; }
         public bool IsMoving { get; private set; }
 
         private void Awake()
         {
             _rigidBody.detectCollisions = false;
+            _defaultStellaTime = _trailRenderer.time;
         }
 
         protected override void Start()
@@ -106,10 +109,14 @@ namespace RovioTest.View
         
         private void Stop()
         {
+            _trailRenderer.Clear();
+            
             IsMoving = false;
             _rigidBody.ResetInertiaTensor();
             _rigidBody.velocity = Vector3.zero;
             _rigidBody.angularVelocity =Vector3.zero ;
+            _trailRenderer.Clear();
+            _trailRenderer.time = 0;
         }
 
         private void SetScore()
@@ -160,6 +167,7 @@ namespace RovioTest.View
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
             ChangeColor(_ballConfig.StandardColor);
+            _trailRenderer.time = _defaultStellaTime;
         }
 
         public void OnNewEvent(OnCharacterHitBallEvent newEvent)

@@ -1,4 +1,5 @@
 using System;
+using MyBox;
 using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.Models;
@@ -19,6 +20,8 @@ namespace RovioTest.Services
         IEventBusObservable<OnFinishServeEvent>,
         IEventBusObservable<OnServeInputEvent>
     {
+        public bool IsInCoolDown => (Time.timeSinceLevelLoadAsDouble - _lastHitMissTime) < _playerModel.Config.CoolDownAfterMiss;
+        
         private bool _detectJoystickInput = false;
         
         private CharacterView _playerView;
@@ -28,6 +31,7 @@ namespace RovioTest.Services
         private bool _ballGoingToOpponent;
         private bool _useSkillInNextHit;
         private bool _canMove;
+        private double _lastHitMissTime;
 
         public override void GameOver(bool isWon)
         {
@@ -41,6 +45,7 @@ namespace RovioTest.Services
             _detectJoystickInput = false;
             _ballGoingToOpponent = false;
             _useSkillInNextHit = false;
+            _lastHitMissTime = double.NegativeInfinity;
             base.BeginBattle();
         }
 
@@ -57,17 +62,20 @@ namespace RovioTest.Services
 
         private void TryHitBall()
         {
-            if (_ballGoingToOpponent)
+            if (_ballGoingToOpponent && IsInCoolDown)
             {
                 return;
             }
                 
-            var ballDistance = Vector3.Distance(_ballView.transform.position, _playerView.transform.position);
-            if (ballDistance > _playerModel.HitRadius)
+            var ballDistance = Vector3.Distance(_ballView.transform.position.SetY(0), _playerView.transform.position.SetY(0));
+            bool canHitBall = ballDistance < _playerModel.HitRadius;
+
+            if (!canHitBall)
             {
+                BeginCooldown();
                 return;
             }
-
+            
             var hitType = _playerModel.GetHitType(ballDistance);
 
             if (_useSkillInNextHit)
@@ -77,6 +85,12 @@ namespace RovioTest.Services
             }
             
             _eventBusService.Send(OnBallBeingHitEvent.CharacterHitBall(_playerView, hitType));
+        }
+
+        private void BeginCooldown()
+        {
+            _lastHitMissTime = Time.timeSinceLevelLoadAsDouble;
+            _eventBusService.Send(new OnCharacterMissHitEvent(_playerView));
         }
 
         private void HitServe(BallHitTypes hitType)
@@ -101,7 +115,7 @@ namespace RovioTest.Services
         
         public void OnNewEvent(OnJoystickChangedEvent newEvent)
         {
-            if (!_detectJoystickInput)
+            if (!_detectJoystickInput || IsInCoolDown)
             {
                 return;
             }
@@ -115,7 +129,7 @@ namespace RovioTest.Services
                 MoveCharacter(newEvent.JoystickDelta);
             }
         }
-        
+
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)
         {
             _ballGoingToOpponent = newEvent.SendToPlayer && newEvent.Objetive != _playerView;

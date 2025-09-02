@@ -12,7 +12,9 @@ namespace RovioTest.View
         private Rigidbody _rigidBody;
         [SerializeField]
         private SpriteRenderer _hitArea;
-
+        [SerializeField]
+        private Transform _skillEffectParent;
+        
         private bool _isGameOver;
 
         public CharacterModel Model { get; private set; }

@@ -26,7 +26,7 @@ namespace RovioTest.AI
 
         protected override BallHitTypes GetHitType()
         {
-            var ballDistance = Vector3.Distance(_ballView.transform.position, _characterView.transform.position);
+            var ballDistance = Vector3.Distance(_ballView.transform.position.SetY(0), _characterView.transform.position.SetY(0));
             return _characterView.Model.GetHitType(ballDistance);
         }
 

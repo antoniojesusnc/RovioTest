@@ -36,7 +36,7 @@ MonoBehaviour:
       Min: 0
       Max: 0.20241164
     <HitType>k__BackingField: 50
-  <CoolDownAfterMiss>k__BackingField: 1
+  <CoolDownAfterMiss>k__BackingField: 0.5
   <Asset>k__BackingField:
     m_AssetGUID: 8d3f8fc8caac93a4d9ddb3197d0c1bf4
     m_SubObjectName: 

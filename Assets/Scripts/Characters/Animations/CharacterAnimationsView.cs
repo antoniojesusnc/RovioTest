@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RovioTest.Events;
 using RovioTest.Services;
 using UnityEngine;
@@ -10,12 +11,16 @@ namespace RovioTest.View
         IEventBusObservable<OnBallBeingHitEvent>,
         IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnBeginServeEvent>,
-        IEventBusObservable<OnGameOverEvent>
+        IEventBusObservable<OnGameOverEvent>,
+        IEventBusObservable<OnCharacterMissHitEvent>
     {
         [SerializeField]
         private Animator _animator;
         [SerializeField]
         private Transform _avatar;
+        [SerializeField]
+        private List<ParticleSystem> _walkParticles;
+        public bool ArePlayingTheWalkParticles => _walkParticles.TrueForAll(particle => particle.isPlaying);
         
         private Vector3 _lastPosition;
         private CharacterView _characterView;
@@ -47,6 +52,19 @@ namespace RovioTest.View
             
             _animator.SetBool(CharacterAnimationsUtils.Triggers.IsRunning, _characterView.IsMoving);
             _lastPosition = transform.position;
+            CheckWalkParticle();
+        }
+
+        private void CheckWalkParticle()
+        {
+            if (!_characterView.IsMoving && ArePlayingTheWalkParticles)
+            {
+                _walkParticles.ForEach(particle => particle.Stop());
+            } 
+            else if (_characterView.IsMoving && !ArePlayingTheWalkParticles)
+            {
+                _walkParticles.ForEach(particle => particle.Play());
+            }
         }
 
         private void PlayIdleAnimation() => PlayAnimationIfNotPlaying(CharacterAnimationsUtils.Animations.Idle);
@@ -137,6 +155,11 @@ namespace RovioTest.View
             {
                 PlayVictoryAnimation();
             }
+        }
+
+        public void OnNewEvent(OnCharacterMissHitEvent newEvent)
+        {
+            PlayHitBallAnimation();
         }
     }
 }
