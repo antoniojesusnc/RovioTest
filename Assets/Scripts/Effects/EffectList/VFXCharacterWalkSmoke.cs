@@ -17,7 +17,7 @@ namespace RovioTest.Config
             yield return new WaitWhile(() => !task.IsDone);
             var particleSystem = task.Result.GetComponentInChildren<ParticleSystem>();
             yield return new WaitWhile(() => particleSystem.IsAlive());
-            GameObject.Destroy(particleSystem);
+            GameObject.Destroy(particleSystem.gameObject);
             particleSystem = null;
         }
     }

@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 279886136}
   _cameraMix: {fileID: 1902166225}
+  _shake: {fileID: 11400000, guid: 521f2a1175dffeb4297def67373770dc, type: 2}
 --- !u!4 &1902166224
 Transform:
   m_ObjectHideFlags: 0
