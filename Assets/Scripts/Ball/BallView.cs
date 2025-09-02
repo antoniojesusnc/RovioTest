@@ -161,12 +161,12 @@ namespace RovioTest.View
         public void OnNewEvent(OnFinishServeEvent newEvent)
         {
             _rigidBody.detectCollisions = true;
+            _trailRenderer.time = _defaultStellaTime;
         }
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
             ChangeColor(_ballConfig.StandardColor);
-            _trailRenderer.time = _defaultStellaTime;
         }
 
         public void OnNewEvent(OnCharacterHitBallEvent newEvent)

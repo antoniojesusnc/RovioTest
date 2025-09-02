@@ -11,6 +11,8 @@ namespace RovioTest.UI
         [SerializeField]
         private float _timeBeforeHide;
         [SerializeField]
+        private float _fadeDuration;
+        [SerializeField]
         private CanvasGroup _canvasGroup;
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
@@ -25,7 +27,7 @@ namespace RovioTest.UI
 
         private void BeginFadeOut()
         {
-            _canvasGroup.alpha = 0;
+            _canvasGroup.DOFade(0, _fadeDuration);
             gameObject.SetActive(false);
         }
     }
