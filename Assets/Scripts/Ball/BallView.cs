@@ -1,4 +1,3 @@
-using System;
 using MyBox;
 using RovioTest.Events;
 using RovioTest.Models;
@@ -14,12 +13,13 @@ namespace RovioTest.View
         IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnGameOverEvent>,
         IEventBusObservable<OnFinishServeEvent>
-        
     {
         [SerializeField]
         private Rigidbody _rigidBody;
         [SerializeField]
         private TextMeshPro _text;
+        [SerializeField]
+        private Transform _ballTextPivot;
         
         private CharacterView _objective;
 
@@ -51,6 +51,12 @@ namespace RovioTest.View
         private void CustomUpdate(float deltaTime)
         {
             Move(deltaTime);
+            MoveTextBillBoard();
+        }
+
+        private void MoveTextBillBoard()
+        {
+            _ballTextPivot.localRotation = Quaternion.Euler(-transform.rotation.eulerAngles);
         }
 
         private void BeginMovement(CharacterView objective, Vector3 direction)

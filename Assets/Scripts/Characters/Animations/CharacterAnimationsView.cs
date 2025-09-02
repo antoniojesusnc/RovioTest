@@ -20,13 +20,15 @@ namespace RovioTest.View
         private Vector3 _lastPosition;
         private CharacterView _characterView;
         private CharacterView _opponent;
-        
+        private BallView _ball;
+
         protected override void Start()
         {
             base.Start();
             _characterView = GetComponentInParent<CharacterView>();
             var levelModel = StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>().LevelModel;
             _opponent = levelModel.EnemyView == _characterView? levelModel.PlayerView : levelModel.EnemyView;
+            _ball = levelModel.BallView;
             StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
         }
 
@@ -40,7 +42,7 @@ namespace RovioTest.View
         {
             if (_characterView.IsMoving)
             {
-                RotateAvatar();
+                RotateAvatarToMovementDirection();
             }
             
             _animator.SetBool(CharacterAnimationsUtils.Triggers.IsRunning, _characterView.IsMoving);
@@ -54,15 +56,14 @@ namespace RovioTest.View
         private void PlayBaseBallIdleAnimation() => PlayAnimationIfNotPlaying(CharacterAnimationsUtils.Animations.BaseballIdle);
         private void PlayVictoryAnimation() => PlayAnimationIfNotPlaying(CharacterAnimationsUtils.Animations.Victory);
         
-        private void RotateAvatar()
+        private void RotateAvatarToMovementDirection()
         {
-            var direction = (transform.position - _lastPosition).normalized;
-            _avatar.LookAt(transform.position + direction);
+            RotateToPosition(transform.position + (transform.position - _lastPosition).normalized);
         }
         
-        private void RotateToOpponent()
+        private void RotateToPosition(Vector3 position)
         {
-            var direction = (_opponent.transform.position - _characterView.transform.position).normalized; 
+            var direction = (position - transform.position).normalized;
             _avatar.LookAt(transform.position + direction);
         }
         
@@ -83,29 +84,35 @@ namespace RovioTest.View
             else
             {
                 PlayRunAnimation();
-                RotateAvatar();
+                RotateAvatarToMovementDirection();
             }
         }
 
         public void OnNewEvent(OnBallBeingHitEvent newEvent)
         {
-            bool validShot = newEvent.BallHitType == BallHitTypes.Early
-                                             || newEvent.BallHitType == BallHitTypes.Good
-                                             || newEvent.BallHitType == BallHitTypes.Perfect
-                                             || newEvent.BallHitType == BallHitTypes.Late
-                                             || newEvent.BallHitType == BallHitTypes.Hit
-                                             || newEvent.BallHitType == BallHitTypes.Skill;
-            if (validShot)
+            bool validShot =
+                newEvent.BallHitType == BallHitTypes.Early
+                || newEvent.BallHitType == BallHitTypes.Good
+                || newEvent.BallHitType == BallHitTypes.Perfect
+                || newEvent.BallHitType == BallHitTypes.Late
+                || newEvent.BallHitType == BallHitTypes.Skill;
+            if (validShot && newEvent.HitCharacter == _characterView)
             {
                 PlayHitBallAnimation();
+                RotateToPosition(_ball.transform.position);
             }
         }
 
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
         {
-            if (_characterView != newEvent.CharacterDown)
+            if (_characterView == newEvent.CharacterDown)
             {
+                RotateToPosition(_ball.transform.position);
                 PlayFallDownAnimation();
+            }
+            else
+            {
+                PlayVictoryAnimation();
             }
         }
 
@@ -120,7 +127,7 @@ namespace RovioTest.View
                 PlayIdleAnimation();
             }
 
-            RotateToOpponent();
+            RotateToPosition(_opponent.transform.position);
         }
 
         public void OnNewEvent(OnGameOverEvent newEvent)

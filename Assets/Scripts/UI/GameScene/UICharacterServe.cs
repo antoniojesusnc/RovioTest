@@ -42,6 +42,11 @@ namespace RovioTest.UI
             Hide();
         }
 
+        private void Show()
+        {
+            gameObject.SetActive(true);
+        }
+        
         private void Hide()
         {
             _animation.tween.Rewind();
@@ -71,6 +76,7 @@ namespace RovioTest.UI
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
+            Show();
             BeginServe();
         }
 

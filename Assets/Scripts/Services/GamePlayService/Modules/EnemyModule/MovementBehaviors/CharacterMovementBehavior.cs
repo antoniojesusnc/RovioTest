@@ -37,6 +37,7 @@ namespace RovioTest.AI
             }
             else
             {
+                _characterView.Stop();
                 _isMoving = false;
             }
         }

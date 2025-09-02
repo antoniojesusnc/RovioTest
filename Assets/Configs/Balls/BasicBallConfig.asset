@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd00e762d47419e47812b17f827b650a, type: 3}
   m_Name: BasicBallConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 1
+  <Speed>k__BackingField: 15
   <MaxTurnDegreesAngle>k__BackingField: 45
   <Asset>k__BackingField:
     m_AssetGUID: 6dc548ee63e3d934c8225386fdad4997

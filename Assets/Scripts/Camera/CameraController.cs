@@ -10,8 +10,7 @@ using Urd.Services;
 namespace RovioTest
 {
     public class CameraController : MonoBehaviourEventObservable,
-        IEventBusObservable<OnBeginBattleEvent>,
-        IEventBusObservable<OnBeginServeEvent>
+        IEventBusObservable<OnBeginBattleEvent>
     {
         [SerializeField] private CinemachineVirtualCamera _camera;
         [SerializeField] private CinemachineMixingCamera _cameraMix;
@@ -20,10 +19,6 @@ namespace RovioTest
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
             _player = newEvent.LevelModel.PlayerView;
-        }
-
-        public void OnNewEvent(OnBeginServeEvent newEvent)
-        {
             if (_camera.Follow == null)
             {
                 _camera.Follow = _player.transform;
