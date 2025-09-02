@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VFXVector3Shake
   m_EditorClassIdentifier: 
   _duration: 0.1
-  _strength: 3
+  _strength: 0.5
   _vibrato: 10
   _randomness: 90
   _ignoreZAxis: 1
