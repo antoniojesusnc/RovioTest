@@ -22,6 +22,10 @@ namespace RovioTest.Skills
             _skillsModule = skillsModule;
         }
 
+        public virtual void GetReady(CharacterView owner)
+        {
+            _owner = owner;
+        }
         public virtual void Begin(CharacterView owner)
         {
             StaticServiceLocator.Get<IEventBusService>().Subscribe(this);

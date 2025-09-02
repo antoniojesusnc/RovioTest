@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.Services;
 using UnityEngine;
@@ -18,15 +18,22 @@ namespace RovioTest.View
         private Animator _animator;
         [SerializeField]
         private Transform _avatar;
+        [Header("Effects")]
         [SerializeField]
-        private List<ParticleSystem> _walkParticles;
-        public bool ArePlayingTheWalkParticles => _walkParticles.TrueForAll(particle => particle.isPlaying);
+        private Transform _effectParent;
+        [SerializeField]
+        private VFXCharacterWalkSmoke _walkEffect;
+        [SerializeField]
+        private float _walkEffectFrequency;
         
         private Vector3 _lastPosition;
         private CharacterView _characterView;
         private CharacterView _opponent;
         private BallView _ball;
-
+        
+        private float _timestamp;
+        private bool CanGenerateWalkEffect => _timestamp <= 0;
+        
         protected override void Start()
         {
             base.Start();
@@ -45,11 +52,16 @@ namespace RovioTest.View
 
         private void CustomUpdate(float deltaTime)
         {
+            if (_timestamp > 0)
+            {
+                _timestamp -= deltaTime;
+            }
+
             if (_characterView.IsMoving)
             {
                 RotateAvatarToMovementDirection();
             }
-            
+
             _animator.SetBool(CharacterAnimationsUtils.Triggers.IsRunning, _characterView.IsMoving);
             _lastPosition = transform.position;
             CheckWalkParticle();
@@ -57,14 +69,11 @@ namespace RovioTest.View
 
         private void CheckWalkParticle()
         {
-            if (!_characterView.IsMoving && ArePlayingTheWalkParticles)
+            if (_characterView.IsMoving && CanGenerateWalkEffect)
             {
-                _walkParticles.ForEach(particle => particle.Stop());
+                _timestamp = _walkEffectFrequency;
+                _walkEffect.DoEffect(_effectParent.transform.position);
             } 
-            else if (_characterView.IsMoving && !ArePlayingTheWalkParticles)
-            {
-                _walkParticles.ForEach(particle => particle.Play());
-            }
         }
 
         private void PlayIdleAnimation() => PlayAnimationIfNotPlaying(CharacterAnimationsUtils.Animations.Idle);

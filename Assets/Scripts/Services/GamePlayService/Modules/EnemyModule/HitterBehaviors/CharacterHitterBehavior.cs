@@ -135,6 +135,7 @@ namespace RovioTest.AI
             _eventBusService.Send(new OnCharacterSkillActivatedEvent(_characterView));
             _characterView.Model.ResetSkillPoints();
             _useSkillInNextHit = true;
+            _characterView.Model.CharacterSkill.GetReady(_characterView);
         }
 
         public void OnNewEvent(OnBallChangeObjectiveEvent newEvent)

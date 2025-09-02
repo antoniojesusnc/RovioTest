@@ -67,3 +67,5 @@ MonoBehaviour:
       data:
         <BallSpeedIncreaseRate>k__BackingField: 3
         <BallSizeDeductionRate>k__BackingField: 0.25
+        <CharacterAura>k__BackingField: {fileID: 11400000, guid: 7b8f78b874df4684ea886c26c8160f12,
+          type: 2}

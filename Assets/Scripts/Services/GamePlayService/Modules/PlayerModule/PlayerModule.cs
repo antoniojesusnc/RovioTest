@@ -103,6 +103,7 @@ namespace RovioTest.Services
             _playerModel.ResetSkillPoints();
             _useSkillInNextHit = true;
             
+            _playerModel.CharacterSkill.GetReady(_playerView);
             _eventBusService.Send(new OnCharacterSkillActivatedEvent(_playerView));
         }
 

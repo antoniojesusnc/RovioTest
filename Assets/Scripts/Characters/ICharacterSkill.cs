@@ -8,6 +8,7 @@ namespace RovioTest.Skills
     {
         bool IsActive { get; }
         void Init(SkillsModule skillsModule);
+        void GetReady(CharacterView owner);
         void Begin(CharacterView owner);
         void Finish();
     }

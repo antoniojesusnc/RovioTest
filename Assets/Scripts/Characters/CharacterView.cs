@@ -12,8 +12,8 @@ namespace RovioTest.View
         private Rigidbody _rigidBody;
         [SerializeField]
         private SpriteRenderer _hitArea;
-        [SerializeField]
-        private Transform _skillEffectParent;
+        [field: SerializeField]
+        public Transform SkillEffectParent { get; private set; }
         
         private bool _isGameOver;
 

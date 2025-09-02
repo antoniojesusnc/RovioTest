@@ -1,4 +1,5 @@
 using System;
+using RovioTest.Config;
 using RovioTest.Events;
 using RovioTest.View;
 using UnityEngine;
@@ -9,21 +10,42 @@ namespace RovioTest.Skills
     public class FastBallCharacterSkill : CharacterSkill,
         IEventBusObservable<OnBallBeingHitEvent>
     {
+
         [field: SerializeField] 
         public float BallSpeedIncreaseRate { get; private set; }
         [field: SerializeField] 
         public float BallSizeDeductionRate { get; private set; }
+        [field: SerializeField] 
+        public VFXCharacterAura CharacterAura { get; private set; }
+        
+        private GameObject _vfxEffect;
         
         public FastBallCharacterSkill(ICharacterSkill skill) : base(skill)
         {
             var skillData = skill as FastBallCharacterSkill;
             BallSpeedIncreaseRate = skillData.BallSpeedIncreaseRate;
             BallSizeDeductionRate = skillData.BallSizeDeductionRate;
+            CharacterAura = skillData.CharacterAura;
         }
 
+        public override void GetReady(CharacterView owner)
+        {
+            base.GetReady(owner);
+            CharacterAura.DoEffect(_owner.SkillEffectParent, OnEffectCreated);
+        }
+        private void OnEffectCreated(GameObject gameObject)
+        {
+            if (IsActive)
+            {
+                GameObject.Destroy(_vfxEffect.gameObject);    
+            }
+            _vfxEffect = gameObject;
+        }
         public override void Begin(CharacterView owner)
         {
             base.Begin(owner);
+            
+            GameObject.Destroy(_vfxEffect.gameObject);
             
             _skillsModule.LevelModel.BallView.ChangeScale(BallSizeDeductionRate);
             _skillsModule.LevelModel.BallView.Model.IncreaseSpeedRate(BallSpeedIncreaseRate);
