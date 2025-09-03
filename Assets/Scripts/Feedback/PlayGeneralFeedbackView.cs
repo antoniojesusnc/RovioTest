@@ -72,6 +72,8 @@ namespace RovioTest.View
             {
                 _audioService.PlaySound(RovioTestAudiosTypes.Defeat);
             }
+            
+            _audioService.StopSound(RovioTestAudiosTypes.Public);
         }
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)

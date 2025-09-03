@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38cb883f580e20841824224f1ec64aea, type: 3}
-  m_Name: SpikeConfig
+  m_Name: JohnConfig
   m_EditorClassIdentifier: 
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 8
@@ -38,11 +38,11 @@ MonoBehaviour:
     <HitType>k__BackingField: 50
   <CoolDownAfterMiss>k__BackingField: 0.5
   <Asset>k__BackingField:
-    m_AssetGUID: a11d1c026b5ca93498ce6bc7167f704c
+    m_AssetGUID: 148b717eef50bc64c93791739a75f19b
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <DefaultHitterConfig>k__BackingField: {fileID: 11400000, guid: 062f7c53bc2925042a29dd65c681237c,
+  <DefaultHitterConfig>k__BackingField: {fileID: 11400000, guid: b386a94fe48ab7f408990ca3c6477b72,
     type: 2}
   <HitServeRates>k__BackingField:
   - <HitRange>k__BackingField:

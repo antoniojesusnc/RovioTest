@@ -37,6 +37,9 @@ namespace RovioTest.Config
         [field: Header("Asset")]
         [field: SerializeField]
         public AssetReferenceGameObject Asset { get; private set; }
+        [field: Header("Asset")]
+        [field: SerializeField]
+        public CharacterHitterConfig DefaultHitterConfig { get; private set; }
         
         [field: Header("Serve Chance")]
         [field: SerializeField]

@@ -104,18 +104,23 @@ namespace RovioTest.View
             
             var movement = transform.forward.normalized * Model.Speed* deltaTime;
             _rigidBody.MovePosition(transform.position + movement);
-        }
-        
-        private void Stop()
-        {
-            _trailRenderer.Clear();
             
-            IsMoving = false;
+            ResetInertia();
+        }
+
+        private void ResetInertia()
+        {
             _rigidBody.ResetInertiaTensor();
             _rigidBody.velocity = Vector3.zero;
             _rigidBody.angularVelocity =Vector3.zero ;
-            _trailRenderer.Clear();
+        }
+
+        private void Stop()
+        {
+            IsMoving = false;
+            ResetInertia();
             _trailRenderer.time = 0;
+            _trailRenderer.Clear();
         }
 
         private void SetScore()
@@ -166,6 +171,8 @@ namespace RovioTest.View
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
+            _rigidBody.detectCollisions = false;
+            Stop();
             ChangeColor(_ballConfig.StandardColor);
         }
 

@@ -30,6 +30,7 @@ namespace RovioTest.Services
             base.Init();
             _eventBusService = StaticServiceLocator.Get<IEventBusService>();
             
+            Application.targetFrameRate = 60;
             InitModules();
             LoadPlayerData();
         }

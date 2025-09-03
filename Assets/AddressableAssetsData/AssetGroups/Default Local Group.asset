@@ -16,7 +16,27 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 3d6cc34d42fb3ed469e6e9cb7ebb27b4
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a11d1c026b5ca93498ce6bc7167f704c
+    m_Address: Assets/Prefabs/Characters/SpikeCharacter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0101eaefb82ea714b99555c4ce0a9263
+    m_Address: Assets/Prefabs/Characters/NickCharacter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 148b717eef50bc64c93791739a75f19b
+    m_Address: Assets/Prefabs/Characters/JohnCharacter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9b90dc584261da4291b03917f9a761b
+    m_Address: Assets/Prefabs/Characters/CharlieCharacter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dcdf424ca6fa3a040a79e8742f92a3d1, type: 2}
   m_SchemaSet:
