@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2. GameScene.unity
     guid: b4069313212f90943ad49d069bc866a3
+  - enabled: 1
+    path: Packages/com.pixeption.mck/Assets/LogConsole.unity
+    guid: 6d2ee6336ff704f55b20f3b62801afd5
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 11fd5ab4ac3e8684da1ef4b778dd0994, type: 2}

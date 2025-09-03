@@ -6,6 +6,7 @@
     "com.gilzoide.safe-area-layout": "https://github.com/gilzoide/unity-safe-area-layout.git",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
     "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
+    "com.pixeption.mck": "https://github.com/pixeption/MobileConsoleKit.git",
     "com.unity.addressables": "1.21.21",
     "com.unity.burst": "1.8.13",
     "com.unity.cinemachine": "2.9.7",
