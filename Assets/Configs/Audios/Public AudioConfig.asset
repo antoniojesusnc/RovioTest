@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c38dee0dca0f534d9e1c21d74b37813, type: 3}
+  m_Name: Public AudioConfig
+  m_EditorClassIdentifier: 
+  <Audio>k__BackingField:
+    rid: 6316267758209990658
+  references:
+    version: 2
+    RefIds:
+    - rid: 6316267758209990658
+      type: {class: AudioData, ns: RovioTest.Config, asm: roviotest.runtime}
+      data:
+        <AudioType>k__BackingField: 8
+        <Clip>k__BackingField: {fileID: 8300000, guid: 2768bddaaef05fa4c9a3ed6b09bd123c,
+          type: 3}
+        <AdditionalClips>k__BackingField:
+        - {fileID: 8300000, guid: 306a064e8521057458a7a0e2e0f1935f, type: 3}
+        - {fileID: 8300000, guid: 67896263abff87d4eafcbcbccadb15f2, type: 3}
+        - {fileID: 8300000, guid: fa80797e7a5f29d459891bc03822c1de, type: 3}
+        - {fileID: 8300000, guid: 0205b2b3e29fb0f4fbf55002d4e2a061, type: 3}
+        - {fileID: 8300000, guid: 698fdc3307414cf49982e1db3826463d, type: 3}
+        - {fileID: 8300000, guid: 0c03b824e9305da4d84e8593d7429833, type: 3}
+        - {fileID: 8300000, guid: c3531dab4082f7c4e92985b7769c09e4, type: 3}
+        - {fileID: 8300000, guid: ea6f473752bae514d9e7df7dd6aa485e, type: 3}
+        - {fileID: 8300000, guid: 2ddff3d154864594eae3080a93cfc4eb, type: 3}
+        <Volume>k__BackingField: 0.4
+        <Mixer>k__BackingField: 3
+        <Pitch>k__BackingField: 1
+        <Loop>k__BackingField: 1
+        <FadeOutDuration>k__BackingField: 0

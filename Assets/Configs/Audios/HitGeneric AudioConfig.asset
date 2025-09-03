@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c38dee0dca0f534d9e1c21d74b37813, type: 3}
+  m_Name: HitGeneric AudioConfig
+  m_EditorClassIdentifier: 
+  <Audio>k__BackingField:
+    rid: 6316267758209990658
+  references:
+    version: 2
+    RefIds:
+    - rid: 6316267758209990658
+      type: {class: AudioData, ns: RovioTest.Config, asm: roviotest.runtime}
+      data:
+        <AudioType>k__BackingField: 3
+        <Clip>k__BackingField: {fileID: 8300000, guid: 8c536717422901c469bc00a07e475c31,
+          type: 3}
+        <AdditionalClips>k__BackingField: []
+        <Volume>k__BackingField: 0.4
+        <Mixer>k__BackingField: 2
+        <Pitch>k__BackingField: 1
+        <Loop>k__BackingField: 0
+        <FadeOutDuration>k__BackingField: 0

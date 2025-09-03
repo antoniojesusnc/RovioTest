@@ -1,7 +1,7 @@
 using DG.DemiEditor;
 using UnityEngine;
 
-namespace Sandlib.Editor
+namespace Urd.Editor
 {
     public static class ToolbarStyles
     {

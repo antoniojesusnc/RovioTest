@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityToolbarExtender;
 
-namespace Sandlib.Editor.Utils
+namespace Urd.Editor.Utils
 {
     [InitializeOnLoad]
     public static class UnityModification

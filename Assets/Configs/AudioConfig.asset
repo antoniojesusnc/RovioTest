@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aa15a2ad83da94a811ea6ba46ee6c3, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  <Mixers>k__BackingField:
+  - <MixerType>k__BackingField: 3
+    <Mixer>k__BackingField: {fileID: 4043018026298544436, guid: c37a1f27efed5ba408ff4fa35cdbb57b,
+      type: 2}
+  - <MixerType>k__BackingField: 2
+    <Mixer>k__BackingField: {fileID: -3972443332086984627, guid: c37a1f27efed5ba408ff4fa35cdbb57b,
+      type: 2}
+  <Audios>k__BackingField: []
