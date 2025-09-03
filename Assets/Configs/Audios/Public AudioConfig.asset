@@ -33,7 +33,7 @@ MonoBehaviour:
         - {fileID: 8300000, guid: c3531dab4082f7c4e92985b7769c09e4, type: 3}
         - {fileID: 8300000, guid: ea6f473752bae514d9e7df7dd6aa485e, type: 3}
         - {fileID: 8300000, guid: 2ddff3d154864594eae3080a93cfc4eb, type: 3}
-        <Volume>k__BackingField: 1
+        <Volume>k__BackingField: 0.3
         <Mixer>k__BackingField: 3
         <Pitch>k__BackingField: 1
         <Loop>k__BackingField: 0

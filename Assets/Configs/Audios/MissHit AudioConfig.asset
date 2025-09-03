@@ -24,7 +24,7 @@ MonoBehaviour:
         <Clip>k__BackingField: {fileID: 8300000, guid: 0f3fca83573038b45b94812fdb462c2f,
           type: 3}
         <AdditionalClips>k__BackingField: []
-        <Volume>k__BackingField: 1
+        <Volume>k__BackingField: 0.5
         <Mixer>k__BackingField: 2
         <Pitch>k__BackingField: 1
         <Loop>k__BackingField: 0

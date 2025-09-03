@@ -126,6 +126,7 @@ namespace RovioTest.Services
         {
             var normal = newEvent.ContactPoint.normal;
             var direction = Vector3.Reflect(_ballView.transform.forward, normal);
+            direction.SetY(0);
             var objective = _hitter == _playerView ? _enemyView : _playerView;
             _eventBusService.Send(new OnBallChangeObjectiveEvent(objective, direction));
         }
@@ -152,9 +153,7 @@ namespace RovioTest.Services
             _eventBusService.Send(new OnCharacterBeingHitEvent(newEvent.HitCharacter));
             _eventBusService.Send(new OnCharacterSmashedEvent(newEvent.HitCharacter)); 
             
-            //_ballView.Model.ResetToInitialSpeed();
-            //_ballView.Model.SetScore(newEvent.HitCharacter.Model.Attack);
-            //SetBallToOpponent(newEvent.HitCharacter);
+            _ballView.Model.ResetToInitialSpeed();
         }
         
         private void SetBallToOpponent(CharacterView hitCharacter)

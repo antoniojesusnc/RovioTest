@@ -96,7 +96,7 @@ namespace RovioTest.View
                 return;
             }
             
-            var direction = (_objective.transform.position - _rigidBody.position).normalized;
+            var direction = (_objective.transform.position - _rigidBody.position).normalized.SetY(0);
             var step = Model.MaxTurnDegreesAngle * Mathf.Deg2Rad * Time.deltaTime;
             var newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0);
             transform.LookAt(transform.position + newDirection.SetY(0));

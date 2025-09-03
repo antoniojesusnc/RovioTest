@@ -15,7 +15,7 @@ MonoBehaviour:
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 8
   <Attack>k__BackingField: 47
-  <HitRadius>k__BackingField: 2
+  <HitRadius>k__BackingField: 2.5
   <Skill>k__BackingField:
     rid: 9054691183890530304
   <SkillPoints>k__BackingField: 500
