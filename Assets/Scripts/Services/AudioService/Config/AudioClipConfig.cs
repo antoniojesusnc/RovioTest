@@ -10,6 +10,6 @@ namespace Urd.Services
     {
         [field: SerializeReference, SubclassSelector]
 
-        public IAudioConfigData Audio { get; private set; }
+        public IAudioData Audio { get; private set; }
     }
 }

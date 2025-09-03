@@ -16,10 +16,25 @@ MonoBehaviour:
   - rid: 9054691149740769281
   - rid: 9054691149740769282
   - rid: 9054691149740769283
+  - rid: 6316267768576475147
+  - rid: 6316267768576475148
   - rid: 9054691154211373056
   references:
     version: 2
     RefIds:
+    - rid: 6316267768576475147
+      type: {class: AudioService, ns: Urd.Services, asm: roviotest.runtime}
+      data:
+        _audioConfig: {fileID: 11400000, guid: 1d45dd11bc8df2b4d937b53d2938488b, type: 2}
+    - rid: 6316267768576475148
+      type: {class: PhysicalFeedbackService, ns: Urd.Services, asm: roviotest.runtime}
+      data:
+        _provider:
+          rid: 6316267768576475149
+        <IsEnabled>k__BackingField: 0
+    - rid: 6316267768576475149
+      type: {class: HapticCandyCoded, ns: Urd.Feedback, asm: roviotest.runtime}
+      data: 
     - rid: 9054691149740769281
       type: {class: CoroutineService, ns: Urd.Services, asm: roviotest.runtime}
       data: 

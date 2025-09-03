@@ -533,36 +533,36 @@ PrefabInstance:
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 9153555958970525129}
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: OnClickInContinue
       objectReference: {fileID: 0}
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: RovioTest.UI.UIGameOverPopup, roviotest.runtime
       objectReference: {fileID: 0}
     - target: {fileID: 2585425343241625260, guid: cdc15d414e09e244ab0868f116dd5ed0,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2610036391250068547, guid: cdc15d414e09e244ab0868f116dd5ed0,

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5aa15a2ad83da94a811ea6ba46ee6c3, type: 3}
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
+  <TimeToPlayAgain>k__BackingField: 0.05
   <Mixers>k__BackingField:
   - <MixerType>k__BackingField: 3
     <Mixer>k__BackingField: {fileID: 4043018026298544436, guid: c37a1f27efed5ba408ff4fa35cdbb57b,
@@ -19,4 +20,15 @@ MonoBehaviour:
   - <MixerType>k__BackingField: 2
     <Mixer>k__BackingField: {fileID: -3972443332086984627, guid: c37a1f27efed5ba408ff4fa35cdbb57b,
       type: 2}
-  <Audios>k__BackingField: []
+  <Audios>k__BackingField:
+  - {fileID: 11400000, guid: 0e3fd5d853fa72c4cb30d32fb8db9d95, type: 2}
+  - {fileID: 11400000, guid: 2071b8dda2061f145b8b647ec9ea3a54, type: 2}
+  - {fileID: 11400000, guid: aaa857b6811037640867d8c1df599dd3, type: 2}
+  - {fileID: 11400000, guid: cdaeca33c89837d4b9851ba8217b87c0, type: 2}
+  - {fileID: 11400000, guid: 9c2a2154d86450740a7dc9989104abce, type: 2}
+  - {fileID: 11400000, guid: bb38a07f991e7f54d9024433fb09f4ae, type: 2}
+  - {fileID: 11400000, guid: 096c4523eb88b94449ab5ca63cd14155, type: 2}
+  - {fileID: 11400000, guid: a591c78295fbdda42a087efc27031703, type: 2}
+  - {fileID: 11400000, guid: 967ca1453c530f74f8ec6c92d449beef, type: 2}
+  - {fileID: 11400000, guid: 2f95c23734260894f98dc6b0242a2ec1, type: 2}
+  - {fileID: 11400000, guid: 881b7c851e8c83848bb9cc36d4f338e8, type: 2}

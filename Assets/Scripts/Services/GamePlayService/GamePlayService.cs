@@ -30,7 +30,6 @@ namespace RovioTest.Services
             base.Init();
             _eventBusService = StaticServiceLocator.Get<IEventBusService>();
             
-            
             InitModules();
             LoadPlayerData();
         }
@@ -59,6 +58,7 @@ namespace RovioTest.Services
         public void BeginGame()
         {
             SceneManager.LoadScene(SceneUtils.MainMenuSceneIndex);
+            StaticServiceLocator.Get<IAudioService>().PlaySound(RovioTestAudiosTypes.MainMenu);
             
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
@@ -73,6 +73,9 @@ namespace RovioTest.Services
 
         public void BeginBattle()
         {
+            StaticServiceLocator.Get<IAudioService>().StopSound(RovioTestAudiosTypes.MainMenu);
+            SceneManager.LoadScene(SceneUtils.GameSceneIndex);
+            
             for (int i = 0; i < _gamePlayServiceModule.Count; i++)
             {
                 _gamePlayServiceModule[i]?.BeginBattle();

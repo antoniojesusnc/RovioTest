@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Smash AudioConfig
   m_EditorClassIdentifier: 
   <Audio>k__BackingField:
-    rid: 6316267758209990658
+    rid: 6316267768576475144
   references:
     version: 2
     RefIds:
-    - rid: 6316267758209990658
-      type: {class: AudioData, ns: RovioTest.Config, asm: roviotest.runtime}
+    - rid: 6316267768576475144
+      type: {class: RovioAudioData, ns: RovioTest.Config, asm: roviotest.runtime}
       data:
         <AudioType>k__BackingField: 6
         <Clip>k__BackingField: {fileID: 8300000, guid: 6f725831873c42141b8b7159a11f4251,
           type: 3}
         <AdditionalClips>k__BackingField: []
-        <Volume>k__BackingField: 0.4
+        <Volume>k__BackingField: 1
         <Mixer>k__BackingField: 2
         <Pitch>k__BackingField: 1
         <Loop>k__BackingField: 0

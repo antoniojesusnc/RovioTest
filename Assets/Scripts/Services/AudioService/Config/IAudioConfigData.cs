@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Urd.Audio
 {
-    public interface IAudioConfigData
+    public interface IAudioConfigData 
     {
         Enum Type { get; }
         AudioClip Clip { get; }

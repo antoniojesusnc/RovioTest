@@ -33,7 +33,6 @@ namespace RovioTest.Services
         {
             base.BeginBattle();
 
-            SceneManager.LoadScene(SceneUtils.GameSceneIndex);
             LoadAssetForBattle();
         }
 

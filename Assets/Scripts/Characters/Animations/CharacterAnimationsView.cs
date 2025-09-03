@@ -73,6 +73,7 @@ namespace RovioTest.View
             {
                 _timestamp = _walkEffectFrequency;
                 _walkEffect.DoEffect(_effectParent.transform.position);
+                StaticServiceLocator.Get<IAudioService>().PlaySound(RovioTestAudiosTypes.Walk);
             } 
         }
 
@@ -169,6 +170,7 @@ namespace RovioTest.View
         public void OnNewEvent(OnCharacterMissHitEvent newEvent)
         {
             PlayHitBallAnimation();
+            StaticServiceLocator.Get<IAudioService>().PlaySound(RovioTestAudiosTypes.MissHit);
         }
     }
 }

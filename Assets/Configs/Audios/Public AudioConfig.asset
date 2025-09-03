@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Public AudioConfig
   m_EditorClassIdentifier: 
   <Audio>k__BackingField:
-    rid: 6316267758209990658
+    rid: 6316267768576475143
   references:
     version: 2
     RefIds:
-    - rid: 6316267758209990658
-      type: {class: AudioData, ns: RovioTest.Config, asm: roviotest.runtime}
+    - rid: 6316267768576475143
+      type: {class: RovioAudioData, ns: RovioTest.Config, asm: roviotest.runtime}
       data:
         <AudioType>k__BackingField: 8
         <Clip>k__BackingField: {fileID: 8300000, guid: 2768bddaaef05fa4c9a3ed6b09bd123c,
@@ -33,8 +33,8 @@ MonoBehaviour:
         - {fileID: 8300000, guid: c3531dab4082f7c4e92985b7769c09e4, type: 3}
         - {fileID: 8300000, guid: ea6f473752bae514d9e7df7dd6aa485e, type: 3}
         - {fileID: 8300000, guid: 2ddff3d154864594eae3080a93cfc4eb, type: 3}
-        <Volume>k__BackingField: 0.4
+        <Volume>k__BackingField: 1
         <Mixer>k__BackingField: 3
         <Pitch>k__BackingField: 1
-        <Loop>k__BackingField: 1
+        <Loop>k__BackingField: 0
         <FadeOutDuration>k__BackingField: 0

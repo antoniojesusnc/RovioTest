@@ -1,6 +1,6 @@
 namespace RovioTest.Config
 {
-    public enum AudioTypes
+    public enum RovioTestAudiosTypes
     {
         MainMenu,
         ButtonClick,
@@ -13,6 +13,7 @@ namespace RovioTest.Config
         Public,
         Victory,
         Walk,
-        MissHit
+        MissHit,
+        Defeat
     }
 }
