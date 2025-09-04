@@ -142,6 +142,8 @@ The Enemy has two different behaviors based on some classes: Movement and Hitter
 [Link](https://assetstore.unity.com/packages/3d/environments/landscapes/free-low-poly-nature-forest-205742).
 - Some Mixamo animations
 	[Link](https://www.mixamo.com/).
+- Some Particles from Hovl 
+[Link](https://assetstore.unity.com/publishers/28391?srsltid=AfmBOorRRngH0zdAdK1_3Mao9a0oQCG-zSpnXDaZln5DvVEcjpI14KYZ).
 	
 ## Known Issues
 Some known issues need to be tested.
