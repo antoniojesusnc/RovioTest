@@ -7,7 +7,8 @@ using Urd;
 namespace RovioTest.UI
 {
     public class UICharacterSkillBar : MonoBehaviourEventObservable,
-        IEventBusObservable<OnCharacterHitBallEvent>
+        IEventBusObservable<OnCharacterHitBallEvent>,
+        IEventBusObservable<OnFinishInitialCameraAnimation>
     {
         [SerializeField] private Slider _slider;
         
@@ -18,6 +19,7 @@ namespace RovioTest.UI
             base.Start();
             _characterView = GetComponentInParent<CharacterView>();
             UpdateData();
+            gameObject.SetActive(false);
         }
         
         private void UpdateData()
@@ -33,6 +35,11 @@ namespace RovioTest.UI
             }
 
             UpdateData();
+        }
+
+        public void OnNewEvent(OnFinishInitialCameraAnimation newEvent)
+        {
+            gameObject.SetActive(true);
         }
     }
 }

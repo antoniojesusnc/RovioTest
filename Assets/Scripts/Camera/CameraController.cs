@@ -24,7 +24,7 @@ namespace RovioTest
 
         public void OnNewEvent(OnBeginBattleEvent newEvent)
         {
-                _transposer = _camera.GetCinemachineComponent<CinemachineTransposer>();
+            _transposer = _camera.GetCinemachineComponent<CinemachineTransposer>();
             _player = newEvent.LevelModel.PlayerView;
             if (_camera.Follow == null)
             {
@@ -36,7 +36,12 @@ namespace RovioTest
         private void MakeInitialAnimation()
         {
             var initialAnimationDuration = StaticServiceLocator.Get<IGamePlayService>().Config.InitialAnimationDuration;
-            DOVirtual.Float(_cameraMix.m_Weight0, 0, initialAnimationDuration, OnUpdate);
+            DOVirtual.Float(_cameraMix.m_Weight0, 0, initialAnimationDuration, OnUpdate).onComplete += OnComplete;
+        }
+
+        private void OnComplete()
+        {
+            _eventBusService.Send(new OnFinishInitialCameraAnimation());
         }
 
         private void OnUpdate(float value)

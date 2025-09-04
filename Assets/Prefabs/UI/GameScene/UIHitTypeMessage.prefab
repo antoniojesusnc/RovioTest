@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1643313787737769449}
-  _playerOffset: {x: 0, y: 0, z: 2.5}
+  _playerOffset: {x: 0, y: 0, z: 3}
 --- !u!114 &8472371545921619624
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -534,11 +534,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UISmashedMessage
       objectReference: {fileID: 0}
-    - target: {fileID: 3715688197093762766, guid: 74404b51636952c459492c8f844d0cee,
-        type: 3}
-      propertyPath: onComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5663513089993088480, guid: 74404b51636952c459492c8f844d0cee,
         type: 3}
       propertyPath: m_Pivot.x
@@ -638,16 +633,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556685726513645208, guid: 74404b51636952c459492c8f844d0cee,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 9.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556685726513645208, guid: 74404b51636952c459492c8f844d0cee,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 5.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

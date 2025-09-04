@@ -1,14 +1,23 @@
+using RovioTest.Events;
 using UnityEngine;
+using Urd;
 
 namespace RovioTest.UI
 {
-    public class UICharacterCanvas : MonoBehaviour
+    public class UICharacterCanvas : MonoBehaviourEventObservable,
+        IEventBusObservable<OnFinishInitialCameraAnimation>
     {
         private Camera _camera;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _camera = Camera.main;
+            
+        }
+
+        public void OnNewEvent(OnFinishInitialCameraAnimation newEvent)
+        {
             transform.LookAt(-_camera.transform.position);
         }
     }
