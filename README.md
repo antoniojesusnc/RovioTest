@@ -1,8 +1,7 @@
 # Rovio Test
 First of all, say thank you for this opportunity. This test has been quite interesting.
 
-
-![Video](/Assets/Videos/trailer.mp4)
+https://github.com/user-attachments/assets/8901add6-a7a3-4e2e-a4b9-b66b602f8088
 
 ## Steps
 1. First of all, I play the game and take into account some details about game flow, game interactions, controls, and more.
