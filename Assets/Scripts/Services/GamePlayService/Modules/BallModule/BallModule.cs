@@ -154,6 +154,7 @@ namespace RovioTest.Services
             _eventBusService.Send(new OnCharacterSmashedEvent(newEvent.HitCharacter)); 
             
             _ballView.Model.ResetToInitialSpeed();
+            _ballView.Model.SetScore(0);
         }
         
         private void SetBallToOpponent(CharacterView hitCharacter)
