@@ -20,6 +20,7 @@ namespace RovioTest.Services
         public LevelModel LevelModel { get; private set; }
         
         private IGamePlayService _gameplayService;
+        private Tween _timerToShowServe;
 
         public override void Init()
         {
@@ -148,13 +149,18 @@ namespace RovioTest.Services
         private void FinishLoadLevel()
         {
             _eventBusService.Send(new OnBeginBattleEvent(LevelModel));
-            
             DOVirtual.DelayedCall(_gameplayService.Config.InitialAnimationDuration, () => BeginServeEvent(LevelModel.PlayerView));
         }
         
         private void BeginServeEvent(CharacterView serverCharacter)
         {
             _eventBusService.Send(new OnBeginServeEvent(serverCharacter));
+        }
+
+        public override void GameOver(bool isWon)
+        {
+            base.GameOver(isWon);
+            _timerToShowServe?.Kill();
         }
 
         public void OnNewEvent(OnCharacterBeingHitEvent newEvent)
@@ -171,7 +177,7 @@ namespace RovioTest.Services
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
         {
             var server = newEvent.CharacterDown == LevelModel.PlayerView ? LevelModel.EnemyView : LevelModel.PlayerView;
-            DOVirtual.DelayedCall(_gameplayService.Config.WaitTimeAfterSmash, () => BeginServeEvent(server));
+            _timerToShowServe = DOVirtual.DelayedCall(_gameplayService.Config.WaitTimeAfterSmash, () => BeginServeEvent(server));
         }
     }
 }

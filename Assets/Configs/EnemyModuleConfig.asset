@@ -35,17 +35,17 @@ MonoBehaviour:
       type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
         _cooldownTime: 1
-        _movementTime: 1
+        _movementTime: 0.5
         _rateToBeginMovement: 0.7
     - rid: 9054691170877177862
       type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
         _cooldownTime: 0.5
-        _movementTime: 1.5
+        _movementTime: 1
         _rateToBeginMovement: 0.7
     - rid: 9054691170877177863
       type: {class: CharacterMovementBehaviorRandomMovement, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
         _cooldownTime: 0.3
-        _movementTime: 1.5
+        _movementTime: 1
         _rateToBeginMovement: 1

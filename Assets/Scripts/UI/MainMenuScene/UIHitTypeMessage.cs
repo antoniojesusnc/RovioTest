@@ -3,7 +3,6 @@ using RovioTest.Events;
 using TMPro;
 using UnityEngine;
 using Urd;
-using Urd.Services;
 
 namespace RovioTest.UI
 {
@@ -12,7 +11,6 @@ namespace RovioTest.UI
     {
         [SerializeField] private TextMeshPro _text;
         [SerializeField] private Vector3 _playerOffset;
-        [SerializeField] private DOTweenAnimation _movementAnimation;
         
         private Camera _camera;
 
@@ -24,26 +22,12 @@ namespace RovioTest.UI
             gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            StaticServiceLocator.Get<IClockService>()?.SubscribeToUpdate(CustomUpdate);
-        }
-        
-        private void OnDisable()
-        {
-            StaticServiceLocator.Get<IClockService>()?.UnSubscribeToUpdate(CustomUpdate);
-        }
-
-        private void CustomUpdate(float deltaTime)
-        {
-            transform.LookAt(_camera.transform.position);
-        }
-        
         public void ShowHitMessage(OnBallBeingHitEvent newEvent)
         {
             gameObject.SetActive(true);
             _text.SetText(newEvent.BallHitType.ToString());
             transform.position = newEvent.HitCharacter.transform.position + _playerOffset;
+            transform.LookAt(_camera.transform.position);
             DOTween.Restart(gameObject);
         }
 

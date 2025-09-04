@@ -1,5 +1,6 @@
 using RovioTest.Config;
 using RovioTest.Events;
+using RovioTest.Models;
 using RovioTest.Services;
 using UnityEngine;
 using Urd;
@@ -8,39 +9,48 @@ using Urd.Services;
 namespace RovioTest.View
 {
     public class CharacterAnimationsView : MonoBehaviourEventObservable,
+        IEventBusObservable<OnBeginBattleEvent>,
         IEventBusObservable<OnBallBeingHitEvent>,
         IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnBeginServeEvent>,
         IEventBusObservable<OnGameOverEvent>,
         IEventBusObservable<OnCharacterMissHitEvent>
     {
-        [SerializeField]
-        private Animator _animator;
-        [SerializeField]
-        private Transform _avatar;
-        [Header("Effects")]
-        [SerializeField]
-        private Transform _effectParent;
-        [SerializeField]
-        private VFXCharacterWalkSmoke _walkEffect;
-        [SerializeField]
-        private float _walkEffectFrequency;
-        
+        [SerializeField] private Animator _animator;
+        [SerializeField] private Transform _avatar;
+        [Header("Effects")] [SerializeField] private Transform _effectParent;
+        [SerializeField] private VFXCharacterWalkSmoke _walkEffect;
+        [SerializeField] private float _walkEffectFrequency;
+
         private Vector3 _lastPosition;
         private CharacterView _characterView;
-        private CharacterView _opponent;
-        private BallView _ball;
-        
+
+
         private float _timestamp;
         private bool CanGenerateWalkEffect => _timestamp <= 0;
+        private CharacterView Opponent => LevelModel.PlayerView == _characterView
+            ? LevelModel.EnemyView
+            : LevelModel.PlayerView;
+
+        private LevelModel _levelModel;
+        private LevelModel LevelModel
+        {
+            get
+            {
+                if (_levelModel == null)
+                {
+                    _levelModel = StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>()
+                        .LevelModel;
+                }
+                return _levelModel;
+            }
+        } 
         
         protected override void Start()
         {
             base.Start();
             _characterView = GetComponentInParent<CharacterView>();
-            var levelModel = StaticServiceLocator.Get<IGamePlayService>().GetModule<LevelManagerModule>().LevelModel;
-            _opponent = levelModel.EnemyView == _characterView? levelModel.PlayerView : levelModel.EnemyView;
-            _ball = levelModel.BallView;
+            
             StaticServiceLocator.Get<IClockService>().SubscribeToUpdate(CustomUpdate);
         }
 
@@ -102,6 +112,11 @@ namespace RovioTest.View
                 _animator.Play(animationName);
             }
         }
+        
+        public void OnNewEvent(OnBeginBattleEvent newEvent)
+        {
+            _levelModel = newEvent.LevelModel;
+        }
 
         public void OnNewEvent(OnJoystickChangedEvent newEvent)
         {
@@ -127,7 +142,7 @@ namespace RovioTest.View
             if (validShot && newEvent.HitCharacter == _characterView)
             {
                 PlayHitBallAnimation();
-                RotateToPosition(_ball.transform.position);
+                RotateToPosition(LevelModel.BallView.transform.position);
             }
         }
 
@@ -135,7 +150,7 @@ namespace RovioTest.View
         {
             if (_characterView == newEvent.CharacterDown)
             {
-                RotateToPosition(_ball.transform.position);
+                RotateToPosition(LevelModel.BallView.transform.position);
                 PlayFallDownAnimation();
             }
             else
@@ -155,7 +170,7 @@ namespace RovioTest.View
                 PlayIdleAnimation();
             }
 
-            RotateToPosition(_opponent.transform.position);
+            RotateToPosition(Opponent.transform.position);
         }
 
         public void OnNewEvent(OnGameOverEvent newEvent)
