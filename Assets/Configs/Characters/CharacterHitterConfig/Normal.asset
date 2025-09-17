@@ -38,5 +38,5 @@ MonoBehaviour:
     - rid: 6316267722904174594
       type: {class: CharacterHitterBehaviorByProximity, ns: RovioTest.AI, asm: roviotest.runtime}
       data:
-        _hitRate: 0.85
+        _hitRate: 0.9
         _coolDownToTryAgain: 0.2
