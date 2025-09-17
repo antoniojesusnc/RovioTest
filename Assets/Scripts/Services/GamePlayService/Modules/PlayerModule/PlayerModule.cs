@@ -112,6 +112,8 @@ namespace RovioTest.Services
             _playerView = newEvent.LevelModel.PlayerView;
             _playerModel = _playerView.Model;
             _ballView = newEvent.LevelModel.BallView;
+            
+            _playerModel.ResetStats();
         }
         
         public void OnNewEvent(OnJoystickChangedEvent newEvent)

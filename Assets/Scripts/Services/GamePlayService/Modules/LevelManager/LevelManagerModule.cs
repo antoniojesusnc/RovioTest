@@ -18,6 +18,7 @@ namespace RovioTest.Services
         IEventBusObservable<OnCharacterSmashedEvent>
     {
         public LevelModel LevelModel { get; private set; }
+        public bool IsGameOver { get; private set; }
         
         private IGamePlayService _gameplayService;
         private Tween _timerToShowServe;
@@ -34,6 +35,7 @@ namespace RovioTest.Services
         {
             base.BeginBattle();
 
+            IsGameOver = false;
             LoadAssetForBattle();
         }
 
@@ -154,11 +156,17 @@ namespace RovioTest.Services
         
         private void BeginServeEvent(CharacterView serverCharacter)
         {
+            if (IsGameOver)
+            {
+                return;
+            }
+            
             _eventBusService.Send(new OnBeginServeEvent(serverCharacter));
         }
 
         public override void GameOver(bool isWon)
         {
+            IsGameOver = true;
             base.GameOver(isWon);
             _timerToShowServe?.Kill();
         }

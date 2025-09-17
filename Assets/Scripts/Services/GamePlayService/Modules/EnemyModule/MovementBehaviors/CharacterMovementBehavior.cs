@@ -52,14 +52,12 @@ namespace RovioTest.AI
         
         public virtual void Restart()
         {
-            Debug.Log("Restart");
             _isStopped = false;
             _isMoving = false;
         }
         
         public virtual void Stop()
         {
-            Debug.Log("Stop");
             _characterView.Stop();
             _isStopped = true;
             _isMoving = false;
