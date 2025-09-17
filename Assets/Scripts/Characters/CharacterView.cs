@@ -56,6 +56,16 @@ namespace RovioTest.View
 
             _eventBusService.Send(OnBallBeingHitEvent.HitWithCharacter(this, collision.GetContact(0)));
         }
+        
+        public void OnWallCollision(Collision collision)
+        {
+            if (_isGameOver)
+            {
+                return;
+            }
+
+            _eventBusService.Send(new OnCharacterHitAgainstWallEvent(this));
+        }
 
         public void OnNewEvent(OnGameOverEvent newEvent)
         {

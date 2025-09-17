@@ -29,7 +29,7 @@ namespace RovioTest.AI
                 return;
             }
             
-            if(TryGetMovemenet(out var movementNormalized))
+            if(TryGetMovement(out var movementNormalized))
             {
                 _characterView.Move(movementNormalized);
                 _isMoving = true;
@@ -41,7 +41,7 @@ namespace RovioTest.AI
             }
         }
 
-        protected abstract bool TryGetMovemenet(out Vector2 movementNormalized);
+        protected abstract bool TryGetMovement(out Vector2 movementNormalized);
 
         public virtual void Dispose()
         {
@@ -52,17 +52,14 @@ namespace RovioTest.AI
         
         public virtual void Restart()
         {
+            Debug.Log("Restart");
             _isStopped = false;
             _isMoving = false;
         }
         
-        public virtual void Continue()
-        {
-            _isStopped = false;
-        }
-        
         public virtual void Stop()
         {
+            Debug.Log("Stop");
             _characterView.Stop();
             _isStopped = true;
             _isMoving = false;

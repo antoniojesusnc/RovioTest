@@ -18,7 +18,8 @@ namespace RovioTest.Services
         IEventBusObservable<OnBallBeingHitEvent>,
         IEventBusObservable<OnCharacterSmashedEvent>,
         IEventBusObservable<OnBeginServeEvent>,
-        IEventBusObservable<OnFinishServeEvent>
+        IEventBusObservable<OnFinishServeEvent>,
+        IEventBusObservable<OnCharacterHitAgainstWallEvent>
     {
         [SerializeField] 
         private EnemyModuleConfig _config;
@@ -26,6 +27,7 @@ namespace RovioTest.Services
         private CharacterView _enemyView;
         private CharacterModel _enemyModel;
         private BallView _ballView;
+        private Tween _restartMovementDelay;
 
         public override void GameOver(bool isWon)
         {
@@ -72,10 +74,12 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnBallBeingHitEvent newEvent)
         {
-            if (newEvent.HitCharacter != _enemyView)
+            if (newEvent.HitCharacter != _enemyView || newEvent.BallHitType == BallHitTypes.Hit)
             {
                 return;
             }
+            _enemyModel.MovementBehavior.Stop();
+            _restartMovementDelay = DOVirtual.DelayedCall(_enemyModel.Config.HitAnimationDuration, _enemyModel.MovementBehavior.Restart);
         }
 
         public void OnNewEvent(OnFinishServeEvent newEvent)
@@ -85,11 +89,13 @@ namespace RovioTest.Services
 
         public void OnNewEvent(OnCharacterSmashedEvent newEvent)
         {
+            _restartMovementDelay?.Kill();
             _enemyModel.Stop();
         }
 
         public void OnNewEvent(OnBeginServeEvent newEvent)
         {
+            _restartMovementDelay?.Kill();
             _enemyModel.MovementBehavior.Stop();
 
             if (newEvent.Server == _enemyView)
@@ -100,6 +106,14 @@ namespace RovioTest.Services
             else
             {
                 _enemyModel.HitterBehavior.Restart();
+            }
+        }
+
+        public void OnNewEvent(OnCharacterHitAgainstWallEvent newEvent)
+        {
+            if (newEvent.Character == _enemyView)
+            {
+                _enemyModel.MovementBehavior.Restart();
             }
         }
     }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb883f580e20841824224f1ec64aea, type: 3}
   m_Name: CharlieConfig
   m_EditorClassIdentifier: 
+  <IsSelectableToEnemy>k__BackingField: 1
   <Hp>k__BackingField: 2230
   <Speed>k__BackingField: 8
   <Attack>k__BackingField: 47
@@ -44,6 +45,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   <DefaultHitterConfig>k__BackingField: {fileID: 11400000, guid: 2b79453d581b492479b7de1315768ec9,
     type: 2}
+  <HitAnimationDuration>k__BackingField: 0.5
   <HitServeRates>k__BackingField:
   - <HitRange>k__BackingField:
       Min: 0

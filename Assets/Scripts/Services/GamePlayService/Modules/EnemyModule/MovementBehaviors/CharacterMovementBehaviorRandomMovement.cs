@@ -23,11 +23,13 @@ namespace RovioTest.AI
 
         public override void Restart()
         {
+            Debug.Log("Restart Restart");
+            
             base.Restart();
             _timeStamp = 0;
         }
 
-        protected override bool TryGetMovemenet(out Vector2 movementNormalized)
+        protected override bool TryGetMovement(out Vector2 movementNormalized)
         {
             if (_timeStamp > 0)
             {
@@ -77,6 +79,9 @@ namespace RovioTest.AI
             var randomPositionAround = _characterView.transform.position.ToVector2XZ() + Random.insideUnitCircle; 
             _direction = (randomPositionAround - _characterView.transform.position.ToVector2XZ()).normalized;
             _timeStamp = _movementTime;
+            
+            Debug.Log("BeginMovement");
+
         }
 
         private bool NeedToBeginMovement()

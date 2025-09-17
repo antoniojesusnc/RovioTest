@@ -42,8 +42,9 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <DefaultHitterConfig>k__BackingField: {fileID: 11400000, guid: 062f7c53bc2925042a29dd65c681237c,
+  <DefaultHitterConfig>k__BackingField: {fileID: 11400000, guid: 2b79453d581b492479b7de1315768ec9,
     type: 2}
+  <HitAnimationDuration>k__BackingField: 0.5
   <HitServeRates>k__BackingField:
   - <HitRange>k__BackingField:
       Min: 0

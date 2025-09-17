@@ -10,6 +10,9 @@ namespace RovioTest.Config
     [CreateAssetMenu(fileName = "new CharacterConfig", menuName = "RovioTest/New Character", order = 1)]
     public class CharacterConfig : ScriptableObject
     {
+        [field: SerializeField]
+        public bool IsSelectableToEnemy { get; private set; }
+        
         [field: Header("Stats")]
         [field: SerializeField]
         public float Hp { get; private set; }
@@ -37,9 +40,13 @@ namespace RovioTest.Config
         [field: Header("Asset")]
         [field: SerializeField]
         public AssetReferenceGameObject Asset { get; private set; }
-        [field: Header("Asset")]
+        [field: Header("Hitter Config")]
         [field: SerializeField]
         public CharacterHitterConfig DefaultHitterConfig { get; private set; }
+        
+        [field: Header("Animations")]
+        [field: SerializeField]
+        public float HitAnimationDuration { get; private set; }
         
         [field: Header("Serve Chance")]
         [field: SerializeField]

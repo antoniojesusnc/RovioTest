@@ -59,6 +59,7 @@ namespace RovioTest.Config
                 .OrderBy(assetPath => assetPath)
                 .Select(AssetDatabase.LoadAssetAtPath<Object>)
                 .OfType<CharacterConfig>()
+                .Where(c => c.IsSelectableToEnemy)
                 .ToList();
         }
 
