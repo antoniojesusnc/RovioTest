@@ -23,7 +23,6 @@ MonoBehaviour:
     <MovementBehavior>k__BackingField:
       rid: 9054691170877177863
   <HitterBehaviors>k__BackingField:
-  - {fileID: 11400000, guid: 062f7c53bc2925042a29dd65c681237c, type: 2}
   - {fileID: 11400000, guid: b386a94fe48ab7f408990ca3c6477b72, type: 2}
   - {fileID: 11400000, guid: 2b79453d581b492479b7de1315768ec9, type: 2}
   - {fileID: 11400000, guid: e223d65bb023daf42b08c778a5183b2d, type: 2}

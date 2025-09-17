@@ -101,7 +101,7 @@ namespace RovioTest.View
 
         private void OnFinishPublicAudio()
         {
-            _timersForPlayPublic.RemoveAll(tween => tween.IsComplete());
+            _timersForPlayPublic.RemoveAll(tween => tween == null || !tween.IsActive());
             --_publicSoundPlaying;
             TryToPlayPublic();
         }

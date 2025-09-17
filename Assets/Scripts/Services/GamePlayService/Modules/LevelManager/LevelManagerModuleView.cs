@@ -47,6 +47,7 @@ namespace RovioTest.UI
             SetInitialPosition(_levelModel.CourtView.transform, _courtParent);
             SetInitialPosition(_levelModel.PlayerView.transform, _levelModel.CourtView.PlayerParent);
             SetInitialPosition(_levelModel.EnemyView.transform, _levelModel.CourtView.EnemyParent);
+            
             if (whoServe == InitialPosition.Player)
             {
                 SetInitialPosition(_levelModel.BallView.transform, _levelModel.CourtView.BallPlayer);
