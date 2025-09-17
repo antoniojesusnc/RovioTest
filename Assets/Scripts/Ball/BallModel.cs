@@ -1,5 +1,6 @@
 using System;
 using RovioTest.Config;
+using UnityEngine;
 
 namespace RovioTest.Models
 {
@@ -50,7 +51,7 @@ namespace RovioTest.Models
         }
         public void IncreaseSpeedRate(float increaseRate)
         {
-            Speed *= increaseRate;
+            Speed = Mathf.Clamp(Speed * increaseRate, InitialSpeed, float.MaxValue);
         }
     }
 }
