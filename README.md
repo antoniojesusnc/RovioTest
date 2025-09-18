@@ -89,7 +89,7 @@ The Enemy has two different behaviors based on some classes: Movement and Hitter
 22. Audio & feedback.
 - Estimated Time: 1:00 h
 - Real Time aprox: 1:00 h
-21. General polish and bug fixing.
+23. General polish and bug fixing.
 - Estimated Time: 2:00 h
 - Real Time aprox: 1:30 h	
 
